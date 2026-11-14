@@ -1,0 +1,34 @@
+Lifetime and live statistics — 8 November 2026
+
+Game > Statistics now opens a modeless page. The board stays enabled and
+continues playing when the statistics page has focus. Refresh takes a new
+snapshot; there is no live refresh timer or per-frame text formatting.
+
+Lifetime totals persist across launches in:
+%LOCALAPPDATA%\InkBall-Reconstructed\statistics-v1.dat
+The separate versioned file uses a temporary file plus atomic replacement.
+Malformed, truncated, negative, overflowed and future-version data are
+rejected without partially applying the data. Totals start with this update;
+earlier gameplay cannot be reconstructed from the old high-score settings.
+
+Persistence runs at existing New Game / Restart / Play Selected Board /
+loss / close save points. No disk writes were added to normal frame updates.
+An abnormal process termination can lose activity since the last save.
+
+For each completed board, active time taken and remaining countdown are
+captured before the celebration converts remaining time to points. Current
+and previous run sections show the individual attempt. Game and lifetime
+sections aggregate completed-board time and remaining time. Unlimited boards
+contribute completion time but have no remaining-countdown value.
+Paused time and celebration time do not add lifetime active-play time.
+
+Validation: Release and Debug engine/statistics suites pass 708 checks;
+Release catalog passes 38 checks; final Release smoke test exits 0.
+Native integration confirms persistence round-trip and invalid-file
+rejection, actual WM_TIMER gameplay advancing while statistics is focused,
+Refresh updating the snapshot, and closing/reopening the page.
+Window move/resize capture regression also passes.
+
+Browser slowdown attribution is documented separately in
+Browser-slowdown-attribution.txt. The responsible external helper was not
+stopped or changed, and no accessibility support was disabled in the game.

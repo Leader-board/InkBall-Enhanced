@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32"><Configuration>Debug</Configuration><Platform>Win32</Platform></ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64"><Configuration>Debug</Configuration><Platform>x64</Platform></ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32"><Configuration>Release</Configuration><Platform>Win32</Platform></ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64"><Configuration>Release</Configuration><Platform>x64</Platform></ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals"><VCProjectVersion>18.0</VCProjectVersion><ProjectGuid>{D40EC49C-0962-4B6C-8C69-43C387FA47ED}</ProjectGuid><Keyword>Win32Proj</Keyword><RootNamespace>InkBall</RootNamespace><WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion></PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)'=='Debug'" Label="Configuration"><ConfigurationType>Application</ConfigurationType><UseDebugLibraries>true</UseDebugLibraries><PlatformToolset>v145</PlatformToolset><CharacterSet>Unicode</CharacterSet></PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)'=='Release'" Label="Configuration"><ConfigurationType>Application</ConfigurationType><UseDebugLibraries>false</UseDebugLibraries><PlatformToolset>v145</PlatformToolset><CharacterSet>Unicode</CharacterSet></PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings" />
+  <PropertyGroup><OutDir>$(ProjectDir)bin\$(Platform)\$(Configuration)\</OutDir><IntDir>$(ProjectDir)obj\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir><TargetName>inkball</TargetName><EmbedManifest>true</EmbedManifest></PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile><WarningLevel>Level4</WarningLevel><SDLCheck>true</SDLCheck><ConformanceMode>true</ConformanceMode><LanguageStandard>stdcpp20</LanguageStandard><ExceptionHandling>Sync</ExceptionHandling><AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions><AdditionalIncludeDirectories>$(ProjectDir)src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories><PreprocessorDefinitions>UNICODE;_UNICODE;WIN32_LEAN_AND_MEAN;NOMINMAX;_WIN32_WINNT=0x0A00;%(PreprocessorDefinitions)</PreprocessorDefinitions></ClCompile>
+    <Link><SubSystem>Windows</SubSystem><GenerateDebugInformation>true</GenerateDebugInformation><GenerateManifest>true</GenerateManifest><AdditionalDependencies>user32.lib;gdi32.lib;msimg32.lib;shell32.lib;comctl32.lib;%(AdditionalDependencies)</AdditionalDependencies></Link>
+    <Manifest><AdditionalManifestFiles>$(ProjectDir)assets\app.manifest;%(AdditionalManifestFiles)</AdditionalManifestFiles></Manifest>
+    <ResourceCompile><AdditionalIncludeDirectories>$(ProjectDir)src;$(ProjectDir)resources;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories><Culture>0x0409</Culture></ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)'=='Debug'"><ClCompile><Optimization>Disabled</Optimization><RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary><PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions></ClCompile></ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)'=='Release'"><ClCompile><Optimization>MaxSpeed</Optimization><RuntimeLibrary>MultiThreaded</RuntimeLibrary><PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions></ClCompile></ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Game.cpp" />
+    <ClCompile Include="src\Levels.cpp" />
+    <ClCompile Include="src\WinMain.cpp" />
+    <ClCompile Include="src\Renderer.cpp" />
+    <ClCompile Include="src\BoardCatalog.cpp" />
+    <ClCompile Include="src\BoardBrowser.cpp" />
+    <ClCompile Include="src\MechanicsDialog.cpp" />
+    <ClCompile Include="src\PenCursor.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Game.h" />
+    <ClInclude Include="src\Levels.h" />
+    <ClInclude Include="src\Renderer.h" />
+    <ClInclude Include="src\SpriteRects.h" />
+    <ClInclude Include="src\resource.h" />
+    <ClInclude Include="src\BoardCatalog.h" />
+    <ClInclude Include="src\BoardBrowser.h" />
+    <ClInclude Include="src\MechanicsDialog.h" />
+    <ClInclude Include="src\PenCursor.h" />
+    <ClInclude Include="src\TextPage.h" />
+    <ClInclude Include="src\StatisticsFile.h" />
+  </ItemGroup>
+  <ItemGroup><ResourceCompile Include="resources\InkBall.rc" /></ItemGroup><ItemGroup><None Include="resources\LocalizedMenus.rc" /><None Include="assets\app.manifest" /><None Include="assets\levels.ikl" /><Image Include="assets\sprites.bmp" /><Image Include="assets\inkball.ico" /></ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets" />
+</Project>

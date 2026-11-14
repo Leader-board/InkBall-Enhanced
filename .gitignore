@@ -1,0 +1,8 @@
+.vs/
+bin/x64/
+bin/Win32/
+obj/
+build/
+out/
+*.user
+*.suo

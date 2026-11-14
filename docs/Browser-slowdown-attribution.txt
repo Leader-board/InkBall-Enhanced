@@ -1,0 +1,40 @@
+Browser slowdown attribution — 8 November 2026
+
+Identified requester: codex-computer-use.exe, PID 62324 in this recording.
+Parent: ChatGPT.exe, PID 17908 (the Codex desktop application).
+Executable:
+C:\Users\vishn\AppData\Local\OpenAI\Codex\runtimes\cua_node\db1cc9e06a6c48d6\bin\node_modules\@oai\sky\bin\windows\codex-computer-use.exe
+The helper process started at 12:45:00 on 8 November, during earlier work.
+Process IDs are recording-specific, not stable identifiers.
+
+Method: a short Microsoft-Windows-UIAutomationCore ETW trace while an
+isolated native board-browser benchmark ran. No Computer Use commands were
+issued during the recording. No helper or other application was modified,
+stopped, suspended, or reconfigured. The diagnostic trace was stopped.
+
+The test browser process was PID 45968. Windows trace records correlate
+calls emitted by PID 62324 directly with peer/target PID 45968:
+- UiaNode_GetPropertyValues, UiaNode_GetPatternProvider and UiaNode_BulkFetch.
+- Bulk-fetch request 244: completion event in PID 62324 reported duration
+  1906 ms; its transport event identified peer PID 45968.
+- Other bulk fetches reported 1547, 1563 and 1609 ms.
+- Browser-side completed provider operations included 17,341 pattern-provider
+  requests, 15,269 property-value requests and 1,970 navigation requests.
+- In the same recording, 100 posted responsiveness probes waited on average
+  819.16 ms, maximum 1875 ms, to be processed by the browser.
+
+Interpretation: this identifies the Codex Computer Use helper's bulk
+accessibility reads as a source of the observed UI-thread starvation. The
+earlier source-code timings showed preview generation around 2 ms. The
+helper can keep making accessibility requests even when this chat is not
+currently calling a Computer Use tool; the trace establishes activity,
+without assuming the helper's internal reason for making the requests.
+
+No browser workaround or accessibility disablement was installed. The user
+explicitly asked that responsible external applications be identified but
+not changed. This is an attribution, not a claim that the helper is fixed
+or that no other possible source of latency can ever occur.
+
+Raw diagnostic traces are retained only in the working folder. This report
+contains the relevant process/method/timing evidence rather than unrelated
+application events captured by the system-wide provider.

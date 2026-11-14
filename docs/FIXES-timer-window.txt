@@ -1,0 +1,41 @@
+InkBall timer and window fixes — 8 November 2026
+
+Timed gray walls now use p1 for the open/off duration and p2 for the
+closed/on duration. This corrects the five-seconds-off, two-seconds-on
+case and updates the board inspector's description.
+
+Checked directly against C:\Program Files\Microsoft Games\inkball\inkball.exe:
+the original constructor stores its first duration at +0x6c and second
+at +0x70. UpdateObject uses +0x70 while retracted and +0x6c while raised.
+The reconstruction had these reversed. The referenced x86 decompilation's
+field names/update routine were misleading; the installed x64 EXE was
+used as the deciding reference.
+
+Window dragging: the pause handler used to release mouse capture whenever
+Windows entered move/resize, cancelling its own native title-bar drag.
+Capture is now released only when ending an active ink stroke.
+
+Validation on native Windows / Visual Studio 2026:
+- x64 Release and Debug builds succeeded.
+- Release engine: 679 checks passed, including repeated asymmetric timer
+  cycles starting both raised and retracted.
+- Release catalog: 38 checks passed.
+- Release game --smoke-test: exit 0.
+- Native capture regression: old code failed on entering move mode;
+  fixed code retains capture on move/resize and releases it for ink strokes.
+- Renderer suite fails after two checks on a single-point stroke assertion.
+  The same failure was present before either fix; renderer code is unchanged.
+- Physical dragging across different monitors was not manually verified.
+
+The source folder named in the request was updated, including the prebuilt
+executable and x64 Release/Debug executables. Original modified files were
+backed up in the working folder before replacement.
+
+Follow-up validation: the first shipped Release executable retained an older
+compiled window handler. A clean Rebuild was required to include the source
+fix. The corrected executable was inspected directly: its drawing=false
+branch now skips ReleaseCapture. The diagnostic build was physically dragged
+across the user's two screens successfully (user confirmed no jump). Trace
+showed the window remaining at x=3118 on monitor 2, at 144 DPI.
+Temporary tracing was removed from the final source and executable.
+Both gameplay (679 checks) and catalog (38 checks) passed after clean Rebuild.

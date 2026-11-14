@@ -1,0 +1,42 @@
+InkBall statistics and DPI update — 8 November 2026
+
+Open Game > Statistics. A run is one board attempt; a game spans boards
+until New Game, Restart, or Play Selected Board. The game automatically
+restarts after a loss, retaining the previous run/game for inspection.
+The page displays current and previous totals; it does not store a full
+history across application launches.
+
+Recorded values: accepted ink length in logical board pixels, strokes,
+successful ink/wall-tile/ball deflections, balls sunk, boards cleared,
+and active playing seconds. Pauses and post-completion celebrations do
+not add active playing time. Clearing or consuming ink retains its drawn
+length. A single-point stroke counts as one stroke with zero path length.
+Wall-tile hits exclude the board's outer bounds correction; ball-to-ball
+hits count resolved collision events, not persistent overlap samples.
+
+Performance: fixed-size counters updated at existing event sites. The
+clock is read from existing simulation state. No new board scans, timers,
+per-frame text formatting, or disk writes are added. Statistics formatting
+and display occur only when the user opens the page, while play is paused.
+The counters are outside GameState so rendering does not copy them.
+
+Before/after native Release benchmark: 12 alternating pairs, each simulating
+four passes over all 551 boards with drawing input and physics. Every result
+checksum was identical. Median before: 637.656 ms; after: 638.999 ms (+0.21%).
+Mean before: 652.175 ms; after: 648.249 ms. Results varied from about 621 to
+731 ms. No slowdown was distinguishable from measurement variation in this
+workload. Literal zero CPU cost cannot be guaranteed: counters and accepted
+segment-length calculations necessarily perform a little work.
+
+The screenshot's original loss dialog was MessageBoxW. Native test:
+calling thread was Per-Monitor V2, but the original message-box window was
+not; it continued reporting 120 DPI after moving onto the 144-DPI monitor.
+The replacement loss/statistics window uses native Windows controls with
+an explicit Per-Monitor V2 context and handles WM_DPICHANGED. Testing moved
+it between the physical monitors: DPI changed 120 -> 144 and font height
+changed -17 -> -20. This verifies context/font scaling, not visual pixel QA.
+
+Validation: clean x64 Release and Debug builds; 693 gameplay/statistics
+checks and 38 catalog checks in each; final Release --smoke-test exit 0.
+No Computer Use tools or input automation were used for these changes.
+The earlier browser/accessibility performance finding is not claimed fixed.

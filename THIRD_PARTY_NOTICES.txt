@@ -1,0 +1,31 @@
+ORIGINAL GAME RESOURCES
+
+InkBall's level archive, bitmap artwork, icon, and menu/string translations
+were extracted from HoldEm-InkBall-Tinker-Setup.exe supplied with this task.
+Original InkBall and these resources are copyright Microsoft Corporation.
+Their inclusion here is a transformation of the supplied material, not a
+claim that the original assets are open source or covered by this project's
+license. The original executable is not needed or launched by the rebuild.
+See docs/ORIGINAL_ASSETS.json for exact provenance and SHA-256 hashes.
+
+DECOMPILATION REFERENCE
+
+Repository: https://github.com/TC999/inkballd
+Commit: cbcee4fe44f00504e38bc2b76ddd93656e591fd6
+License: MIT
+Copyright (c) 2026 陈生杂物房
+Full notice: third_party/inkballd-LICENSE.txt
+
+Its annotated decompilation and recovered sprite-coordinate table aided
+interpretation of the supplied x86 executable. The binary was also analyzed
+independently. The reference repository's incomplete build and stub functions
+are not used as the game's runtime implementation. No code from the separate
+GPL InkBall reconstruction was used.
+
+TOOLS
+
+Ghidra, 7-Zip, GCC/MinGW-w64, Wine, Python and Visual Studio are development
+or validation tools; they are not embedded in the game. The included MinGW
+Windows build uses the compiler's standard runtime libraries under their
+respective licenses and runtime-library exceptions. The Microsoft Visual
+Studio build uses the installed Microsoft C++ toolchain's standard runtime.

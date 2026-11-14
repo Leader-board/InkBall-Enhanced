@@ -1,0 +1,1685 @@
+// Recovered from the localized resources in the user-supplied installer.
+// Command identifiers and translations are original; menu tabs are normalized.
+#pragma code_page(65001)
+
+// ar-SA
+LANGUAGE 1, 1
+IDR_MENU MENU
+BEGIN
+  POPUP "&لعبة"
+  BEGIN
+    MENUITEM "لعبة جديد&ة\tF2", 40001
+    MENUITEM "إي&قاف مؤقت", 40010
+    MENUITEM "م&سح الحبر", 40042
+    MENUITEM SEPARATOR
+    MENUITEM "إ&نهاء\tAlt+X", 40000
+  END
+  POPUP "&صعوبة"
+  BEGIN
+    MENUITEM "&مبتدئ", 40002
+    MENUITEM "مستج&د", 40003
+    MENUITEM "م&توسط", 40004
+    MENUITEM "مت&قدم", 40005
+    MENUITEM "&خبير", 40006
+  END
+  POPUP "&تعليمات"
+  BEGIN
+    MENUITEM "&مواضيع التعليمات\tF1", 40040
+    MENUITEM SEPARATOR
+    MENUITEM "&حول", 40041
+  END
+END
+
+STRINGTABLE
+BEGIN
+  15000 "كرة الحبر"
+  15001 "‏‏انتهت اللعبة!"
+  15002 "‏‏لقد نفد الوقت."
+  15003 "‏‏دخلت الكرة في فتحة اللون غير الصحيح."
+  15011 "خطأ"
+  15012 "‏‏يتعذر تحميل لوحة اللعبة. الرجاء إغلاق التطبيقات الأخرى والمحاولة مرة ثانية."
+  15013 "‏‏فشل تهيئة DirectDraw."
+  15014 "‏‏لا توجد ملفات في هذا الدليل."
+  15015 "‏‏وسيطات سطر الأوامر غير صحيحة"
+  15016 "‏‏يتعذر على Windows فتح هذا البرنامج لأنه قد تم منعه من قبل نهج تقييد البرامج. ولمزيد من المعلومات الرجاء الاتصال بمسؤول النظام."
+  15017 "‏‏فشلت عملية إظهار موضوع التعليمات."
+  15018 "‏‏لا يتم تشغيل ""كرة الحبر"" على الكمبيوتر الآن. أعد تشغيل الكمبيوتر وحاول مرة أخرى. وإذا كانت المشكلة لا تزال قائمة، فاتصل بمسؤول النظام."
+  15019 "‏‏يتم التشغيل في جلسة عمل خدمات طرفية، وهذا غير معتمد."
+  15020 "&مخصص"
+  15051 "كرة الحبر"
+  15052 "توجيه الكرات إلى الفتحات بسحب كرات الحبر بالماوس أو قلم الكمبيوتر اللوحي."
+END
+
+// bg-BG
+LANGUAGE 2, 1
+IDR_MENU MENU
+BEGIN
+  POPUP "&Игра"
+  BEGIN
+    MENUITEM "&Нова игра\tF2", 40001
+    MENUITEM "&Пауза", 40010
+    MENUITEM "Изчисти р&ъкописа", 40042
+    MENUITEM SEPARATOR
+    MENUITEM "&Изход\tAlt+X", 40000
+  END
+  POPUP "&Трудност"
+  BEGIN
+    MENUITEM "На&чинаещ", 40002
+    MENUITEM "&Новак", 40003
+    MENUITEM "Средно напре&днал", 40004
+    MENUITEM "Н&апреднал", 40005
+    MENUITEM "&Експерт", 40006
+  END
+  POPUP "По&мощ"
+  BEGIN
+    MENUITEM "&Помощни теми\tF1", 40040
+    MENUITEM SEPARATOR
+    MENUITEM "&За програмата", 40041
+  END
+END
+
+STRINGTABLE
+BEGIN
+  15000 "Инкбол"
+  15001 "Край на играта!"
+  15002 "Времето ви изтече."
+  15003 "Топка попадна в отвор с неподходящ цвят."
+  15011 "Грешка"
+  15012 "Игралната дъска не можа да бъде заредена. Затворете другите приложения и опитайте пак."
+  15013 "Неуспешно инициализиране на DirectDraw."
+  15014 "В тази директория няма файлове."
+  15015 "Невалидни аргументи на командния ред"
+  15016 "Windows не може да отвори тази програма, защото му пречат правила за ограничаване на софтуера. За повече информация се свържете с вашия системен администратор."
+  15017 "Грешка при показване на помощната тема."
+  15018 "Играта ""Инкбол"" точно сега не работи на вашия компютър. Рестартирайте компютъра и опитайте пак. Ако проблемът продължава, обърнете се към вашия системен администратор."
+  15019 "Вие работите в сесия на терминални услуги, която не се поддържа."
+  15020 "&По избор"
+  15051 "Инкбол"
+  15052 "Насочвайте топките в дупките, като чертаете ръкописни черти с мишката или перото на таблета."
+END
+
+// cs-CZ
+LANGUAGE 5, 1
+IDR_MENU MENU
+BEGIN
+  POPUP "&Hra"
+  BEGIN
+    MENUITEM "No&vá hra\tF2", 40001
+    MENUITEM "&Pozastavit", 40010
+    MENUITEM "Vymazat i&nkoust", 40042
+    MENUITEM SEPARATOR
+    MENUITEM "U&končit\tAlt+X", 40000
+  END
+  POPUP "&Obtížnost"
+  BEGIN
+    MENUITEM "&Začátečník", 40002
+    MENUITEM "Pokročilý z&ačátečník", 40003
+    MENUITEM "&Pokročilý", 40004
+    MENUITEM "Pr&ofesionál", 40005
+    MENUITEM "E&xpert", 40006
+  END
+  POPUP "Nápo&věda"
+  BEGIN
+    MENUITEM "&Témata nápovědy\tF1", 40040
+    MENUITEM SEPARATOR
+    MENUITEM "&O programu", 40041
+  END
+END
+
+STRINGTABLE
+BEGIN
+  15000 "InkBall"
+  15001 "Konec hry."
+  15002 "Čas vypršel."
+  15003 "Míč byl vhozen do díry nesprávné barvy"
+  15011 "Chyba"
+  15012 "Načtení herní plochy se nezdařilo. Zavřete ostatní aplikace a opakujte akci."
+  15013 "Při inicializaci rozhraní DirectDraw došlo k chybě."
+  15014 "Ve složce nejsou žádné soubory."
+  15015 "Parametry příkazového řádku nejsou platné."
+  15016 "Systém Windows nemůže spustit tento program, protože jeho spuštění je zakázáno zásadami omezení softwaru. Další informace vám poskytne správce systému."
+  15017 "Nelze zobrazit téma nápovědy."
+  15018 "Hra InkBall v tomto počítači nyní není funkční. Restartujte počítač a pokus opakujte. Jestliže problém potrvá, obraťte se na správce systému."
+  15019 "Provádíte spuštění v relaci terminálové služby, které není podporováno."
+  15020 "&Vlastní"
+  15051 "InkBall"
+  15052 "Nasměrujte kuličky do děr nakreslením tahů pomocí myši nebo pera."
+END
+
+// da-DK
+LANGUAGE 6, 1
+IDR_MENU MENU
+BEGIN
+  POPUP "&Spil"
+  BEGIN
+    MENUITEM "&Nyt spil\tF2", 40001
+    MENUITEM "&Pause", 40010
+    MENUITEM "&Slet blokeringsstreger", 40042
+    MENUITEM SEPARATOR
+    MENUITEM "&Afslut\tAlt+X", 40000
+  END
+  POPUP "S&værhedsgrad"
+  BEGIN
+    MENUITEM "&Begynder", 40002
+    MENUITEM "&Let øvet", 40003
+    MENUITEM "Ø&vet", 40004
+    MENUITEM "&Meget øvet", 40005
+    MENUITEM "E&kspert", 40006
+  END
+  POPUP "&Hjælp"
+  BEGIN
+    MENUITEM "Emner i &Hjælp\tF1", 40040
+    MENUITEM SEPARATOR
+    MENUITEM "&Om", 40041
+  END
+END
+
+STRINGTABLE
+BEGIN
+  15000 "Pingpong-pen"
+  15001 "Spillet er slut!"
+  15002 "Tiden er udløbet."
+  15003 "Hullet, som bolden røg i, var af en forkert farve."
+  15011 "Fejl"
+  15012 "Spillepladen kunne ikke indlæses. Luk andre programmer, og prøv igen."
+  15013 "DirectDraw kunne ikke initialiseres."
+  15014 "Der er ikke nogen filer i denne mappe."
+  15015 "Ugyldige kommandolinjeargumenter"
+  15016 "Windows kan ikke åbne dette program pga. en politik for softwarebegrænsning. Yderligere oplysninger finder du ved at kontakte din systemadministrator."
+  15017 "Emnet i Hjælp kunne ikke vises."
+  15018 "Pingpong-pen virker ikke lige nu. Genstart computeren, og prøv derefter igen. Kontakt systemadministratoren, hvis problemet fortsætter."
+  15019 "Du kører i en Terminal Services-session. Dette understøttes ikke."
+  15020 "&Brugerdefineret"
+  15051 "Pingpong-pen"
+  15052 "Styr kugler i huller ved at tegne pennestrøg med musen eller en pen."
+END
+
+// de-DE
+LANGUAGE 7, 1
+IDR_MENU MENU
+BEGIN
+  POPUP "&Spiel"
+  BEGIN
+    MENUITEM "&Neues Spiel\tF2", 40001
+    MENUITEM "An&halten", 40010
+    MENUITEM "&Freihandeingabe löschen", 40042
+    MENUITEM SEPARATOR
+    MENUITEM "&Beenden\tAlt+X", 40000
+  END
+  POPUP "S&chwierigkeitsgrad"
+  BEGIN
+    MENUITEM "&Anfänger", 40002
+    MENUITEM "&Einfach", 40003
+    MENUITEM "&Fortgeschrittene", 40004
+    MENUITEM "&Schwer", 40005
+    MENUITEM "&Profis", 40006
+  END
+  POPUP "&?"
+  BEGIN
+    MENUITEM "&Hilfethemen\tF1", 40040
+    MENUITEM SEPARATOR
+    MENUITEM "&Info", 40041
+  END
+END
+
+STRINGTABLE
+BEGIN
+  15000 "InkBall"
+  15001 "Spielende"
+  15002 "Die Spielzeit ist abgelaufen."
+  15003 "Ein Ball ist in ein Loch der falschen Farbe gerollt."
+  15011 "Fehler"
+  15012 "Das Spielbrett kann nicht geladen werden. Schließen Sie andere aktive Anwendungen, und wiederholen Sie den Vorgang."
+  15013 "DirectDraw konnte nicht initialisiert werden."
+  15014 "In diesem Verzeichnis sind keine Dateien vorhanden."
+  15015 "Ungültige Befehlszeilenargumente"
+  15016 "Windows kann dieses Programm aufgrund einer Softwareeinschränkungsrichtlinie nicht öffnen. Weitere Informationen erhalten Sie vom Systemadministrator."
+  15017 "Das Hilfethema wurde nicht angezeigt."
+  15018 "InkBall funktioniert zurzeit nicht. Starten Sie den Computer neu, und wiederholen Sie den Vorgang. Wenden Sie sich an den Systemadministrator, falls das Problem weiterhin besteht."
+  15019 "Dieser Vorgang ist in einer Terminaldienstesitzung nicht zugelassen."
+  15020 "B&enutzerdefiniert"
+  15051 "InkBall"
+  15052 "Leiten Sie Bälle in Löcher durch Zeichnen von Freihandstrichen mit einer Maus oder einem Tablettstift."
+END
+
+// el-GR
+LANGUAGE 8, 1
+IDR_MENU MENU
+BEGIN
+  POPUP "&Παρτίδα"
+  BEGIN
+    MENUITEM "Νέα π&αρτίδα\tF2", 40001
+    MENUITEM "&Παύση", 40010
+    MENUITEM "&Καθαρισμός γραφής", 40042
+    MENUITEM SEPARATOR
+    MENUITEM "Έ&ξοδος\tAlt+X", 40000
+  END
+  POPUP "&Δυσκολία"
+  BEGIN
+    MENUITEM "&Αρχάριος", 40002
+    MENUITEM "Άπει&ρος", 40003
+    MENUITEM "&Μέτριος", 40004
+    MENUITEM "&Προχωρημένος", 40005
+    MENUITEM "Έμπ&ειρος", 40006
+  END
+  POPUP "&Βοήθεια"
+  BEGIN
+    MENUITEM "&Θέματα στη Βοήθεια\tF1", 40040
+    MENUITEM SEPARATOR
+    MENUITEM "&Πληροφορίες", 40041
+  END
+END
+
+STRINGTABLE
+BEGIN
+  15000 "InkBall"
+  15001 "Τέλος παιχνιδιού."
+  15002 "Ο χρόνος σας έληξε."
+  15003 "Μια μπάλα μπήκε σε μια τρύπα λάθους χρώματος."
+  15011 "Σφάλμα"
+  15012 "Δεν είναι δυνατή η φόρτωση του πίνακα του παιχνιδιού. Κλείστε τις άλλες εφαρμογές και προσπαθήστε ξανά."
+  15013 "Η προετοιμασία του DirectDraw απέτυχε."
+  15014 "Δεν υπάρχουν αρχεία σε αυτόν τον κατάλογο."
+  15015 "Μη έγκυρα ορίσματα γραμμής εντολών"
+  15016 "Δεν είναι δυνατό το άνοιγμα αυτού του προγράμματος από τα Windows, επειδή δεν επιτρέπεται από μια πολιτική περιορισμού λογισμικού. Για περισσότερες πληροφορίες, επικοινωνήστε με το διαχειριστή του συστήματος."
+  15017 "Δεν ήταν δυνατή η εμφάνιση του θέματος της Βοήθειας."
+  15018 "Το InkBall δεν λειτουργεί στον υπολογιστή σας αυτήν τη στιγμή. Επανεκκινήστε τον υπολογιστή και προσπαθήστε ξανά. Αν αντιμετωπίζετε ακόμα αυτό το πρόβλημα, επικοινωνήστε με το διαχειριστή του συστήματος."
+  15019 "Γίνεται εκτέλεση σε μια περίοδο λειτουργίας υπηρεσιών τερματικού που δεν υποστηρίζεται."
+  15020 "&Προσαρμογή"
+  15051 "InkBall"
+  15052 "Οδηγήστε τις μπάλες στις τρύπες σχεδιάζοντας μολυβιές με το ποντίκι ή την πένα."
+END
+
+// en-US
+LANGUAGE 9, 1
+IDR_MENU MENU
+BEGIN
+  POPUP "&Game"
+  BEGIN
+    MENUITEM "&New Game\tF2", 40001
+    MENUITEM "&Pause", 40010
+    MENUITEM "&Clear Ink", 40042
+    MENUITEM SEPARATOR
+    MENUITEM "E&xit\tAlt+X", 40000
+  END
+  POPUP "&Difficulty"
+  BEGIN
+    MENUITEM "&Beginner", 40002
+    MENUITEM "&Novice", 40003
+    MENUITEM "&Intermediate", 40004
+    MENUITEM "&Advanced", 40005
+    MENUITEM "E&xpert", 40006
+  END
+  POPUP "&Help"
+  BEGIN
+    MENUITEM "&Help Topics\tF1", 40040
+    MENUITEM SEPARATOR
+    MENUITEM "&About", 40041
+  END
+END
+
+STRINGTABLE
+BEGIN
+  15000 "InkBall"
+  15001 "Game over!"
+  15002 "You ran out of time."
+  15003 "A ball entered a hole of the wrong color."
+  15011 "Error"
+  15012 "Cannot load the game board. Please close other applications and try again."
+  15013 "Failed initializing DirectDraw."
+  15014 "No files in this directory."
+  15015 "Invalid command line arguments"
+  15016 "Windows cannot open this program because it has been prevented by a software restriction policy. For more information please contact your system administrator."
+  15017 "The Help topic failed to appear."
+  15018 "InkBall is not working on your computer right now. Restart your computer, and then try again. If the problem persists, contact your system administrator."
+  15019 "You are running in a terminal services session, which is not supported."
+  15020 "&Custom"
+  15051 "InkBall"
+  15052 "Guide balls into holes by drawing ink strokes with a mouse or tablet pen."
+END
+
+// es-ES
+LANGUAGE 10, 3
+IDR_MENU MENU
+BEGIN
+  POPUP "&Juego"
+  BEGIN
+    MENUITEM "&Nuevo juego\tF2", 40001
+    MENUITEM "&Pausa", 40010
+    MENUITEM "&Borrar la tinta", 40042
+    MENUITEM SEPARATOR
+    MENUITEM "&Salir\tAlt+X", 40000
+  END
+  POPUP "&Dificultad"
+  BEGIN
+    MENUITEM "&Principiante", 40002
+    MENUITEM "&Novato", 40003
+    MENUITEM "&Intermedio", 40004
+    MENUITEM "A&vanzado", 40005
+    MENUITEM "&Experto", 40006
+  END
+  POPUP "Ay&uda"
+  BEGIN
+    MENUITEM "&Temas de Ayuda\tF1", 40040
+    MENUITEM SEPARATOR
+    MENUITEM "&Acerca de", 40041
+  END
+END
+
+STRINGTABLE
+BEGIN
+  15000 "InkBall"
+  15001 "Terminó el juego"
+  15002 "Se agotó el tiempo."
+  15003 "Una bola entró en un agujero del color incorrecto."
+  15011 "Error"
+  15012 "No se puede cargar el tablero de juego. Cierre otras aplicaciones e inténtelo de nuevo."
+  15013 "Error al inicializar DirectDraw."
+  15014 "No hay archivos en el directorio."
+  15015 "Los argumentos de línea de comandos no son válidos"
+  15016 "Windows no puede abrir este programa porque se lo impide una directiva de restricción de software. Para obtener más información, póngase en contacto con el administrador del sistema."
+  15017 "No se puede mostrar el tema de Ayuda."
+  15018 "InkBall no funciona correctamente en el equipo. Reinicie el equipo e intente de nuevo. Si el problema continúa, póngase en contacto con el administrador de sistema."
+  15019 "Está ejecutando una sesión de Terminal Services, pero ésta no es compatible."
+  15020 "&Personalizado"
+  15051 "InkBall"
+  15052 "Guíe las bolas hacia los agujeros por medio de trazos de tinta dibujados con un mouse o con un lápiz de Tablet PC."
+END
+
+// et-EE
+LANGUAGE 37, 1
+IDR_MENU MENU
+BEGIN
+  POPUP "&Mäng"
+  BEGIN
+    MENUITEM "&Uus mäng\tF2", 40001
+    MENUITEM "P&eata", 40010
+    MENUITEM "&Puhasta tindist", 40042
+    MENUITEM SEPARATOR
+    MENUITEM "&Välju\tAlt+X", 40000
+  END
+  POPUP "&Raskustase"
+  BEGIN
+    MENUITEM "&Väga kerge", 40002
+    MENUITEM "&Algaja", 40003
+    MENUITEM "&Kesktase", 40004
+    MENUITEM "E&dasijõudnud", 40005
+    MENUITEM "&Ekspert", 40006
+  END
+  POPUP "&Spikker"
+  BEGIN
+    MENUITEM "&Spikriteemad\tF1", 40040
+    MENUITEM SEPARATOR
+    MENUITEM "Te&ave", 40041
+  END
+END
+
+STRINGTABLE
+BEGIN
+  15000 "InkBall"
+  15001 "Mäng läbi!"
+  15002 "Aeg sai otsa."
+  15003 "Kuul sisenes vale värviga auku."
+  15011 "Tõrge"
+  15012 "Mängulauda ei saa laadida. Sulgege teised rakendused ja proovige uuesti."
+  15013 "DirectDraw käivitamine nurjus."
+  15014 "Selles kaustas faile pole."
+  15015 "Sobimatud käsurea argumendid"
+  15016 "Windows ei saa programmi avada, sest seda takistab tarkvara piirangupoliitika. Kui soovite lisateavet, pöörduge süsteemiadministraatori poole."
+  15017 "Spikriteema kuvamine nurjus."
+  15018 "Antud hetkel InkBall teie arvutis ei tööta. Taaskäivitage arvuti ja proovige uuesti. Kui probleem jätkub, pöörduge oma süsteemiadministraatori poole."
+  15019 "Te kasutate terminaliteenuste sessiooni, mida ei toetata."
+  15020 "&Kohandatud"
+  15051 "InkBall"
+  15052 "Juhtige pallid aukudesse, joonistades joonetõmbeid hiire või digipliiatsiga."
+END
+
+// fi-FI
+LANGUAGE 11, 1
+IDR_MENU MENU
+BEGIN
+  POPUP "&Peli"
+  BEGIN
+    MENUITEM "&Uusi peli\tF2", 40001
+    MENUITEM "&Keskeytä", 40010
+    MENUITEM "&Poista piirrokset", 40042
+    MENUITEM SEPARATOR
+    MENUITEM "&Lopeta\tAlt+X", 40000
+  END
+  POPUP "&Vaikeustaso"
+  BEGIN
+    MENUITEM "&Helpoin", 40002
+    MENUITEM "Helpp&o", 40003
+    MENUITEM "&Keskitaso", 40004
+    MENUITEM "&Edistynyt", 40005
+    MENUITEM "&Vaativa", 40006
+  END
+  POPUP "&Ohje"
+  BEGIN
+    MENUITEM "&Ohjeen aiheet\tF1", 40040
+    MENUITEM SEPARATOR
+    MENUITEM "&Tietoja", 40041
+  END
+END
+
+STRINGTABLE
+BEGIN
+  15000 "Kynäpallo"
+  15001 "Peli loppui!"
+  15002 "Aika loppui."
+  15003 "Pallo meni väärän väriseen reikään."
+  15011 "Virhe"
+  15012 "Pelilaudan lataaminen ei onnistunut. Sulje muut avoimet sovellukset ja yritä sitten uudelleen."
+  15013 "DirectDraw-alustus ei onnistunut."
+  15014 "Kansiossa ei ole tiedostoja."
+  15015 "Virheelliset parametrit"
+  15016 "Windows ei voi avata tätä ohjelmaa, koska sen käyttö on estetty ohjelmarajoituskäytännöllä. Jos haluat lisätietoja, ota yhteyttä järjestelmänvalvojaan."
+  15017 "Ohjetta ei löytynyt."
+  15018 "Kynäpallo ei toimi tietokoneessa tällä hetkellä. Käynnistä tietokone uudelleen ja yritä uudelleen. Jos ongelma toistuu, ota yhteyttä järjestelmänvalvojaan."
+  15019 "Käytät päätepalveluistuntoa, jota ei tueta."
+  15020 "M&ukauta"
+  15051 "Kynäpallo"
+  15052 "Ohjaa pallot reikiin vetämällä käsinkirjoitusviivoja hiirellä tai kynällä."
+END
+
+// fr-FR
+LANGUAGE 12, 1
+IDR_MENU MENU
+BEGIN
+  POPUP "&Jeu"
+  BEGIN
+    MENUITEM "&Nouvelle partie\tF2", 40001
+    MENUITEM "&Pause", 40010
+    MENUITEM "E&ffacer l'encre", 40042
+    MENUITEM SEPARATOR
+    MENUITEM "&Quitter\tAlt+Q", 40000
+  END
+  POPUP "&Difficulté"
+  BEGIN
+    MENUITEM "&Débutant", 40002
+    MENUITEM "&Novice", 40003
+    MENUITEM "&Intermédiaire", 40004
+    MENUITEM "E&xpérimenté", 40005
+    MENUITEM "&Expert", 40006
+  END
+  POPUP "&?"
+  BEGIN
+    MENUITEM "&Rubriques d'aide\tF1", 40040
+    MENUITEM SEPARATOR
+    MENUITEM "À &propos de", 40041
+  END
+END
+
+STRINGTABLE
+BEGIN
+  15000 "InkBall"
+  15001 "Partie terminée !"
+  15002 "Votre crédit temps est épuisé."
+  15003 "Une balle est entrée dans un trou d'une autre couleur."
+  15011 "Erreur"
+  15012 "Impossible de charger le plateau du jeu. Fermez certaines applications et recommencez."
+  15013 "Échec de l'initialisation de DirectDraw."
+  15014 "Ce répertoire ne contient aucun fichier."
+  15015 "Arguments de ligne de commandes non valides"
+  15016 "Windows ne peut pas ouvrir ce programme, car il en est empêché par une stratégie de restriction logicielle. Pour plus d’informations, contactez votre administrateur système."
+  15017 "La rubrique d'aide ne s'est pas affichée."
+  15018 "InkBall ne fonctionne pas actuellement sur votre ordinateur. Redémarrez l’ordinateur, puis réessayez. Si le problème persiste, contactez votre administrateur système."
+  15019 "L’exécution a lieu dans une session Terminal Server, ce qui n’est pas pris en charge."
+  15020 "P&ersonnalisé"
+  15051 "InkBall"
+  15052 "Guidez les balles dans les trous en dessinant des traits d'encre avec une souris ou un stylet."
+END
+
+// he-IL
+LANGUAGE 13, 1
+IDR_MENU MENU
+BEGIN
+  POPUP "&משחק"
+  BEGIN
+    MENUITEM "משחק &חדש\tF2", 40001
+    MENUITEM "&השהה", 40010
+    MENUITEM "&נקה דיו", 40042
+    MENUITEM SEPARATOR
+    MENUITEM "י&ציאה\tAlt+X", 40000
+  END
+  POPUP "&רמת קושי"
+  BEGIN
+    MENUITEM "מ&תחיל", 40002
+    MENUITEM "&טירון", 40003
+    MENUITEM "&בינוני", 40004
+    MENUITEM "מת&קדם", 40005
+    MENUITEM "&מומחה", 40006
+  END
+  POPUP "ע&זרה"
+  BEGIN
+    MENUITEM "נושאי &עזרה\tF1", 40040
+    MENUITEM SEPARATOR
+    MENUITEM "&אודות", 40041
+  END
+END
+
+STRINGTABLE
+BEGIN
+  15000 "כדור דיו"
+  15001 "‏‏המשחק נגמר!"
+  15002 "‏‏זמנך אזל."
+  15003 "‏‏כדור נכנס לגומה בצבע שגוי."
+  15011 "שגיאה"
+  15012 "‏‏אין אפשרות לטעון את לוח המשחק. נא סגור יישומים אחרים ונסה שוב."
+  15013 "‏‏אתחול DirectDraw נכשל."
+  15014 "‏‏אין קבצים בספריה זו."
+  15015 "‏‏ארגומנטים לא חוקיים של שורת פקודה"
+  15016 "‏‏ל- Windows אין אפשרות לפתוח תוכנית זו מאחר שמדיניות הגבלת תוכנה מנעה שימוש בה. לקבלת מידע נוסף, נא פנה אל מנהל המערכת."
+  15017 "‏‏נושא העזרה לא הופיע."
+  15018 "‏‏כדור דיו אינו פועל במחשב שלך כעת. הפעל מחדש את המחשב ונסה שנית. אם הבעיה נמשכת, פנה אל מנהל המערכת."
+  15019 "‏‏אתה נמצא בהפעלת שירותי מסוף, שאין בה תמיכה."
+  15020 "&מותאמת אישית"
+  15051 "כדור דיו"
+  15052 "כוון כדורים לגומות על-ידי ציור משיכות דיו באמצעות עכבר או עט לוח."
+END
+
+// hr-HR
+LANGUAGE 26, 1
+IDR_MENU MENU
+BEGIN
+  POPUP "&Igra"
+  BEGIN
+    MENUITEM "&Nova igra\tF2", 40001
+    MENUITEM "&Zaustavi", 40010
+    MENUITEM "&Očisti tintu", 40042
+    MENUITEM SEPARATOR
+    MENUITEM "&Izlaz\tAlt+X", 40000
+  END
+  POPUP "&Težina"
+  BEGIN
+    MENUITEM "P&očetnik", 40002
+    MENUITEM "&Neiskusan", 40003
+    MENUITEM "S&rednji", 40004
+    MENUITEM "N&apredan", 40005
+    MENUITEM "&Stručnjak", 40006
+  END
+  POPUP "&Pomoć"
+  BEGIN
+    MENUITEM "&Teme pomoći\tF1", 40040
+    MENUITEM SEPARATOR
+    MENUITEM "&O programu", 40041
+  END
+END
+
+STRINGTABLE
+BEGIN
+  15000 "Inkball"
+  15001 "Igra je gotova!"
+  15002 "Vrijeme je isteklo."
+  15003 "Lopta je ušla u rupu pogrešne boje."
+  15011 "Pogreška"
+  15012 "Nije moguće učitati ploču za igru. Zatvorite sve druge programe i pokušajte ponovo."
+  15013 "Pokretanje programa DirectDraw nije uspjelo."
+  15014 "U ovom direktoriju nema datoteka."
+  15015 "Nevaljani argumenti naredbenog retka"
+  15016 "Windows ne može otvoriti ovaj program jer ga sprečavaju pravila ograničenja softvera. Dodatne informacije zatražite od administratora sustava."
+  15017 "Prikaz teme Pomoći nije uspio."
+  15018 "InkBall trenutno ne radi na vašem računalu. Ponovo pokrenite računalo i pokušajte ponovo. Ako time ne riješite problem, obratite se administratoru sustava."
+  15019 "Radite u sesiji servisa Terminal Services, što nije podržano."
+  15020 "&Prilagođeno"
+  15051 "InkBall"
+  15052 "Usmjeravajte kugle u rupe stvaranjem poteza bojom pomoću miša ili olovke za tablet."
+END
+
+// hu-HU
+LANGUAGE 14, 1
+IDR_MENU MENU
+BEGIN
+  POPUP "&Játék"
+  BEGIN
+    MENUITEM "Ú&j játék\tF2", 40001
+    MENUITEM "Felfügge&sztés", 40010
+    MENUITEM "&Tinta törlése", 40042
+    MENUITEM SEPARATOR
+    MENUITEM "&Kilépés\tAlt+X", 40000
+  END
+  POPUP "&Nehézségi fok"
+  BEGIN
+    MENUITEM "Új&onc", 40002
+    MENUITEM "&Kezdő", 40003
+    MENUITEM "Középhala&dó", 40004
+    MENUITEM "&Haladó", 40005
+    MENUITEM "&Mester", 40006
+  END
+  POPUP "&Súgó"
+  BEGIN
+    MENUITEM "&Témakörök\tF1", 40040
+    MENUITEM SEPARATOR
+    MENUITEM "&Névjegy", 40041
+  END
+END
+
+STRINGTABLE
+BEGIN
+  15000 "Golyóstoll"
+  15001 "Vége a játéknak!"
+  15002 "Kifutott az időből."
+  15003 "A golyó nem a megfelelő színű lyukba gurult."
+  15011 "Hiba"
+  15012 "A játék táblája nem tölthető be. Zárja be a többi alkalmazást, és próbálja újra."
+  15013 "A DirectDraw inicializálása nem sikerült."
+  15014 "Nincsenek fájlok ebben a könyvtárban."
+  15015 "Érvénytelen parancssori argumentumok"
+  15016 "A Windows nem tudja megnyitni ezt a programot, mert megakadályozza ebben egy szoftverkorlátozó házirend. További információért forduljon a rendszergazdához."
+  15017 "Nem sikerült megjeleníteni a súgótémakört."
+  15018 "Jelenleg nem működik a Golyóstoll játék a számítógépen. Indítsa újra a számítógépet, majd próbálkozzon újra. Ha tartós a probléma, forduljon a rendszergazdához."
+  15019 "Terminálszolgáltatás-munkamenetet használ, ami nincs támogatva."
+  15020 "&Egyéni"
+  15051 "Golyóstoll"
+  15052 "Az egérrel vagy az írótábla tollával húzott vonások segítségével terelje a lyukakba a labdákat."
+END
+
+// it-IT
+LANGUAGE 16, 1
+IDR_MENU MENU
+BEGIN
+  POPUP "&Partita"
+  BEGIN
+    MENUITEM "&Nuova partita\tF2", 40001
+    MENUITEM "&Pausa", 40010
+    MENUITEM "&Cancella input penna", 40042
+    MENUITEM SEPARATOR
+    MENUITEM "&Esci\tALT+X", 40000
+  END
+  POPUP "&Difficoltà"
+  BEGIN
+    MENUITEM "&Minima", 40002
+    MENUITEM "&Bassa", 40003
+    MENUITEM "M&edia", 40004
+    MENUITEM "&Alta", 40005
+    MENUITEM "E&levata", 40006
+  END
+  POPUP "&?"
+  BEGIN
+    MENUITEM "&Guida\tF1", 40040
+    MENUITEM SEPARATOR
+    MENUITEM "In&formazioni su Inkball", 40041
+  END
+END
+
+STRINGTABLE
+BEGIN
+  15000 "InkBall"
+  15001 "Fine partita."
+  15002 "Tempo scaduto."
+  15003 "Palla in buca del colore sbagliato."
+  15011 "Errore"
+  15012 "Impossibile caricare la superficie di gioco. Chiudere altre applicazioni aperte riprovare."
+  15013 "Impossibile inizializzare DirectDraw."
+  15014 "Nessun file nella directory."
+  15015 "Argomenti nella riga di comando non validi"
+  15016 "Windows: impossibile aprire il programma perché un criterio di restrizione software lo impedisce. Per ulteriori informazioni, contattare l'amministratore del sistema."
+  15017 "Impossibile visualizzare l'argomento della Guida."
+  15018 "InkBall non è attualmente in funzione nel computer. Riavviare il computer, quindi riprovare. Se il problema persiste, contattare l'amministratore del sistema."
+  15019 "Esecuzione in una sessione di Servizi terminal non supportata."
+  15020 "&Personalizza"
+  15051 "InkBall"
+  15052 "Guidare le palle in buca disegnando tratti input penna con un mouse o una penna del Tablet PC."
+END
+
+// ja-JP
+LANGUAGE 17, 1
+IDR_MENU MENU
+BEGIN
+  POPUP "ゲーム(&G)"
+  BEGIN
+    MENUITEM "新しいゲーム(&N)\tF2", 40001
+    MENUITEM "一時停止(&P)", 40010
+    MENUITEM "インクのクリア(&C)", 40042
+    MENUITEM SEPARATOR
+    MENUITEM "終了(&X)\tAlt+X", 40000
+  END
+  POPUP "難易度(&D)"
+  BEGIN
+    MENUITEM "初心者(&B)", 40002
+    MENUITEM "初級(&N)", 40003
+    MENUITEM "中級(&I)", 40004
+    MENUITEM "上級(&A)", 40005
+    MENUITEM "達人(&X)", 40006
+  END
+  POPUP "ヘルプ(&H)"
+  BEGIN
+    MENUITEM "トピックの検索(&H)\tF1", 40040
+    MENUITEM SEPARATOR
+    MENUITEM "バージョン情報(&A)", 40041
+  END
+END
+
+STRINGTABLE
+BEGIN
+  15000 "インクボール"
+  15001 "ゲーム終了!"
+  15002 "時間切れです。"
+  15003 "ボールが間違った色の穴に入りました。"
+  15011 "エラー"
+  15012 "ゲーム ボードを読み込めません。ほかのアプリケーションを閉じてから、やり直してください。"
+  15013 "DirectDraw を初期化できませんでした。"
+  15014 "このディレクトリにファイルはありません。"
+  15015 "無効なコマンド ラインの引数"
+  15016 "ソフトウェアの制限ポリシーによってこのプログラムを開くことができないようになっています。詳細については、システム管理者に問い合わせてください。"
+  15017 "ヘルプ トピックを表示できません。"
+  15018 "インクボールは現在コンピュータ上で機能していません。コンピュータを再起動してから、やり直してください。問題が解決しない場合は、システム管理者に問い合わせてください。"
+  15019 "ターミナル サービス セッションで実行することはできません。"
+  15020 "カスタム(&C)"
+  15051 "インクボール"
+  15052 "マウスまたはタブレット ペンでインクの線を描き、ボールを穴に導いてください。"
+END
+
+// ko-KR
+LANGUAGE 18, 1
+IDR_MENU MENU
+BEGIN
+  POPUP "게임(&G)"
+  BEGIN
+    MENUITEM "새 게임(&N)\tF2", 40001
+    MENUITEM "일시 중지(&P)", 40010
+    MENUITEM "잉크 지우기(&C)", 40042
+    MENUITEM SEPARATOR
+    MENUITEM "끝내기(&X)\tAlt+X", 40000
+  END
+  POPUP "난이도(&D)"
+  BEGIN
+    MENUITEM "입문(&B)", 40002
+    MENUITEM "초급(&N)", 40003
+    MENUITEM "중급(&I)", 40004
+    MENUITEM "고급(&A)", 40005
+    MENUITEM "전문가급(&X)", 40006
+  END
+  POPUP "도움말(&H)"
+  BEGIN
+    MENUITEM "도움말 항목(&H)\tF1", 40040
+    MENUITEM SEPARATOR
+    MENUITEM "정보(&A)", 40041
+  END
+END
+
+STRINGTABLE
+BEGIN
+  15000 "구슬 넣기"
+  15001 "게임 끝!"
+  15002 "시간이 초과되었습니다."
+  15003 "구슬이 다른 색 구멍으로 들어갔습니다."
+  15011 "오류"
+  15012 "게임판을 로드할 수 없습니다. 다른 응용 프로그램을 닫고 다시 시도해 보십시오."
+  15013 "DirectDraw를 초기화하지 못했습니다."
+  15014 "이 디렉터리에 파일이 없습니다."
+  15015 "잘못된 명령줄 인수"
+  15016 "소프트웨어 제한 정책에 따라 제한되었기 때문에 Windows에서 이 프로그램을 열 수 없습니다. 자세한 내용은 시스템 관리자에게 문의하십시오."
+  15017 "도움말 항목이 표시되지 않았습니다."
+  15018 "구슬 넣기가 현재 컴퓨터에서 작동하지 않습니다. 컴퓨터를 다시 시작한 후 다시 시도하십시오. 문제가 계속되면 시스템 관리자에게 문의하십시오."
+  15019 "지원되지 않는 터미널 서비스 세션에서 실행 중입니다."
+  15020 "사용자 정의(&C)"
+  15051 "구슬 넣기"
+  15052 "구슬 넣기"
+END
+
+// lt-LT
+LANGUAGE 39, 1
+IDR_MENU MENU
+BEGIN
+  POPUP "Ž&aidimas"
+  BEGIN
+    MENUITEM "&Naujas žaidimas\tF2", 40001
+    MENUITEM "&Pristabdyti", 40010
+    MENUITEM "&Valyti rašalą", 40042
+    MENUITEM SEPARATOR
+    MENUITEM "&Išeiti\t Alt+X", 40000
+  END
+  POPUP "Ža&idimo lygis"
+  BEGIN
+    MENUITEM "Pra&dedantysis 1", 40002
+    MENUITEM "P&radedantysis 2", 40003
+    MENUITEM "P&atyręs", 40004
+    MENUITEM "&Išsamiau", 40005
+    MENUITEM "&Ekspertas", 40006
+  END
+  POPUP "&Žinynas"
+  BEGIN
+    MENUITEM "&Žinyno temos\tF1", 40040
+    MENUITEM SEPARATOR
+    MENUITEM "&Apie", 40041
+  END
+END
+
+STRINGTABLE
+BEGIN
+  15000 "InkBall"
+  15001 "Žaidimas baigtas!"
+  15002 "Laikas baigėsi."
+  15003 "Kamuolys pateko į netinkamos spalvos skylę."
+  15011 "Klaida"
+  15012 "Negali būti paleista žaidimo plokštė. Uždarykite kitas taikomąsias programas ir mėginkite dar kartą."
+  15013 "Nepavyko DirectDraw inicijavimas."
+  15014 "Šiame kataloge nėra failų."
+  15015 "Neleistini komandų eilutės argumentai"
+  15016 "Windows negali atidaryti programos, nes ji draudžiama programinės įrangos draudimų strategijos. Daugiau informacijos jums gali suteikti sistemos administratorius."
+  15017 "Neatsirado Žinyno tema."
+  15018 "InkBall šiuo metu jūsų kompiuteryje neveikia. Paleiskite kompiuterį iš naujo ir bandykite dar kartą. Jei problema kartosis, kreipkitės į sistemos administratorių."
+  15019 "Paleistas nepalaikomas terminalų tarnybų seansas."
+  15020 "&Pasirinktinai"
+  15051 "InkBall"
+  15052 "Veskite kamuolius į skyles piešdami brūkštelėjimuspele arba kompiuterio-bloknoto stiliumi."
+END
+
+// lv-LV
+LANGUAGE 38, 1
+IDR_MENU MENU
+BEGIN
+  POPUP "&Spēle"
+  BEGIN
+    MENUITEM "&Jauna spēle\tF2", 40001
+    MENUITEM "&Pauzēt", 40010
+    MENUITEM "&Notīrīt tinti", 40042
+    MENUITEM SEPARATOR
+    MENUITEM "&Iziet\tAlt+X", 40000
+  END
+  POPUP "&Grūtības pakāpe"
+  BEGIN
+    MENUITEM "&Iesācējs", 40002
+    MENUITEM "A&matieris", 40003
+    MENUITEM "&Vidējais līmenis", 40004
+    MENUITEM "&Augstākais līmenis", 40005
+    MENUITEM "&Eksperta līmenis", 40006
+  END
+  POPUP "&Palīdzība"
+  BEGIN
+    MENUITEM "P&alīdzības tēmas\tF1", 40040
+    MENUITEM SEPARATOR
+    MENUITEM "&Par InkBall", 40041
+  END
+END
+
+STRINGTABLE
+BEGIN
+  15000 "InkBall"
+  15001 "Spēles beigas!"
+  15002 "Jums beidzās laiks."
+  15003 "Bumba nokļuva nepareizās krāsas caurumā."
+  15011 "Kļūda"
+  15012 "Nevar ielādēt spēles plati. Lūdzu, aizveriet citas lietojumprogrammas un mēģiniet vēlreiz."
+  15013 "Neizdevās inicializēt DirectDraw."
+  15014 "Šajā direktorijā nav failu."
+  15015 "Nederīgi komandrindas argumenti."
+  15016 "Windows nevar atvērt šo programmu, jo to neļāva programmatūras ierobežojumu politika. Lai iegūtu plašāku informāciju, lūdzu, sazinieties ar sistēmas administratoru."
+  15017 "Neizdevās parādīt tēmu Palīdzība."
+  15018 "InkBall spēle šobrīd datorā nedarbojas. Restartējiet datoru un pēc tam mēģiniet vēlreiz. Ja šī problēma turpina pastāvēt, sazinieties ar sistēmas administratoru."
+  15019 "Ir palaista neatbalstīta termināļa pakalpojumu sesija."
+  15020 "&Pielāgojamie rekvizīti"
+  15051 "InkBall"
+  15052 "Virziet bumbas caurumos, velkot tintes līnijas ar peli vai planšetdatora pildspalvu."
+END
+
+// nb-NO
+LANGUAGE 20, 1
+IDR_MENU MENU
+BEGIN
+  POPUP "&Spill"
+  BEGIN
+    MENUITEM "&Nytt spill\tF2", 40001
+    MENUITEM "&Pause", 40010
+    MENUITEM "&Slett håndskrift", 40042
+    MENUITEM SEPARATOR
+    MENUITEM "&Avslutt\tAlt+X", 40000
+  END
+  POPUP "&Vanskelighetsgrad"
+  BEGIN
+    MENUITEM "&Nybegynner", 40002
+    MENUITEM "&Enkel", 40003
+    MENUITEM "&Middels", 40004
+    MENUITEM "&Avansert", 40005
+    MENUITEM "E&kspert", 40006
+  END
+  POPUP "&Hjelp"
+  BEGIN
+    MENUITEM "&Emner i Hjelp\tF1", 40040
+    MENUITEM SEPARATOR
+    MENUITEM "&Om", 40041
+  END
+END
+
+STRINGTABLE
+BEGIN
+  15000 "InkBall"
+  15001 "Spillet er slutt!"
+  15002 "Tiden er ute."
+  15003 "En ball gikk ned i et hull med feil farge."
+  15011 "Feil"
+  15012 "Kan ikke laste inn spillbrettet. Lukk andre programmer og prøv på nytt."
+  15013 "Kan ikke initialisere DirectDraw."
+  15014 "Ingen filer i denne mappen."
+  15015 "Ugyldige kommandolinjeargumenter"
+  15016 "Kan ikke åpne dette programmet fordi dette forhindres av en programvarebegrensingspolicy. Kontakt systemansvarlig for mer informasjon."
+  15017 "Hjelpeemnet ble ikke vist."
+  15018 "InkBall fungerer ikke på datamaskinen nå. Start datamaskinen på nytt, og prøv deretter på nytt. Kontakt systemansvarlig hvis problemet vedvarer."
+  15019 "Du kjører i en Terminal Services-økt, og dette støttes ikke."
+  15020 "&Egendefinert"
+  15051 "InkBall"
+  15052 "Styr baller inn i hullene ved å tegne linjer med en mus eller tavlepenn."
+END
+
+// nl-NL
+LANGUAGE 19, 1
+IDR_MENU MENU
+BEGIN
+  POPUP "&Spel"
+  BEGIN
+    MENUITEM "&Nieuw spel\tF2", 40001
+    MENUITEM "&Onderbreken", 40010
+    MENUITEM "Inkt &wissen", 40042
+    MENUITEM SEPARATOR
+    MENUITEM "&Afsluiten\tAlt+X", 40000
+  END
+  POPUP "&Moeilijkheidsgraad"
+  BEGIN
+    MENUITEM "&Beginner", 40002
+    MENUITEM "Ge&vorderde beginner", 40003
+    MENUITEM "&Gevorderde", 40004
+    MENUITEM "&Ervaren", 40005
+    MENUITEM "E&xpert", 40006
+  END
+  POPUP "&Help"
+  BEGIN
+    MENUITEM "Help-&onderwerpen\tF1", 40040
+    MENUITEM SEPARATOR
+    MENUITEM "Over &Inkball", 40041
+  END
+END
+
+STRINGTABLE
+BEGIN
+  15000 "InkBall"
+  15001 "Het spel is afgelopen."
+  15002 "U hebt de tijdslimiet overschreden."
+  15003 "Een bal is een gat met de verkeerde kleur binnengerold."
+  15011 "Fout"
+  15012 "Kan het spelbord niet laden. Sluit andere toepassingen af en probeer het opnieuw."
+  15013 "Het initialiseren van DirectDraw is mislukt."
+  15014 "Deze map bevat geen bestanden."
+  15015 "Ongeldige opdrachtregelargumenten"
+  15016 "Het openen van dit programma wordt door softwarerestrictiebeleid voorkomen. Neem voor meer informatie contact op met de systeembeheerder."
+  15017 "Het Help-onderwerp kan niet worden weergegeven."
+  15018 "InkBall werkt op dit moment niet op de computer. Start de computer opnieuw op en probeer het opnieuw. Neem contact met de systeembeheerder op als het probleem blijft bestaan."
+  15019 "U voert dit programma in een terminal services-sessie uit, wat niet wordt ondersteund."
+  15020 "Aangepa&st"
+  15051 "InkBall"
+  15052 "Stuur ballen naar gaten door inktstrepen met een muis of tabletpen te tekenen"
+END
+
+// pl-PL
+LANGUAGE 21, 1
+IDR_MENU MENU
+BEGIN
+  POPUP "&Gra"
+  BEGIN
+    MENUITEM "&Nowa gra\tF2", 40001
+    MENUITEM "W&strzymaj", 40010
+    MENUITEM "&Wyczyść pismo odręczne", 40042
+    MENUITEM SEPARATOR
+    MENUITEM "Za&kończ\tAlt+X", 40000
+  END
+  POPUP "&Poziom"
+  BEGIN
+    MENUITEM "&Początkujący", 40002
+    MENUITEM "&Nowicjusz", 40003
+    MENUITEM "Śre&dniozaawansowany", 40004
+    MENUITEM "&Zaawansowany", 40005
+    MENUITEM "&Ekspert", 40006
+  END
+  POPUP "Pomo&c"
+  BEGIN
+    MENUITEM "T&ematy Pomocy\tF1", 40040
+    MENUITEM SEPARATOR
+    MENUITEM "I&nformacje", 40041
+  END
+END
+
+STRINGTABLE
+BEGIN
+  15000 "InkBall"
+  15001 "Koniec gry!"
+  15002 "Czas się skończył."
+  15003 "Kulka wpadła do otworu w złym kolorze."
+  15011 "Błąd"
+  15012 "Nie można załadować planszy gry. Zamknij inne aplikacje i spróbuj ponownie."
+  15013 "Nie można zainicjować obiektu DirectDraw."
+  15014 "Brak plików w tym katalogu."
+  15015 "Nieprawidłowe argumenty wiersza polecenia"
+  15016 "System Windows nie może otworzyć tego programu, ponieważ nie pozwalają na to zasady ograniczeń oprogramowania. Aby uzyskać więcej informacji, skontaktuj się z administratorem systemu."
+  15017 "Nie można wyświetlić tematu Pomocy."
+  15018 "Gra InkBall obecnie nie działa na tym komputerze. Uruchom ponownie komputer, a następnie spróbuj ponownie. Jeśli problem nie ustąpi, skontaktuj się z administratorem systemu."
+  15019 "Masz uruchomioną sesję usług terminalowych, a ten stan nie jest obsługiwany."
+  15020 "&Niestandardowy"
+  15051 "InkBall"
+  15052 "Kieruj kule do otworów, rysując odręczne pociągnięcia myszą lub piórem cyfrowym."
+END
+
+// pt-BR
+LANGUAGE 22, 1
+IDR_MENU MENU
+BEGIN
+  POPUP "&Jogo"
+  BEGIN
+    MENUITEM "&Novo Jogo\tF2", 40001
+    MENUITEM "&Pausar", 40010
+    MENUITEM "&Limpar Tinta", 40042
+    MENUITEM SEPARATOR
+    MENUITEM "S&air\tAlt+A", 40000
+  END
+  POPUP "&Dificuldade"
+  BEGIN
+    MENUITEM "&Iniciante", 40002
+    MENUITEM "&Novato", 40003
+    MENUITEM "In&termediário", 40004
+    MENUITEM "&Avançado", 40005
+    MENUITEM "E&xpert", 40006
+  END
+  POPUP "Aj&uda"
+  BEGIN
+    MENUITEM "Tópicos da Aj&uda\tF1", 40040
+    MENUITEM SEPARATOR
+    MENUITEM "&Sobre", 40041
+  END
+END
+
+STRINGTABLE
+BEGIN
+  15000 "InkBall"
+  15001 "Fim de jogo!"
+  15002 "Tempo esgotado."
+  15003 "Uma bola entrou em um buraco de cor errada."
+  15011 "Erro"
+  15012 "Não é possível carregar o quadro de jogo. Feche outros aplicativos e tente novamente."
+  15013 "Falha ao inicializar o DirectDraw."
+  15014 "Não há arquivos neste diretório."
+  15015 "Argumentos de linha de comando inválidos"
+  15016 "O Windows não pode abrir esse programa por ter sido impedido por uma diretiva de restrição de software. Para obter mais informações, entre em contato com o administrador do sistema."
+  15017 "Não é possível exibir o tópico da Ajuda."
+  15018 "O InkBall não está funcionando no computador agora. Reinicie o computador e tente novamente. Se o problema persistir, entre em contato com o administrador."
+  15019 "Você está trabalhando em uma sessão de serviços de terminal, para a qual não há suporte."
+  15020 "&Personalizado"
+  15051 "InkBall"
+  15052 "Direcione as bolas para os buracos desenhando traços de tinta com o mouse ou a caneta eletrônica."
+END
+
+// pt-PT
+LANGUAGE 22, 2
+IDR_MENU MENU
+BEGIN
+  POPUP "Jo&go"
+  BEGIN
+    MENUITEM "&Novo jogo\tF2", 40001
+    MENUITEM "&Pausa", 40010
+    MENUITEM "&Limpar tinta", 40042
+    MENUITEM SEPARATOR
+    MENUITEM "Sai&r\tAlt+X", 40000
+  END
+  POPUP "&Dificuldade"
+  BEGIN
+    MENUITEM "&Principiante", 40002
+    MENUITEM "&Novato", 40003
+    MENUITEM "&Intermédio", 40004
+    MENUITEM "&Avançado", 40005
+    MENUITEM "P&erito", 40006
+  END
+  POPUP "A&juda"
+  BEGIN
+    MENUITEM "&Tópicos de ajuda\tF1", 40040
+    MENUITEM SEPARATOR
+    MENUITEM "&Acerca de", 40041
+  END
+END
+
+STRINGTABLE
+BEGIN
+  15000 "InkBall"
+  15001 "Fim do jogo!"
+  15002 "Acabou o tempo."
+  15003 "Uma bola entrou num buraco da cor errada."
+  15011 "Erro"
+  15012 "Não é possível carregar o tabuleiro do jogo. Feche outras aplicações e tente novamente."
+  15013 "Falha ao inicializar o DirectDraw."
+  15014 "Não existem ficheiros neste directório."
+  15015 "Argumentos de linha de comandos inválidos"
+  15016 "O Windows não consegue abrir este programa porque foi impedido por uma política de restrição de software. Para obter mais informações, contacte o administrador do sistema."
+  15017 "Falha na apresentação do tópico de ajuda."
+  15018 "De momento, o InkBall não está a funcionar no computador. Reinicie o computador e volte a tentar. Se o problema persistir, contacte o administrador do sistema."
+  15019 "Está a executar uma sessão de serviços de terminal que não é suportada."
+  15020 "Personali&zado"
+  15051 "InkBall"
+  15052 "Guie as bolas na direcção dos orifícios desenhando traços de tinta digital com um rato ou tablet pen."
+END
+
+// ro-RO
+LANGUAGE 24, 1
+IDR_MENU MENU
+BEGIN
+  POPUP "&Joc"
+  BEGIN
+    MENUITEM "Joc &nou\tF2", 40001
+    MENUITEM "&Pauză", 40010
+    MENUITEM "Ștergere &cerneală", 40042
+    MENUITEM SEPARATOR
+    MENUITEM "I&eșire\tAlt+X", 40000
+  END
+  POPUP "&Dificultate"
+  BEGIN
+    MENUITEM "În&cepător", 40002
+    MENUITEM "&Novice", 40003
+    MENUITEM "&Intermediar", 40004
+    MENUITEM "Co&mplex", 40005
+    MENUITEM "E&xpert", 40006
+  END
+  POPUP "&Ajutor"
+  BEGIN
+    MENUITEM "Termeni din A&jutor\tF1", 40040
+    MENUITEM SEPARATOR
+    MENUITEM "&Despre", 40041
+  END
+END
+
+STRINGTABLE
+BEGIN
+  15000 "InkBall"
+  15001 "Jocul s-a terminat!"
+  15002 "Timpul a expirat."
+  15003 "O minge a intrat într-o gaură de altă culoare."
+  15011 "Eroare"
+  15012 "Imposibil de încărcat suprafața de joc. Închideți alte aplicații și încercați din nou."
+  15013 "Nu a reușit inițializarea DirectDraw."
+  15014 "Nu există fișiere în acest director."
+  15015 "Argumente nevalide în linia de comandă"
+  15016 "Windows nu poate deschide acest program deoarece a fost împiedicat de o politică de restricții software. Pentru informații suplimentare, contactați administratorul de sistem."
+  15017 "Termenul din Ajutor nu a apărut."
+  15018 "InkBall nu poate rula pe computer în acest moment. Reinițializați sistemul și încercați din nou. Dacă problema persistă, contactați administratorul de sistem."
+  15019 "Rulați o sesiune de servicii terminal care nu este acceptată."
+  15020 "&Particularizare"
+  15051 "InkBall"
+  15052 "Trimiteți baloanele în găuri desenând linii de cerneală cu mouse-ul sau creionul de tabletă."
+END
+
+// ru-RU
+LANGUAGE 25, 1
+IDR_MENU MENU
+BEGIN
+  POPUP "&Игра"
+  BEGIN
+    MENUITEM "&Новая игра\tF2", 40001
+    MENUITEM "&Пауза", 40010
+    MENUITEM "&Очистить поле", 40042
+    MENUITEM SEPARATOR
+    MENUITEM "&Выход\tAlt+X", 40000
+  END
+  POPUP "&Уровень"
+  BEGIN
+    MENUITEM "&Начинающий", 40002
+    MENUITEM "Нови&чок", 40003
+    MENUITEM "&Средний", 40004
+    MENUITEM "&Опытный", 40005
+    MENUITEM "&Мастер", 40006
+  END
+  POPUP "&Справка"
+  BEGIN
+    MENUITEM "В&ызов справки\tF1", 40040
+    MENUITEM SEPARATOR
+    MENUITEM "&О программе", 40041
+  END
+END
+
+STRINGTABLE
+BEGIN
+  15000 "Инкбол"
+  15001 "Игра закончена."
+  15002 "Время вышло."
+  15003 "Мяч попал в отверстие неправильного цвета."
+  15011 "Ошибка"
+  15012 "Не удалось загрузить доску для игры. Закройте другие приложения и повторите попытку."
+  15013 "Не удалось инициализировать DirectDraw."
+  15014 "Не найдены файлы в этой папке."
+  15015 "Недопустимые аргументы в командной строке"
+  15016 "Не удается открыть данную программу политики ограниченного использования программ. Для получения дополнительных сведений обратитесь к системному администратору."
+  15017 "Не удалось отобразить раздел справки."
+  15018 "Приложение InkBall в данный момент неработоспособно. Перезагрузите компьютер и повторите попытку. Если эта проблема повторяется, обратитесь к системному администратору."
+  15019 "На компьютере запущен сеанс службы терминалов, который не поддерживается."
+  15020 "&Особые"
+  15051 "Инкбол"
+  15052 "Нужно направить шарики в лузы, рисуя чернильные полосы с помощью пера или мыши."
+END
+
+// sk-SK
+LANGUAGE 27, 1
+IDR_MENU MENU
+BEGIN
+  POPUP "&Hra"
+  BEGIN
+    MENUITEM "&Nová hra\tF2", 40001
+    MENUITEM "&Pozastaviť", 40010
+    MENUITEM "&Vymazať písanie rukou", 40042
+    MENUITEM SEPARATOR
+    MENUITEM "&Skončiť\tAlt+X", 40000
+  END
+  POPUP "Ná&ročnosť"
+  BEGIN
+    MENUITEM "&Začiatočník", 40002
+    MENUITEM "&Nováčik", 40003
+    MENUITEM "Mierne p&okročilý", 40004
+    MENUITEM "&Pokročilý", 40005
+    MENUITEM "E&xpert", 40006
+  END
+  POPUP "&Pomocník"
+  BEGIN
+    MENUITEM "&Témy Pomocníka\tF1", 40040
+    MENUITEM SEPARATOR
+    MENUITEM "Č&o je", 40041
+  END
+END
+
+STRINGTABLE
+BEGIN
+  15000 "InkBall"
+  15001 "Koniec hry!"
+  15002 "Uplynul časový limit."
+  15003 "Loptička vošla do otvoru nesprávnej farby."
+  15011 "Chyba"
+  15012 "Nepodarilo sa načítať herný stôl. Zatvorte ostatné programy a potom to skúste znova."
+  15013 "Zlyhala inicializácia rozhrania DirectDraw."
+  15014 "V tomto priečinku nie sú žiadne súbory."
+  15015 "Neplatné argumenty príkazového riadka"
+  15016 "Systém Windows nemôže otvoriť tento program, pretože je blokovaný politikou obmedzujúcou používanie softvéru. Ďalšie informácie vám poskytne správca systému."
+  15017 "Tému Pomocníka sa nepodarilo zobraziť."
+  15018 "Hra InkBall momentálne v počítači nepracuje. Reštartujte počítač a skúste to znova. Ak problém pretrváva, obráťte sa na správcu systému."
+  15019 "Pracujete v relácii terminálových služieb, čo nie je podporované."
+  15020 "&Vlastné"
+  15051 "InkBall"
+  15052 "Nakreslením ťahov pomocou myši alebo pera počítača Tablet PC naveďte guľôčky do dier."
+END
+
+// sl-SI
+LANGUAGE 36, 1
+IDR_MENU MENU
+BEGIN
+  POPUP "&Igra"
+  BEGIN
+    MENUITEM "&Nova igra\tF2", 40001
+    MENUITEM "P&remor", 40010
+    MENUITEM "&Počisti rokopis", 40042
+    MENUITEM SEPARATOR
+    MENUITEM "Iz&hod\tAlt+X", 40000
+  END
+  POPUP "&Težavnost"
+  BEGIN
+    MENUITEM "&Začetnik", 40002
+    MENUITEM "&Novinec", 40003
+    MENUITEM "&Poznavalec", 40004
+    MENUITEM "Iz&kušen igralec", 40005
+    MENUITEM "&Izvedenec", 40006
+  END
+  POPUP "&Pomoč"
+  BEGIN
+    MENUITEM "&Teme pomoči\tF1", 40040
+    MENUITEM SEPARATOR
+    MENUITEM "Vi&zitka", 40041
+  END
+END
+
+STRINGTABLE
+BEGIN
+  15000 "Riši in zadeni"
+  15001 "Igre je konec."
+  15002 "Zmanjkalo vam je časa."
+  15003 "Kroglica je padla v luknjo napačne barve."
+  15011 "Napaka"
+  15012 "Ni mogoče naložiti polja za igro. Zaprite druge programe in poskusite znova."
+  15013 "Inicializacija programa DirectDraw ni uspela."
+  15014 "V tem imeniku ni datotek."
+  15015 "Neveljavni argumenti ukazne vrstice"
+  15016 "Windows ne more odpreti tega programa, ker mu to preprečuje pravilnik omejitve programske opreme. Če želite več informacij, se obrnite na skrbnika sistema."
+  15017 "Ni bilo mogoče prikazati tem pomoči."
+  15018 "Igra Riši in zadeni v računalniku trenutno ne dela. Znova zaženite računalnik in poskusite še enkrat. Če težava ne izgine, se obrnite na skrbnika sistema."
+  15019 "Trenutno delate v seji terminalskih storitev, kar ni podprto."
+  15020 "&Po meri"
+  15051 "Riši in zadeni"
+  15052 "Z miško ali peresom za tablični računalnik rišite poteze in vodite krogle v luknje."
+END
+
+// sr-Latn-CS
+LANGUAGE 26, 2
+IDR_MENU MENU
+BEGIN
+  POPUP "&Igra"
+  BEGIN
+    MENUITEM "&Nova igra\tF2", 40001
+    MENUITEM "&Pauziraj", 40010
+    MENUITEM "&Obriši zapise olovkom", 40042
+    MENUITEM SEPARATOR
+    MENUITEM "I&zađi\tAlt+X", 40000
+  END
+  POPUP "&Nivo težine"
+  BEGIN
+    MENUITEM "&Početni", 40002
+    MENUITEM "V&iši početni", 40003
+    MENUITEM "&Srednji", 40004
+    MENUITEM "&Napredni", 40005
+    MENUITEM "E&kspertski", 40006
+  END
+  POPUP "&Pomoć"
+  BEGIN
+    MENUITEM "&Teme pomoći\tF1", 40040
+    MENUITEM SEPARATOR
+    MENUITEM "&Osnovni podaci", 40041
+  END
+END
+
+STRINGTABLE
+BEGIN
+  15000 "Lopta sa mastilom"
+  15001 "Igra je završena!"
+  15002 "Vreme je isteklo."
+  15003 "Loptica je ušla u rupu sa pogrešnom bojom."
+  15011 "Greška"
+  15012 "Nije moguće učitati tablu za igru. Zatvorite druge aplikacije i pokušajte ponovo."
+  15013 "Pokretanje funkcije DirectDraw nije uspelo."
+  15014 "Nema datoteka u ovom direktorijumu."
+  15015 "Nevažeći argumenti komandne linije"
+  15016 "Windows ne može da otvori ovaj program zato što ga je sprečila smernica za ograničenje softvera. Za više informacija obratite se administratoru sistema."
+  15017 "Pojavljivanje teme iz datoteka za pomoć nije uspelo."
+  15018 "„Lopta sa mastilom“ trenutno ne radi na računaru. Ponovo pokrenite računar i pokušajte ponovo. Ako problem potraje, obratite se administratoru sistema."
+  15019 "Radite u okviru sesije usluga terminala, što nije podržano."
+  15020 "&Prilagođeno"
+  15051 "Lopta sa mastilom"
+  15052 "Vodite lopte do rupa tako što ćete crtati poteze mastilom pomoću miša ili olovke za tablet računar."
+END
+
+// sv-SE
+LANGUAGE 29, 1
+IDR_MENU MENU
+BEGIN
+  POPUP "&Spel"
+  BEGIN
+    MENUITEM "&Nytt spel\tF2", 40001
+    MENUITEM "&Pausa", 40010
+    MENUITEM "&Ta bort handskrift", 40042
+    MENUITEM SEPARATOR
+    MENUITEM "&Avsluta\tAlt+X", 40000
+  END
+  POPUP "Sv&årighetsgrad"
+  BEGIN
+    MENUITEM "Nyb&örjare", 40002
+    MENUITEM "En&kel", 40003
+    MENUITEM "&Mellannivå", 40004
+    MENUITEM "&Avancerad", 40005
+    MENUITEM "&Expert", 40006
+  END
+  POPUP "&Hjälp"
+  BEGIN
+    MENUITEM "&Hjälpavsnitt\tF1", 40040
+    MENUITEM SEPARATOR
+    MENUITEM "&Om", 40041
+  END
+END
+
+STRINGTABLE
+BEGIN
+  15000 "InkBall"
+  15001 "Spelet är slut!"
+  15002 "Tidsgränsen har uppnåtts."
+  15003 "En kula slank ner i ett hål av en annan färg."
+  15011 "Fel"
+  15012 "Det går inte att läsa in spelplanen. Stäng andra program som körs och försök sedan igen."
+  15013 "Det gick inte att initiera DirectDraw."
+  15014 "Det finns inga filer i den här mappen."
+  15015 "Ogiltiga kommandoradsargument"
+  15016 "Det här programmet kan inte öppnas eftersom det blockeras av en grupprincip. Kontakta systemadministratören om du vill veta mer om detta."
+  15017 "Hjälpavsnittet kunde inte visas."
+  15018 "InkBall fungerar inte på datorn just nu. Starta om datorn och försök sedan igen. Om problemet kvarstår kan du kontakta systemadministratören."
+  15019 "Du kör i en terminaltjänstsession och detta stöds inte."
+  15020 "&Egen"
+  15051 "InkBall"
+  15052 "Led bollar till hål genom att rita bläckstreck med en mus eller en Tablet-penna."
+END
+
+// th-TH
+LANGUAGE 30, 1
+IDR_MENU MENU
+BEGIN
+  POPUP "เ&กม"
+  BEGIN
+    MENUITEM "เ&กมใหม่\tF2", 40001
+    MENUITEM "ห&ยุดชั่วคราว", 40010
+    MENUITEM "&ล้างการเขียนด้วยหมึก", 40042
+    MENUITEM SEPARATOR
+    MENUITEM "&ออก\tAlt+X", 40000
+  END
+  POPUP "&ระดับความยาก"
+  BEGIN
+    MENUITEM "&ระดับเริ่มต้น", 40002
+    MENUITEM "ระดับผู้&ฝึกหัด", 40003
+    MENUITEM "ระดับ&ปานกลาง", 40004
+    MENUITEM "ระดับสู&ง", 40005
+    MENUITEM "ระดับผู้เชี่ย&วชาญ", 40006
+  END
+  POPUP "&วิธีใช้"
+  BEGIN
+    MENUITEM "&หัวข้อวิธีใช้\tF1", 40040
+    MENUITEM SEPARATOR
+    MENUITEM "&เกี่ยวกับ", 40041
+  END
+END
+
+STRINGTABLE
+BEGIN
+  15000 "InkBall"
+  15001 "จบเกมแล้ว!"
+  15002 "คุณใช้เวลาหมดแล้ว"
+  15003 "ลูกบอลเข้าไปในหลุมที่มีสีไม่ตรงกัน"
+  15011 "ข้อผิดพลาด"
+  15012 "ไม่สามารถโหลดกระดานเกมได้ กรุณาปิดโปรแกรมประยุกต์อื่นๆ แล้วลองอีกครั้ง"
+  15013 "ล้มเหลวในการเตรียมใช้งาน DirectDraw"
+  15014 "ไม่มีแฟ้มในไดเรกทอรีนี้"
+  15015 "อาร์กิวเมนต์บรรทัดคำสั่งไม่ถูกต้อง"
+  15016 "Windows ไม่สามารถเปิดโปรแกรมนี้ได้ เนื่องจากโปรแกรมนี้ถูกป้องกันไม่ให้ใช้งานโดยนโยบายการจำกัดซอฟต์แวร์ สำหรับข้อมูลเพิ่มเติม กรุณาติดต่อผู้ดูแลระบบของคุณ"
+  15017 "ไม่สามารถแสดงหัวข้อวิธีใช้"
+  15018 "InkBall ไม่สามารถทำงานบนคอมพิวเตอร์ของคุณได้ในขณะนี้ ให้เริ่มการทำงานของคอมพิวเตอร์ของคุณใหม่ แล้วลองอีกครั้ง ถ้าปัญหายังคงมีอยู่ ให้ติดต่อผู้ดูแลระบบของคุณ"
+  15019 "คุณกำลังทำงานในเซสชันของบริการเทอร์มินัลซึ่งไม่ได้รับการสนับสนุน"
+  15020 "กำ&หนดเอง"
+  15051 "InkBall"
+  15052 "พาลูกบอลลงหลุมโดยการวาดลายเส้นที่ขีดด้วยเมาส์หรือปากกาแท็บเล็ต"
+END
+
+// tr-TR
+LANGUAGE 31, 1
+IDR_MENU MENU
+BEGIN
+  POPUP "&Oyun"
+  BEGIN
+    MENUITEM "Ye&ni Oyun\tF2", 40001
+    MENUITEM "&Duraklat", 40010
+    MENUITEM "&Mürekkebi Temizle", 40042
+    MENUITEM SEPARATOR
+    MENUITEM "Çı&kış\tAlt+X", 40000
+  END
+  POPUP "&Zorluk"
+  BEGIN
+    MENUITEM "&Başlangıç", 40002
+    MENUITEM "&Acemi", 40003
+    MENUITEM "&Orta", 40004
+    MENUITEM "İ&leri", 40005
+    MENUITEM "&Uzman", 40006
+  END
+  POPUP "&Yardım"
+  BEGIN
+    MENUITEM "&Yardım Konuları\tF1", 40040
+    MENUITEM SEPARATOR
+    MENUITEM "&Hakkında", 40041
+  END
+END
+
+STRINGTABLE
+BEGIN
+  15000 "InkBall"
+  15001 "Oyun bitti!"
+  15002 "Süreniz doldu."
+  15003 "Top yanlış renkteki bir deliğe girdi."
+  15011 "Hata"
+  15012 "Oyun tahtası yüklenemiyor. Lütfen diğer uygulamaları kapatın ve yeniden deneyin."
+  15013 "DirectDraw başlatılamadı."
+  15014 "Bu dizinde hiç dosya yok."
+  15015 "Geçersiz komut satırı bağımsız değişkenleri"
+  15016 "Windows, bir yazılım kısıtlama ilkesi tarafından engellendiğinden, bu programı açamıyor. Daha fazla bilgi için lütfen sistem yöneticinize başvurun."
+  15017 "Yardım konusu görüntülenemedi."
+  15018 "Şu anda bilgisayarınızda InkBall çalışmıyor. Bilgisayarınızı yeniden başlatın ve ardından yeniden deneyin. Sorun devam ederse, sistem yöneticinize başvurun."
+  15019 "Bir terminal hizmetleri oturumu çalıştırıyorsunuz, ancak bu desteklenmiyor."
+  15020 "Ö&zel"
+  15051 "InkBall"
+  15052 "Fare veya tablet kalemiyle mürekkep vuruşları çizerek topları deliklere yönlendirin."
+END
+
+// uk-UA
+LANGUAGE 34, 1
+IDR_MENU MENU
+BEGIN
+  POPUP "&Гра"
+  BEGIN
+    MENUITEM "&Нова гра\tF2", 40001
+    MENUITEM "&Призупинити", 40010
+    MENUITEM "&Очистити лінії", 40042
+    MENUITEM SEPARATOR
+    MENUITEM "&Вихід\tAlt+X", 40000
+  END
+  POPUP "&Рівень складності"
+  BEGIN
+    MENUITEM "&Новачок", 40002
+    MENUITEM "П&очатківець", 40003
+    MENUITEM "&Аматор", 40004
+    MENUITEM "&Професіонал", 40005
+    MENUITEM "&Експерт", 40006
+  END
+  POPUP "&Довідка"
+  BEGIN
+    MENUITEM "&Виклик довідки\tF1", 40040
+    MENUITEM SEPARATOR
+    MENUITEM "&Про програму", 40041
+  END
+END
+
+STRINGTABLE
+BEGIN
+  15000 "Гра InkBall"
+  15001 "Гру завершено!"
+  15002 "Час вичерпано."
+  15003 "A ball entered a hole of the wrong color."
+  15011 "Помилка"
+  15012 "Cannot load the game board. Please close other applications and try again."
+  15013 "Не вдалося ініціалізувати DirectDraw."
+  15014 "У цьому каталозі відсутні файли."
+  15015 "Неприпустимі аргументи командного рядка"
+  15016 "Не вдалося запустити цю програму через заборону політики обмеженого використання програм. За докладнішою інформацією зверніться до системного адміністратора."
+  15017 "Не вдалося відобразити розділ довідки."
+  15018 "InkBall is not working on your computer right now. Restart your computer, and then try again. If the problem persists, contact your system administrator."
+  15019 "Програму запущено в сеансі служб терміналів, які не підтримуються."
+  15020 "&Інше"
+  15051 "Гра InkBall"
+  15052 "Перемістіть кулі до отворів, виконуючи розчерки пера за допомогою миші або планшетного пера."
+END
+
+// zh-CN
+LANGUAGE 4, 2
+IDR_MENU MENU
+BEGIN
+  POPUP "游戏(&G)"
+  BEGIN
+    MENUITEM "新游戏(&N)\tF2", 40001
+    MENUITEM "暂停(&P)", 40010
+    MENUITEM "清除墨迹(&C)", 40042
+    MENUITEM SEPARATOR
+    MENUITEM "退出(&X)\tAlt+X", 40000
+  END
+  POPUP "难度(&D)"
+  BEGIN
+    MENUITEM "初级(&B)", 40002
+    MENUITEM "新手(&N)", 40003
+    MENUITEM "中级(&I)", 40004
+    MENUITEM "高级(&A)", 40005
+    MENUITEM "专家(&X)", 40006
+  END
+  POPUP "帮助(&H)"
+  BEGIN
+    MENUITEM "帮助主题(&H)\tF1", 40040
+    MENUITEM SEPARATOR
+    MENUITEM "关于(&A)", 40041
+  END
+END
+
+STRINGTABLE
+BEGIN
+  15000 "墨球"
+  15001 "游戏结束!"
+  15002 "时间用完了。"
+  15003 "球进入了颜色不对的洞口。"
+  15011 "错误"
+  15012 "无法加载游戏板。请关闭其他应用程序，然后再试一次。"
+  15013 "初始化 DirectDraw 失败。"
+  15014 "该目录没有文件。"
+  15015 "无效命令行参数"
+  15016 "Windows 无法打开此程序，因为该程序已由软件限制策略禁止。有关详细信息，请与系统管理员联系。"
+  15017 "“帮助”标题没有出现。"
+  15018 "墨球游戏当前没有在计算机上运行。请重新启动计算机，然后重试。如果问题仍然存在，请与系统管理员联系。"
+  15019 "正在一个终端服务会话中运行，该会话不受支持。"
+  15020 "自定义(&C)"
+  15051 "墨球"
+  15052 "通过使用鼠标或 Tablet 笔绘制墨迹笔划，将球导入洞中。"
+END
+
+// zh-TW
+LANGUAGE 4, 1
+IDR_MENU MENU
+BEGIN
+  POPUP "遊戲(&G)"
+  BEGIN
+    MENUITEM "新遊戲(&N)\tF2", 40001
+    MENUITEM "暫停(&P)", 40010
+    MENUITEM "清除筆墨(&C)", 40042
+    MENUITEM SEPARATOR
+    MENUITEM "結束(&X)\tAlt+X", 40000
+  END
+  POPUP "難度(&D)"
+  BEGIN
+    MENUITEM "初學者(&B)", 40002
+    MENUITEM "新手(&N)", 40003
+    MENUITEM "中級者(&I)", 40004
+    MENUITEM "進階(&A)", 40005
+    MENUITEM "專家(&X)", 40006
+  END
+  POPUP "說明(&H)"
+  BEGIN
+    MENUITEM "說明主題(&H)\tF1", 40040
+    MENUITEM SEPARATOR
+    MENUITEM "關於(&A)", 40041
+  END
+END
+
+STRINGTABLE
+BEGIN
+  15000 "筆跡球"
+  15001 "遊戲結束!"
+  15002 "您的時間不夠了。"
+  15003 "球進入了錯誤顏色的洞。"
+  15011 "錯誤"
+  15012 "無法載入遊戲板。請關閉其他應用程式，再試一次。"
+  15013 "初始化 DirectDraw 失敗。"
+  15014 "此目錄裡沒有檔案。"
+  15015 "命令列引數不正確"
+  15016 "受限於軟體限制原則，Windows 無法開啟此程式。如需詳細資訊，請連絡您的系統管理員。"
+  15017 "說明主題開啟失敗。"
+  15018 "您的電腦目前無法使用筆跡球。請重新啟動電腦，然後再試一次。如果問題仍然存在，請連絡您的系統管理員。"
+  15019 "您正在不被支援的終端機服務工作階段中執行。"
+  15020 "自訂(&C)"
+  15051 "筆跡球"
+  15052 "以滑鼠或 Tablet 畫筆來繪製筆跡，以便將圓球導入洞裡面。"
+END
+
+LANGUAGE 9, 1

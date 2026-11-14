@@ -1,0 +1,1630 @@
+{
+  "version": "1.2.0",
+  "validation_date": "2026-11-01",
+  "executable": "bin/Prebuilt-x64/inkball.exe",
+  "exe_bytes": 3699069,
+  "exe_sha256": "7c94311cb5d5b3cc3d677eaa7f5d1f372dae606a3eba6b36f77d9c50a6db8682",
+  "machine": "0x8664",
+  "subsystem": 2,
+  "imports": [
+    "COMCTL32.dll",
+    "GDI32.dll",
+    "KERNEL32.dll",
+    "MSIMG32.dll",
+    "msvcrt.dll",
+    "SHELL32.dll",
+    "USER32.dll"
+  ],
+  "original_resources": [
+    {
+      "type": 2,
+      "id": 501,
+      "name": "bitmap DIB",
+      "bytes": 457640,
+      "sha256": "3d4620599b3d0ac4d0e8d6a7163b7b9b401aede823fd4e55dd475eab8e7dd98a",
+      "exact_match": true
+    },
+    {
+      "type": 10,
+      "id": 20001,
+      "name": "levels",
+      "bytes": 334980,
+      "sha256": "b2f262d56bb12340c3a4375dfc19a0056de39dff45da6ec5d86e676eb828175b",
+      "exact_match": true
+    }
+  ],
+  "original_icon_exact_match": true,
+  "menu_languages": 35,
+  "manifest_resources": [
+    [
+      24,
+      1,
+      1033
+    ]
+  ],
+  "manifest_per_monitor_v2": true,
+  "manifest_common_controls_v6": true,
+  "source_inputs_unchanged_during_compile": true,
+  "source_inputs_changed_after_compile": [],
+  "source_sha256": {
+    "Build.ps1": "49e95dba597e562759cd9c1f5631fd1d4f1736cf8ce8dc9eee210f10ba96ac7b",
+    "CMakeLists.txt": "4ac3b90ac2d17e935a20f380543c4c9f9123be715dd08bd72dfd66f5e195d04b",
+    "InkBall.CatalogTests.vcxproj": "bfa6214befcf20f1666d5bcd75690ba2718a3f67b2697e216139ec3d1ad168b3",
+    "InkBall.CatalogTests.vcxproj.filters": "4da07203bbd776ee7f39e77062aba8ca18d1913dc78dff63456b2d951720cdfb",
+    "InkBall.EngineTests.vcxproj": "3736bb80e2e27091ce55b1a442f6a7f5c64f574335dad4dde98828672d94eca6",
+    "InkBall.EngineTests.vcxproj.filters": "7ba859c7b8787d05a03a6739e7bf06c5717d01875ec898720f74b661366b414b",
+    "InkBall.RendererTests.vcxproj": "8a7100020dee82e8f69df57aa5f4ee8d5ab2a0e70f4e8c8daabb25f9c82fb16b",
+    "InkBall.RendererTests.vcxproj.filters": "81e8083660c3f2b8b8d57415fccfd1a58bd5dfad88ff0a5562fd08886ad34904",
+    "InkBall.sln": "4d5c95ccdce4a3ef7cbc0b230c99e2d62189756545d813faa3fc8bbddf0ab840",
+    "InkBall.vcxproj": "e7dd1927b0396d469f6b66e923df68ee95c5be5ebb7be7ade8f560bf1f62efc9",
+    "InkBall.vcxproj.filters": "779d8a4f0c1f2fecdbbca42015a10eaff278ae05d2aab95b47e6b3c1bddcb168",
+    "assets/app.manifest": "0c8f25337a077589d03036a30b112c6a6ecb3b7621dda514262e5c5de6ccadbd",
+    "assets/inkball.ico": "61a419cfd1ba970ea212f71929b953adc2bdf0d75906502f733c19290aed1aa0",
+    "assets/levels.ikl": "b2f262d56bb12340c3a4375dfc19a0056de39dff45da6ec5d86e676eb828175b",
+    "assets/sprites.bmp": "689171f70a08e98a40a6adc454c1bb50a6e51c8c2a0ba5e48e9e3549eec5b4f9",
+    "resources/InkBall.rc": "d9b76ea1bbed0c972d958f762f44fcb2ad3473926a606bc3996019a48e3a4e09",
+    "resources/LocalizedMenus.rc": "fecaaefd3c3757dd51d39e959e5e71895ebd4a2c7ceb87915d5890f7e5bc3708",
+    "src/BoardBrowser.cpp": "beb7ca4e2ec69283ae13999f623c9b6e40e437f1b7994078d089be5f4a68683a",
+    "src/BoardBrowser.h": "31fa370d15b63500117313109eb95bb70bd92a937eb06c18b3a66f9880e26823",
+    "src/BoardCatalog.cpp": "2841c46b71e3863cc9ad8d091083a5e5229085bc95fcb5b92dceb0858ed2d1ba",
+    "src/BoardCatalog.h": "2c8e4a6cde580413b15fe0a109e1cec460395863c94aafcb092b2126f1f76c59",
+    "src/Game.cpp": "345c1176efbd9cebc404e72e0d92e7aae6fc18b509fa38e156f99b2ac979c22d",
+    "src/Game.h": "231cc00c66e0e6a9bcd99be62f54cdb94a3bdb674ec85f2ed02d8261738fd636",
+    "src/Levels.cpp": "f1fef0d3e29786b1d864aadbcba9b3bfbb1dafe097b78f55c6889683b6aa86e3",
+    "src/Levels.h": "ac80ced3b9edb3d25f0dccf501e047e7b5e3f1e037e8a99726a32cc82b1e2da3",
+    "src/MechanicsDialog.cpp": "2f297f11917cae52cde737b87b6bde9948c89d0593fcbd27c25e68f69e849458",
+    "src/MechanicsDialog.h": "72453d2f579f11ee5cdfbb6deafd319e443f0f8305be298b39715e0c752724d2",
+    "src/PenCursor.cpp": "026184e056344989c789731a2a27a0370d91ea0815d42c1a2e68e1e9a4a8c9a0",
+    "src/PenCursor.h": "3605ac949b2687b62aa89f5ebc104ee265c298d998d0393d8ba89108dfd8b71b",
+    "src/Renderer.cpp": "28498e51cc9fe1a3c17e723931cadae255bf30874a9c5b2dff972c350a2a099b",
+    "src/Renderer.h": "d2e61f6a325ba397d4aadfca26583eeb280c40c9212cf2bd7df00ad1a9032699",
+    "src/SpriteRects.h": "dcbbc9c59cf0113be94fe22db75be9306a3a41d51acbc30feab07b412e695650",
+    "src/WinMain.cpp": "ef4a06236b848f2a3189fc0d21763de948ee05bba006d003e12f5b75858e3012",
+    "src/resource.h": "189aa9f2c0879c2f7d65c38053ee7fdf4e1c89b327dd3fd67bb105ed0f0b9245",
+    "tests/catalog_tests.cpp": "bc30d57e77b5468e439aa72de9c4d1f4e266cbeafbd0839d5b67b4ff1af85e0a",
+    "tests/engine_tests.cpp": "8a5516d6a149b36fda07a2f9e608364078fa27e39ea65b5e7b3769f9e5f8728a",
+    "tests/renderer_tests.cpp": "36ecd3303be8ab8633b2b8cf1f5a0995f9bfeb23c53d810676d0975fb564306c",
+    "tools/mingw-x64.cmake": "acb73c646d332c921bbf1bf733294f1dbeae3a73256f85a154ac7b1221bda4b7"
+  },
+  "visual_studio_structure": {
+    "status": "PASS",
+    "projects": [
+      {
+        "project": "InkBall.CatalogTests",
+        "source_files": [
+          "src\\Game.cpp",
+          "src\\Levels.cpp",
+          "src\\BoardCatalog.cpp",
+          "tests\\catalog_tests.cpp"
+        ],
+        "resource_files": [],
+        "guid": "{6CB9B534-8C7A-4ADB-B3F3-45795087893E}",
+        "configurations": [
+          "Debug|Win32",
+          "Debug|x64",
+          "Release|Win32",
+          "Release|x64"
+        ]
+      },
+      {
+        "project": "InkBall.EngineTests",
+        "source_files": [
+          "src\\Game.cpp",
+          "src\\Levels.cpp",
+          "tests\\engine_tests.cpp"
+        ],
+        "resource_files": [],
+        "guid": "{4D716863-8712-42CA-ABDA-BDDBA19B1350}",
+        "configurations": [
+          "Debug|Win32",
+          "Debug|x64",
+          "Release|Win32",
+          "Release|x64"
+        ]
+      },
+      {
+        "project": "InkBall.RendererTests",
+        "source_files": [
+          "src\\Game.cpp",
+          "src\\Levels.cpp",
+          "src\\Renderer.cpp",
+          "tests\\renderer_tests.cpp"
+        ],
+        "resource_files": [
+          "resources\\InkBall.rc"
+        ],
+        "guid": "{D86C59B1-CCB6-4531-A24E-97F363B504CD}",
+        "configurations": [
+          "Debug|Win32",
+          "Debug|x64",
+          "Release|Win32",
+          "Release|x64"
+        ]
+      },
+      {
+        "project": "InkBall",
+        "source_files": [
+          "src\\Game.cpp",
+          "src\\Levels.cpp",
+          "src\\WinMain.cpp",
+          "src\\Renderer.cpp",
+          "src\\BoardCatalog.cpp",
+          "src\\BoardBrowser.cpp",
+          "src\\MechanicsDialog.cpp",
+          "src\\PenCursor.cpp"
+        ],
+        "resource_files": [
+          "resources\\InkBall.rc"
+        ],
+        "guid": "{D40EC49C-0962-4B6C-8C69-43C387FA47ED}",
+        "configurations": [
+          "Debug|Win32",
+          "Debug|x64",
+          "Release|Win32",
+          "Release|x64"
+        ]
+      }
+    ],
+    "errors": [],
+    "scope": "Structural validation only; not a Microsoft MSBuild execution."
+  },
+  "cmake_linux_build_and_ctest": "passed: engine and catalog",
+  "cmake_windows_cross_build": "passed: game and all three test executables",
+  "visual_studio_execution": "not available in this Linux environment",
+  "native_windows_execution": "not available; Windows executables tested in Wine 9",
+  "input_zip_sha256": "3608f48be2620437dd19cdcafc8f3e8bfa41b4bc490bfd9c6d3d5014700a029b",
+  "binaries": [
+    {
+      "file": "bin/Prebuilt-x64/InkBall.CatalogTests.exe",
+      "bytes": 2657124,
+      "sha256": "e30c32ed3796709de1644e76246c29c8bc2fbf31306294c4366300101581c761"
+    },
+    {
+      "file": "bin/Prebuilt-x64/InkBall.EngineTests.exe",
+      "bytes": 2602284,
+      "sha256": "1e297f21d42d325c16c5a5a835f2d1acc27441b161c122410f4b08358a51d2c0"
+    },
+    {
+      "file": "bin/Prebuilt-x64/InkBall.RendererTests.exe",
+      "bytes": 3535344,
+      "sha256": "039ae9cedbdc141f72a98109f22ba1bd8072c5bcfb531e59ebd53b3c916dff01"
+    },
+    {
+      "file": "bin/Prebuilt-x64/inkball.exe",
+      "bytes": 3699069,
+      "sha256": "7c94311cb5d5b3cc3d677eaa7f5d1f372dae606a3eba6b36f77d9c50a6db8682"
+    }
+  ],
+  "portable_engine_checks": 666,
+  "portable_catalog_checks": 38,
+  "windows_renderer_checks": 79,
+  "score_rendering": {
+    "changed": false,
+    "unchanged_methods": [
+      "int Renderer::number",
+      "void Renderer::drawHud",
+      "RECT Renderer::destination"
+    ],
+    "original_sprite_bitmap_unchanged": true,
+    "scaling_mode": "COLORONCOLOR"
+  },
+  "default_physics_and_sanitizers": {
+    "all_551_boards_default_physics_match": true,
+    "sample_times_seconds": [
+      0,
+      2,
+      4,
+      6
+    ],
+    "tick_seconds": "1/120",
+    "seed": 12345,
+    "fnv1a64_state_hash": "7bb711d1add8602e",
+    "reference": "attached InkBall-VS2026-updated(1).zip version1.1 engine",
+    "new_engine_checks": 666,
+    "sanitizers": {
+      "asan_ubsan": "passed",
+      "checks": 666,
+      "output": "PASS: 666 checks, including all 551 original boards and gameplay regressions.",
+      "note": "Executed with normal /proc access; restricted-view sanitizer stack discovery is incompatible."
+    }
+  },
+  "performance": {
+    "render_before": {
+      "samples": 600,
+      "mean_ms": 1.097501,
+      "median_ms": 1.0073,
+      "p95_ms": 1.4407,
+      "max_ms": 5.6116
+    },
+    "render_after": {
+      "samples": 600,
+      "mean_ms": 0.851334,
+      "median_ms": 0.7187,
+      "p95_ms": 1.6093,
+      "max_ms": 6.8532
+    },
+    "browser_before": {
+      "success": true,
+      "selection_and_preview": {
+        "samples": 80,
+        "mean_ms": 37.00255,
+        "median_ms": 35.7834,
+        "p95_ms": 48.4133,
+        "max_ms": 55.1512
+      },
+      "sort_and_list_paint": {
+        "samples": 40,
+        "mean_ms": 51.01439,
+        "median_ms": 49.3809,
+        "p95_ms": 68.1048,
+        "max_ms": 72.3481
+      }
+    },
+    "browser_after": {
+      "success": true,
+      "selection_and_preview": {
+        "samples": 80,
+        "mean_ms": 29.73144,
+        "median_ms": 28.694,
+        "p95_ms": 36.4791,
+        "max_ms": 39.9312
+      },
+      "sort_and_list_paint": {
+        "samples": 40,
+        "mean_ms": 30.83062,
+        "median_ms": 29.8257,
+        "p95_ms": 40.6404,
+        "max_ms": 44.9791
+      }
+    },
+    "renderer_tests": {
+      "exit_code": 0,
+      "stdout": "PASS: 79 renderer checks for ink, ball transparency, repaint stability, resize, and input mapping.\n",
+      "stderr": ""
+    },
+    "pixels_identical": true,
+    "hud_pixels_identical": true,
+    "environment": "Wine 9 / Xvfb / Openbox on Linux; not native Windows",
+    "scope": "Isolated render/browser harnesses. The browser harness has no running owner-game timer, so it excludes the separate main-window pause/timer fix.",
+    "source_findings": [
+      "Application::tick in 1.1 called refresh() every15ms even when paused; refresh drew the complete game immediately on the same UI thread used by the modal browser.",
+      "Renderer::draw previously issued289 tile sprite calls each frame even when tile images were unchanged.",
+      "Browser filter/sort previously inserted551 list rows and set six strings per row synchronously.",
+      "Browser resizing previously used MoveWindow(...,TRUE) on14 children, forcing an immediate paint after each move."
+    ],
+    "changes": [
+      "Cache tile-only background and update cells when their selected sprite changes; composite from cache before ink/balls.",
+      "Virtual list exposes cached row strings on demand; filtering/sorting changes only the index list/count.",
+      "Batch child layout and only adjust columns when widths change.",
+      "Record selection immediately and defer latest pending preview until after control notification dispatch.",
+      "Preserve incremental ID search and use arrow pointer in preview inspector."
+    ],
+    "renderer_checks": 79,
+    "score_rendering_changed": false,
+    "limitations": [
+      "The reported multi-second delay was not reproduced in this Linux/Wine environment.",
+      "Timing results are measured examples, not a native-Windows performance guarantee.",
+      "Paused owner-render suppression is implemented and validated separately by the parent agent."
+    ]
+  },
+  "mechanics_dialog": {
+    "platform": "Wine9 / Xvfb / Openbox, 144 DPI (150%), independent mechanics-dialog harness",
+    "checks": [
+      {
+        "name": "150-percent-DPI-layout",
+        "passed": true,
+        "detail": [
+          1080,
+          918
+        ]
+      },
+      {
+        "name": "seven-value-fields",
+        "passed": true,
+        "detail": ""
+      },
+      {
+        "name": "apply-disabled-initially",
+        "passed": true,
+        "detail": ""
+      },
+      {
+        "name": "original-values-visible",
+        "passed": true,
+        "detail": ""
+      },
+      {
+        "name": "blank-number-rejected",
+        "passed": true,
+        "detail": ""
+      },
+      {
+        "name": "invalid-input-warning",
+        "passed": true,
+        "detail": ""
+      },
+      {
+        "name": "invalid-form-remains-open",
+        "passed": true,
+        "detail": ""
+      },
+      {
+        "name": "mnemonic-focuses-cap",
+        "passed": true,
+        "detail": "3107"
+      },
+      {
+        "name": "resized-form-reveals-focused-field",
+        "passed": true,
+        "detail": {
+          "field": [
+            835,
+            623,
+            985,
+            661
+          ],
+          "panel": [
+            260,
+            160,
+            1260,
+            679
+          ]
+        }
+      },
+      {
+        "name": "tab-reaches-footer-action",
+        "passed": true,
+        "detail": "3109"
+      },
+      {
+        "name": "invalid-apply-and-cancel-preserve-game",
+        "passed": true,
+        "detail": ""
+      },
+      {
+        "name": "apply-keeps-dialog-open",
+        "passed": true,
+        "detail": ""
+      },
+      {
+        "name": "restore-defaults-populates-form",
+        "passed": true,
+        "detail": ""
+      },
+      {
+        "name": "restored-defaults-await-apply",
+        "passed": true,
+        "detail": ""
+      },
+      {
+        "name": "cancel-keeps-last-successful-apply",
+        "passed": true,
+        "detail": ""
+      },
+      {
+        "name": "uncommitted-time-and-defaults-not-applied",
+        "passed": true,
+        "detail": ""
+      },
+      {
+        "name": "apply-keeps-positions-score-pause",
+        "passed": true,
+        "detail": ""
+      },
+      {
+        "name": "reopen-shows-applied-values",
+        "passed": true,
+        "detail": ""
+      },
+      {
+        "name": "clean-exit",
+        "passed": true,
+        "detail": 0
+      },
+      {
+        "name": "restore-defaults-and-OK-applies",
+        "passed": true,
+        "detail": ""
+      },
+      {
+        "name": "restoring-speed-restores-live-velocities",
+        "passed": true,
+        "detail": ""
+      }
+    ],
+    "success": true,
+    "source_sha256": {
+      "src/MechanicsDialog.h": "72453d2f579f11ee5cdfbb6deafd319e443f0f8305be298b39715e0c752724d2",
+      "src/MechanicsDialog.cpp": "2f297f11917cae52cde737b87b6bde9948c89d0593fcbd27c25e68f69e849458"
+    }
+  },
+  "gui": {
+    "exe": "/workspace/scratch/59a054094e24/build/windows-v12/inkball.exe",
+    "exe_sha256": "7c94311cb5d5b3cc3d677eaa7f5d1f372dae606a3eba6b36f77d9c50a6db8682",
+    "exe_unchanged_during_run": true,
+    "platform": "Wine9 / Xvfb / Openbox on Linux; not native Windows or Visual Studio",
+    "checks": [
+      {
+        "name": "reference-arrow-differs-from-cross",
+        "passed": true,
+        "detail": ""
+      },
+      {
+        "name": "native-client-size",
+        "passed": true,
+        "detail": ""
+      },
+      {
+        "name": "FPS-shows-measured-number",
+        "passed": true,
+        "detail": "InkBall  |  FPS: 67"
+      },
+      {
+        "name": "board-pen-cursor",
+        "passed": true,
+        "detail": {
+          "position": [
+            374,
+            459
+          ],
+          "size": [
+            32,
+            32
+          ],
+          "hotspot": [
+            1,
+            1
+          ],
+          "rgba_sha256": "82b204f21a995988ff36844b1294dcba6bf075552dfa30b914142de9886c6e73",
+          "opaque_or_partial_pixels": 155
+        }
+      },
+      {
+        "name": "HUD-arrow-cursor",
+        "passed": true,
+        "detail": {
+          "position": [
+            204,
+            69
+          ],
+          "size": [
+            24,
+            24
+          ],
+          "hotspot": [
+            3,
+            1
+          ],
+          "rgba_sha256": "31d1d1543cad4779239729ab14d0cdb01305caaf745461b70a8d36bf9dde467a",
+          "opaque_or_partial_pixels": 254
+        }
+      },
+      {
+        "name": "FPS-explicitly-paused",
+        "passed": true,
+        "detail": ""
+      },
+      {
+        "name": "browser-all-551",
+        "passed": true,
+        "detail": ""
+      },
+      {
+        "name": "browser-owner-disabled",
+        "passed": true,
+        "detail": ""
+      },
+      {
+        "name": "browser-stops-owner-timer-and-paint-work",
+        "passed": true,
+        "detail": {
+          "old": {
+            "success": true,
+            "timer": 100,
+            "paint": 100,
+            "all": 200,
+            "elapsed_ms": 1501.33
+          },
+          "new": {
+            "success": true,
+            "timer": 0,
+            "paint": 0,
+            "all": 0,
+            "elapsed_ms": 1501.54
+          }
+        }
+      },
+      {
+        "name": "board519-and-rapid-selection-responsive",
+        "passed": true,
+        "detail": [
+          {
+            "found": true,
+            "shown": true,
+            "milliseconds": 49.6662,
+            "board_id": 519
+          },
+          {
+            "found": true,
+            "shown": true,
+            "milliseconds": 53.0486,
+            "board_id": 0
+          },
+          {
+            "found": true,
+            "shown": true,
+            "milliseconds": 41.9294,
+            "board_id": 550
+          },
+          {
+            "found": true,
+            "shown": true,
+            "milliseconds": 46.9637,
+            "board_id": 138
+          },
+          {
+            "found": true,
+            "shown": true,
+            "milliseconds": 45.8551,
+            "board_id": 489
+          },
+          {
+            "found": true,
+            "shown": true,
+            "milliseconds": 47.9126,
+            "board_id": 519
+          }
+        ]
+      },
+      {
+        "name": "board519-parameters-correct",
+        "passed": true,
+        "detail": ""
+      },
+      {
+        "name": "browser-remains-responsive-after-drag",
+        "passed": true,
+        "detail": {
+          "seconds": 0.2159
+        }
+      },
+      {
+        "name": "expert-filter-62",
+        "passed": true,
+        "detail": ""
+      },
+      {
+        "name": "expert-bonus-filter-17",
+        "passed": true,
+        "detail": ""
+      },
+      {
+        "name": "filtered-time-sort-ascending",
+        "passed": true,
+        "detail": ""
+      },
+      {
+        "name": "filtered-time-sort-descending",
+        "passed": true,
+        "detail": ""
+      },
+      {
+        "name": "all-551-time-sort-descending",
+        "passed": true,
+        "detail": ""
+      },
+      {
+        "name": "all-551-time-sort-ascending",
+        "passed": true,
+        "detail": ""
+      },
+      {
+        "name": "tile-inspection",
+        "passed": true,
+        "detail": ""
+      },
+      {
+        "name": "close-preserves-manual-pause",
+        "passed": true,
+        "detail": ""
+      },
+      {
+        "name": "close-preserves-client-pixels",
+        "passed": true,
+        "detail": ""
+      },
+      {
+        "name": "CtrlM-opens-mechanics",
+        "passed": true,
+        "detail": ""
+      },
+      {
+        "name": "mechanics-pauses-owner",
+        "passed": true,
+        "detail": ""
+      },
+      {
+        "name": "mechanics-apply-accepts-values",
+        "passed": true,
+        "detail": ""
+      },
+      {
+        "name": "CtrlR-retains-manual-pause",
+        "passed": true,
+        "detail": ""
+      },
+      {
+        "name": "CtrlR-clears-prior-ink",
+        "passed": true,
+        "detail": ""
+      },
+      {
+        "name": "CtrlR-preserves-high-score",
+        "passed": true,
+        "detail": ""
+      },
+      {
+        "name": "CtrlR-retains-board-mechanics",
+        "passed": true,
+        "detail": ""
+      },
+      {
+        "name": "CtrlR-restarts-same-board",
+        "passed": true,
+        "detail": 0
+      },
+      {
+        "name": "Play-selected-resumes",
+        "passed": true,
+        "detail": ""
+      },
+      {
+        "name": "Play-selected-board-correct",
+        "passed": true,
+        "detail": {
+          "requested": 489,
+          "active": 489
+        }
+      },
+      {
+        "name": "Close-restores-running",
+        "passed": true,
+        "detail": ""
+      },
+      {
+        "name": "CtrlR-retains-running-state",
+        "passed": true,
+        "detail": ""
+      },
+      {
+        "name": "CtrlR-retains-selected-board",
+        "passed": true,
+        "detail": ""
+      },
+      {
+        "name": "F1-help",
+        "passed": true,
+        "detail": ""
+      },
+      {
+        "name": "F2-new-game",
+        "passed": true,
+        "detail": ""
+      },
+      {
+        "name": "Escape-clean-exit",
+        "passed": true,
+        "detail": 0
+      },
+      {
+        "name": "all-551-render-smoke",
+        "passed": true,
+        "detail": {
+          "exit": 0,
+          "stderr": ""
+        }
+      },
+      {
+        "name": "beginner-native-screenshot",
+        "passed": true,
+        "detail": {
+          "exit": 0,
+          "stderr": ""
+        }
+      },
+      {
+        "name": "expert-native-screenshot",
+        "passed": true,
+        "detail": {
+          "exit": 0,
+          "stderr": ""
+        }
+      },
+      {
+        "name": "inkball_tests.exe",
+        "passed": true,
+        "detail": {
+          "exit": 0,
+          "stdout": "PASS: 666 checks, including all 551 original boards and gameplay regressions.\n",
+          "stderr": ""
+        }
+      },
+      {
+        "name": "inkball_catalog_tests.exe",
+        "passed": true,
+        "detail": {
+          "exit": 0,
+          "stdout": "PASS: 38 catalog checks, all 551 original boards.\n",
+          "stderr": ""
+        }
+      },
+      {
+        "name": "inkball_renderer_tests.exe",
+        "passed": true,
+        "detail": {
+          "exit": 0,
+          "stdout": "PASS: 79 renderer checks for ink, ball transparency, repaint stability, resize, and input mapping.\n",
+          "stderr": ""
+        }
+      }
+    ],
+    "events": [
+      {
+        "kind": "state",
+        "seconds": 4.107,
+        "label": "00-baseline",
+        "windows": [
+          {
+            "title": "InkBall",
+            "class": "InkBall.Reconstructed.Window"
+          }
+        ]
+      },
+      {
+        "kind": "check",
+        "seconds": 4.364,
+        "name": "reference-arrow-differs-from-cross",
+        "passed": true,
+        "detail": ""
+      },
+      {
+        "kind": "baseline-browser-activity",
+        "seconds": 6.489,
+        "success": true,
+        "timer": 100,
+        "paint": 100,
+        "all": 200,
+        "elapsed_ms": 1501.33
+      },
+      {
+        "kind": "state",
+        "seconds": 7.496,
+        "label": "01-game",
+        "windows": [
+          {
+            "title": "InkBall",
+            "class": "InkBall.Reconstructed.Window"
+          }
+        ]
+      },
+      {
+        "kind": "check",
+        "seconds": 7.496,
+        "name": "native-client-size",
+        "passed": true,
+        "detail": ""
+      },
+      {
+        "kind": "state",
+        "seconds": 9.093,
+        "label": "02-fps",
+        "windows": [
+          {
+            "title": "InkBall  |  FPS: 67",
+            "class": "InkBall.Reconstructed.Window"
+          }
+        ]
+      },
+      {
+        "kind": "check",
+        "seconds": 9.093,
+        "name": "FPS-shows-measured-number",
+        "passed": true,
+        "detail": "InkBall  |  FPS: 67"
+      },
+      {
+        "kind": "check",
+        "seconds": 9.399,
+        "name": "board-pen-cursor",
+        "passed": true,
+        "detail": {
+          "position": [
+            374,
+            459
+          ],
+          "size": [
+            32,
+            32
+          ],
+          "hotspot": [
+            1,
+            1
+          ],
+          "rgba_sha256": "82b204f21a995988ff36844b1294dcba6bf075552dfa30b914142de9886c6e73",
+          "opaque_or_partial_pixels": 155
+        }
+      },
+      {
+        "kind": "check",
+        "seconds": 9.524,
+        "name": "HUD-arrow-cursor",
+        "passed": true,
+        "detail": {
+          "position": [
+            204,
+            69
+          ],
+          "size": [
+            24,
+            24
+          ],
+          "hotspot": [
+            3,
+            1
+          ],
+          "rgba_sha256": "31d1d1543cad4779239729ab14d0cdb01305caaf745461b70a8d36bf9dde467a",
+          "opaque_or_partial_pixels": 254
+        }
+      },
+      {
+        "kind": "state",
+        "seconds": 9.769,
+        "label": "03-paused",
+        "windows": [
+          {
+            "title": "InkBall (Paused)  |  FPS: paused",
+            "class": "InkBall.Reconstructed.Window"
+          }
+        ]
+      },
+      {
+        "kind": "check",
+        "seconds": 9.769,
+        "name": "FPS-explicitly-paused",
+        "passed": true,
+        "detail": ""
+      },
+      {
+        "kind": "state",
+        "seconds": 11.637,
+        "label": "04-browser-all",
+        "windows": [
+          {
+            "title": "Browse Boards - InkBall",
+            "class": "InkBall.BoardBrowser.Window"
+          },
+          {
+            "title": "InkBall (Paused)  |  FPS: paused",
+            "class": "InkBall.Reconstructed.Window"
+          }
+        ]
+      },
+      {
+        "kind": "check",
+        "seconds": 11.637,
+        "name": "browser-all-551",
+        "passed": true,
+        "detail": ""
+      },
+      {
+        "kind": "check",
+        "seconds": 11.637,
+        "name": "browser-owner-disabled",
+        "passed": true,
+        "detail": ""
+      },
+      {
+        "kind": "check",
+        "seconds": 13.513,
+        "name": "browser-stops-owner-timer-and-paint-work",
+        "passed": true,
+        "detail": {
+          "old": {
+            "success": true,
+            "timer": 100,
+            "paint": 100,
+            "all": 200,
+            "elapsed_ms": 1501.33
+          },
+          "new": {
+            "success": true,
+            "timer": 0,
+            "paint": 0,
+            "all": 0,
+            "elapsed_ms": 1501.54
+          }
+        }
+      },
+      {
+        "kind": "check",
+        "seconds": 14.98,
+        "name": "board519-and-rapid-selection-responsive",
+        "passed": true,
+        "detail": [
+          {
+            "found": true,
+            "shown": true,
+            "milliseconds": 49.6662,
+            "board_id": 519
+          },
+          {
+            "found": true,
+            "shown": true,
+            "milliseconds": 53.0486,
+            "board_id": 0
+          },
+          {
+            "found": true,
+            "shown": true,
+            "milliseconds": 41.9294,
+            "board_id": 550
+          },
+          {
+            "found": true,
+            "shown": true,
+            "milliseconds": 46.9637,
+            "board_id": 138
+          },
+          {
+            "found": true,
+            "shown": true,
+            "milliseconds": 45.8551,
+            "board_id": 489
+          },
+          {
+            "found": true,
+            "shown": true,
+            "milliseconds": 47.9126,
+            "board_id": 519
+          }
+        ]
+      },
+      {
+        "kind": "state",
+        "seconds": 15.059,
+        "label": "05-board519",
+        "windows": [
+          {
+            "title": "Browse Boards - InkBall",
+            "class": "InkBall.BoardBrowser.Window"
+          },
+          {
+            "title": "InkBall (Paused)  |  FPS: paused",
+            "class": "InkBall.Reconstructed.Window"
+          }
+        ]
+      },
+      {
+        "kind": "check",
+        "seconds": 15.06,
+        "name": "board519-parameters-correct",
+        "passed": true,
+        "detail": ""
+      },
+      {
+        "kind": "state",
+        "seconds": 15.458,
+        "label": "06-browser-moved",
+        "windows": [
+          {
+            "title": "Browse Boards - InkBall",
+            "class": "InkBall.BoardBrowser.Window"
+          },
+          {
+            "title": "InkBall (Paused)  |  FPS: paused",
+            "class": "InkBall.Reconstructed.Window"
+          }
+        ]
+      },
+      {
+        "kind": "check",
+        "seconds": 15.458,
+        "name": "browser-remains-responsive-after-drag",
+        "passed": true,
+        "detail": {
+          "seconds": 0.2159
+        }
+      },
+      {
+        "kind": "state",
+        "seconds": 16.282,
+        "label": "07-expert",
+        "windows": [
+          {
+            "title": "Browse Boards - InkBall",
+            "class": "InkBall.BoardBrowser.Window"
+          },
+          {
+            "title": "InkBall (Paused)  |  FPS: paused",
+            "class": "InkBall.Reconstructed.Window"
+          }
+        ]
+      },
+      {
+        "kind": "check",
+        "seconds": 16.283,
+        "name": "expert-filter-62",
+        "passed": true,
+        "detail": ""
+      },
+      {
+        "kind": "state",
+        "seconds": 16.977,
+        "label": "08-expert-bonus",
+        "windows": [
+          {
+            "title": "Browse Boards - InkBall",
+            "class": "InkBall.BoardBrowser.Window"
+          },
+          {
+            "title": "InkBall (Paused)  |  FPS: paused",
+            "class": "InkBall.Reconstructed.Window"
+          }
+        ]
+      },
+      {
+        "kind": "check",
+        "seconds": 16.977,
+        "name": "expert-bonus-filter-17",
+        "passed": true,
+        "detail": ""
+      },
+      {
+        "kind": "state",
+        "seconds": 17.654,
+        "label": "09-shortest-filtered",
+        "windows": [
+          {
+            "title": "Browse Boards - InkBall",
+            "class": "InkBall.BoardBrowser.Window"
+          },
+          {
+            "title": "InkBall (Paused)  |  FPS: paused",
+            "class": "InkBall.Reconstructed.Window"
+          }
+        ]
+      },
+      {
+        "kind": "check",
+        "seconds": 17.654,
+        "name": "filtered-time-sort-ascending",
+        "passed": true,
+        "detail": ""
+      },
+      {
+        "kind": "state",
+        "seconds": 18.346,
+        "label": "10-longest-filtered",
+        "windows": [
+          {
+            "title": "Browse Boards - InkBall",
+            "class": "InkBall.BoardBrowser.Window"
+          },
+          {
+            "title": "InkBall (Paused)  |  FPS: paused",
+            "class": "InkBall.Reconstructed.Window"
+          }
+        ]
+      },
+      {
+        "kind": "check",
+        "seconds": 18.346,
+        "name": "filtered-time-sort-descending",
+        "passed": true,
+        "detail": ""
+      },
+      {
+        "kind": "state",
+        "seconds": 18.994,
+        "label": "11-all-difficulties",
+        "windows": [
+          {
+            "title": "Browse Boards - InkBall",
+            "class": "InkBall.BoardBrowser.Window"
+          },
+          {
+            "title": "InkBall (Paused)  |  FPS: paused",
+            "class": "InkBall.Reconstructed.Window"
+          }
+        ]
+      },
+      {
+        "kind": "state",
+        "seconds": 21.193,
+        "label": "12-longest-all",
+        "windows": [
+          {
+            "title": "Browse Boards - InkBall",
+            "class": "InkBall.BoardBrowser.Window"
+          },
+          {
+            "title": "InkBall (Paused)  |  FPS: paused",
+            "class": "InkBall.Reconstructed.Window"
+          }
+        ]
+      },
+      {
+        "kind": "check",
+        "seconds": 21.194,
+        "name": "all-551-time-sort-descending",
+        "passed": true,
+        "detail": ""
+      },
+      {
+        "kind": "state",
+        "seconds": 23.454,
+        "label": "13-shortest-all",
+        "windows": [
+          {
+            "title": "Browse Boards - InkBall",
+            "class": "InkBall.BoardBrowser.Window"
+          },
+          {
+            "title": "InkBall (Paused)  |  FPS: paused",
+            "class": "InkBall.Reconstructed.Window"
+          }
+        ]
+      },
+      {
+        "kind": "check",
+        "seconds": 23.455,
+        "name": "all-551-time-sort-ascending",
+        "passed": true,
+        "detail": ""
+      },
+      {
+        "kind": "state",
+        "seconds": 23.807,
+        "label": "14-tile-inspector",
+        "windows": [
+          {
+            "title": "Browse Boards - InkBall",
+            "class": "InkBall.BoardBrowser.Window"
+          },
+          {
+            "title": "InkBall (Paused)  |  FPS: paused",
+            "class": "InkBall.Reconstructed.Window"
+          }
+        ]
+      },
+      {
+        "kind": "check",
+        "seconds": 23.807,
+        "name": "tile-inspection",
+        "passed": true,
+        "detail": ""
+      },
+      {
+        "kind": "state",
+        "seconds": 24.313,
+        "label": "15-browser-close",
+        "windows": [
+          {
+            "title": "InkBall (Paused)  |  FPS: paused",
+            "class": "InkBall.Reconstructed.Window"
+          }
+        ]
+      },
+      {
+        "kind": "check",
+        "seconds": 24.507,
+        "name": "close-preserves-manual-pause",
+        "passed": true,
+        "detail": ""
+      },
+      {
+        "kind": "check",
+        "seconds": 24.511,
+        "name": "close-preserves-client-pixels",
+        "passed": true,
+        "detail": ""
+      },
+      {
+        "kind": "state",
+        "seconds": 24.773,
+        "label": "16-mechanics",
+        "windows": [
+          {
+            "title": "Board Mechanics - InkBall",
+            "class": "InkBall.MechanicsDialog.Window"
+          },
+          {
+            "title": "InkBall (Paused)  |  FPS: paused",
+            "class": "InkBall.Reconstructed.Window"
+          }
+        ]
+      },
+      {
+        "kind": "check",
+        "seconds": 24.773,
+        "name": "CtrlM-opens-mechanics",
+        "passed": true,
+        "detail": ""
+      },
+      {
+        "kind": "check",
+        "seconds": 24.773,
+        "name": "mechanics-pauses-owner",
+        "passed": true,
+        "detail": ""
+      },
+      {
+        "kind": "state",
+        "seconds": 25.276,
+        "label": "17-mechanics-applied",
+        "windows": [
+          {
+            "title": "Board Mechanics - InkBall",
+            "class": "InkBall.MechanicsDialog.Window"
+          },
+          {
+            "title": "InkBall (Paused)  |  FPS: paused",
+            "class": "InkBall.Reconstructed.Window"
+          }
+        ]
+      },
+      {
+        "kind": "check",
+        "seconds": 25.276,
+        "name": "mechanics-apply-accepts-values",
+        "passed": true,
+        "detail": ""
+      },
+      {
+        "kind": "state",
+        "seconds": 25.92,
+        "label": "18-restarted-paused",
+        "windows": [
+          {
+            "title": "InkBall (Paused)  |  FPS: paused",
+            "class": "InkBall.Reconstructed.Window"
+          }
+        ]
+      },
+      {
+        "kind": "check",
+        "seconds": 25.92,
+        "name": "CtrlR-retains-manual-pause",
+        "passed": true,
+        "detail": ""
+      },
+      {
+        "kind": "check",
+        "seconds": 26.098,
+        "name": "CtrlR-clears-prior-ink",
+        "passed": true,
+        "detail": ""
+      },
+      {
+        "kind": "check",
+        "seconds": 26.098,
+        "name": "CtrlR-preserves-high-score",
+        "passed": true,
+        "detail": ""
+      },
+      {
+        "kind": "state",
+        "seconds": 26.358,
+        "label": "19-mechanics-retained",
+        "windows": [
+          {
+            "title": "Board Mechanics - InkBall",
+            "class": "InkBall.MechanicsDialog.Window"
+          },
+          {
+            "title": "InkBall (Paused)  |  FPS: paused",
+            "class": "InkBall.Reconstructed.Window"
+          }
+        ]
+      },
+      {
+        "kind": "check",
+        "seconds": 26.359,
+        "name": "CtrlR-retains-board-mechanics",
+        "passed": true,
+        "detail": ""
+      },
+      {
+        "kind": "state",
+        "seconds": 28.64,
+        "label": "20-restart-same-board",
+        "windows": [
+          {
+            "title": "Browse Boards - InkBall",
+            "class": "InkBall.BoardBrowser.Window"
+          },
+          {
+            "title": "InkBall (Paused)  |  FPS: paused",
+            "class": "InkBall.Reconstructed.Window"
+          }
+        ]
+      },
+      {
+        "kind": "check",
+        "seconds": 28.64,
+        "name": "CtrlR-restarts-same-board",
+        "passed": true,
+        "detail": 0
+      },
+      {
+        "kind": "state",
+        "seconds": 29.494,
+        "label": "21-play-selection",
+        "windows": [
+          {
+            "title": "Browse Boards - InkBall",
+            "class": "InkBall.BoardBrowser.Window"
+          },
+          {
+            "title": "InkBall (Paused)  |  FPS: paused",
+            "class": "InkBall.Reconstructed.Window"
+          }
+        ]
+      },
+      {
+        "kind": "state",
+        "seconds": 29.805,
+        "label": "22-playing-selected",
+        "windows": [
+          {
+            "title": "InkBall  |  FPS: 0",
+            "class": "InkBall.Reconstructed.Window"
+          }
+        ]
+      },
+      {
+        "kind": "check",
+        "seconds": 29.805,
+        "name": "Play-selected-resumes",
+        "passed": true,
+        "detail": ""
+      },
+      {
+        "kind": "state",
+        "seconds": 31.837,
+        "label": "23-played-board",
+        "windows": [
+          {
+            "title": "Browse Boards - InkBall",
+            "class": "InkBall.BoardBrowser.Window"
+          },
+          {
+            "title": "InkBall  |  FPS: paused",
+            "class": "InkBall.Reconstructed.Window"
+          }
+        ]
+      },
+      {
+        "kind": "check",
+        "seconds": 31.837,
+        "name": "Play-selected-board-correct",
+        "passed": true,
+        "detail": {
+          "requested": 489,
+          "active": 489
+        }
+      },
+      {
+        "kind": "state",
+        "seconds": 32.15,
+        "label": "24-close-running",
+        "windows": [
+          {
+            "title": "InkBall  |  FPS: measuring",
+            "class": "InkBall.Reconstructed.Window"
+          }
+        ]
+      },
+      {
+        "kind": "check",
+        "seconds": 32.15,
+        "name": "Close-restores-running",
+        "passed": true,
+        "detail": ""
+      },
+      {
+        "kind": "state",
+        "seconds": 32.393,
+        "label": "25-restart-running",
+        "windows": [
+          {
+            "title": "InkBall  |  FPS: measuring",
+            "class": "InkBall.Reconstructed.Window"
+          }
+        ]
+      },
+      {
+        "kind": "check",
+        "seconds": 32.393,
+        "name": "CtrlR-retains-running-state",
+        "passed": true,
+        "detail": ""
+      },
+      {
+        "kind": "state",
+        "seconds": 34.304,
+        "label": "26-restart-selected",
+        "windows": [
+          {
+            "title": "Browse Boards - InkBall",
+            "class": "InkBall.BoardBrowser.Window"
+          },
+          {
+            "title": "InkBall  |  FPS: paused",
+            "class": "InkBall.Reconstructed.Window"
+          }
+        ]
+      },
+      {
+        "kind": "check",
+        "seconds": 34.304,
+        "name": "CtrlR-retains-selected-board",
+        "passed": true,
+        "detail": ""
+      },
+      {
+        "kind": "state",
+        "seconds": 34.795,
+        "label": "27-help",
+        "windows": [
+          {
+            "title": "InkBall Help",
+            "class": "#32770"
+          },
+          {
+            "title": "InkBall  |  FPS: paused",
+            "class": "InkBall.Reconstructed.Window"
+          }
+        ]
+      },
+      {
+        "kind": "check",
+        "seconds": 34.795,
+        "name": "F1-help",
+        "passed": true,
+        "detail": ""
+      },
+      {
+        "kind": "check",
+        "seconds": 35.146,
+        "name": "F2-new-game",
+        "passed": true,
+        "detail": ""
+      },
+      {
+        "kind": "check",
+        "seconds": 35.324,
+        "name": "Escape-clean-exit",
+        "passed": true,
+        "detail": 0
+      },
+      {
+        "kind": "check",
+        "seconds": 35.501,
+        "name": "all-551-render-smoke",
+        "passed": true,
+        "detail": {
+          "exit": 0,
+          "stderr": ""
+        }
+      },
+      {
+        "kind": "check",
+        "seconds": 35.563,
+        "name": "beginner-native-screenshot",
+        "passed": true,
+        "detail": {
+          "exit": 0,
+          "stderr": ""
+        }
+      },
+      {
+        "kind": "check",
+        "seconds": 35.683,
+        "name": "expert-native-screenshot",
+        "passed": true,
+        "detail": {
+          "exit": 0,
+          "stderr": ""
+        }
+      },
+      {
+        "kind": "check",
+        "seconds": 35.75,
+        "name": "inkball_tests.exe",
+        "passed": true,
+        "detail": {
+          "exit": 0,
+          "stdout": "PASS: 666 checks, including all 551 original boards and gameplay regressions.\n",
+          "stderr": ""
+        }
+      },
+      {
+        "kind": "check",
+        "seconds": 35.783,
+        "name": "inkball_catalog_tests.exe",
+        "passed": true,
+        "detail": {
+          "exit": 0,
+          "stdout": "PASS: 38 catalog checks, all 551 original boards.\n",
+          "stderr": ""
+        }
+      },
+      {
+        "kind": "check",
+        "seconds": 35.935,
+        "name": "inkball_renderer_tests.exe",
+        "passed": true,
+        "detail": {
+          "exit": 0,
+          "stdout": "PASS: 79 renderer checks for ink, ball transparency, repaint stability, resize, and input mapping.\n",
+          "stderr": ""
+        }
+      }
+    ],
+    "success": true,
+    "measurement_notes": {
+      "paused_activity": "A QA-only WH_GETMESSAGE hook, loaded from an external DLL, counted main-window messages removed from the UI thread queue for 1.5 seconds while Browse Boards was open. No hook or instrumentation was added to the delivered game. This measures redundant timer/paint work, not CPU percentage.",
+      "selection_latency": "Elapsed time begins before changing the ListView selection and ends after the selected board details have updated and the preview has completed an immediate redraw. ID lookup and process startup are excluded. These are six sequential selections using the real application; timings are host-dependent.",
+      "cursor": "The XFixes server cursor image and hotspot were captured. The real cursor was composited at its hotspot over the simultaneous root-window screenshot because normal screenshots omit it. The image was visually inspected. The arrow reference was taken from the original application menu; its entire old client, including the HUD, used a cross.",
+      "platform_limit": "Wine9/Xvfb/Openbox on Linux, not native Windows/Visual Studio. The reported multi-second native-Windows stall was not reproduced here. Source inspection and message counts establish redundant work removed; host timings are not a native-Windows guarantee."
+    }
+  },
+  "screenshots": [
+    {
+      "file": "screenshots/pen-and-fps.png",
+      "dimensions": [
+        552,
+        639
+      ],
+      "png_sha256": "82ebe18ee13860c2fe09982e4f51317b6ca91d1c6c288ab94d698d7dcb919748",
+      "scope": "Final application executable"
+    },
+    {
+      "file": "screenshots/board-browser.png",
+      "dimensions": [
+        1128,
+        814
+      ],
+      "png_sha256": "e71547d34aaede3ac6175fe629a46c293d0a2b69f15e73cc13318c29cc8a88f3",
+      "scope": "Final application executable"
+    },
+    {
+      "file": "screenshots/board-mechanics.png",
+      "dimensions": [
+        1090,
+        967
+      ],
+      "png_sha256": "8d8fe776c7c63252aade53197ce54e8013859d07f45b0fecfc2cd13edd50fc52",
+      "scope": "Independent actual form at150% DPI"
+    },
+    {
+      "file": "screenshots/beginner.png",
+      "dimensions": [
+        544,
+        586
+      ],
+      "png_sha256": "5dd63bc522c6a7d0e04c3429ee5bb9dfd71382c49b2a9042d282c5f9977da4e9",
+      "scope": "Final application executable"
+    },
+    {
+      "file": "screenshots/expert.png",
+      "dimensions": [
+        544,
+        586
+      ],
+      "png_sha256": "f0c372fe09b1fa7b3e033f410bb3fd71a62da6bd157b5fc43359f2d81e54c996",
+      "scope": "Final application executable"
+    }
+  ]
+}

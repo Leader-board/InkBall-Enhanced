@@ -1,0 +1,105 @@
+{
+  "installer": {
+    "name": "HoldEm-InkBall-Tinker-Setup.exe",
+    "size": 87045110,
+    "sha256": "fc132aa5866f7d2949f951ac0e11658a72d925b7aad44e1260d9cc74bfc86f46"
+  },
+  "executables": [
+    {
+      "extracted_name": "inkball.exe",
+      "size": 1282048,
+      "sha256": "b12c82911c180203c6d101f7671076ea8e87ced4fbc27a93f4a79f8a011eac8b",
+      "architecture": "x64",
+      "native": true,
+      "file_version": "6.0.6000.16386",
+      "pe_timestamp_utc": "2006-11-02T09:41:40+00:00"
+    },
+    {
+      "extracted_name": "inkball_1.exe",
+      "size": 1254400,
+      "sha256": "0dbd7189bfd2dc3ce10c72f35613bf1ed71c0296e41b9859083d87dfb75c977d",
+      "architecture": "x86",
+      "native": true,
+      "file_version": "6.0.6001.18000",
+      "pe_timestamp_utc": "2008-01-19T05:52:06+00:00"
+    }
+  ],
+  "common_resources": [
+    {
+      "name": "IKL_20001_1033.bin",
+      "identical_x86_x64": true,
+      "size": 334980,
+      "sha256": "b2f262d56bb12340c3a4375dfc19a0056de39dff45da6ec5d86e676eb828175b"
+    },
+    {
+      "name": "RT_BITMAP_501_1033.bin",
+      "identical_x86_x64": true,
+      "size": 457640,
+      "sha256": "3d4620599b3d0ac4d0e8d6a7163b7b9b401aede823fd4e55dd475eab8e7dd98a"
+    },
+    {
+      "name": "sprites.bmp",
+      "identical_x86_x64": true,
+      "size": 457654,
+      "sha256": "689171f70a08e98a40a6adc454c1bb50a6e51c8c2a0ba5e48e9e3549eec5b4f9"
+    },
+    {
+      "name": "inkball.ico",
+      "identical_x86_x64": true,
+      "size": 72597,
+      "sha256": "61a419cfd1ba970ea212f71929b953adc2bdf0d75906502f733c19290aed1aa0"
+    }
+  ],
+  "languages": [
+    "it-IT",
+    "sv-SE",
+    "es-ES",
+    "zh-TW",
+    "fi-FI",
+    "da-DK",
+    "bg-BG",
+    "th-TH",
+    "tr-TR",
+    "sk-SK",
+    "pt-PT",
+    "zh-CN",
+    "nl-NL",
+    "ru-RU",
+    "de-DE",
+    "ko-KR",
+    "hr-HR",
+    "fr-FR",
+    "lv-LV",
+    "sr-Latn-CS",
+    "pt-BR",
+    "uk-UA",
+    "en-US",
+    "he-IL",
+    "et-EE",
+    "sl-SI",
+    "hu-HU",
+    "el-GR",
+    "cs-CZ",
+    "nb-NO",
+    "ja-JP",
+    "pl-PL",
+    "lt-LT",
+    "ar-SA",
+    "ro-RO"
+  ],
+  "atlas": {
+    "width": 381,
+    "height": 400,
+    "color_depth": 24,
+    "transparent_color_rgb": [
+      255,
+      0,
+      255
+    ],
+    "rectangles": 159,
+    "unused_rectangles": [
+      67,
+      72
+    ]
+  }
+}

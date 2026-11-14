@@ -1,0 +1,49 @@
+#include <windows.h>
+#include "../src/resource.h"
+
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+IDI_INKBALL ICON "../assets/inkball.ico"
+IDB_SPRITES BITMAP "../assets/sprites.bmp"
+IDR_LEVELS RCDATA "../assets/levels.ikl"
+
+#include "LocalizedMenus.rc"
+
+IDR_ACCELERATOR ACCELERATORS
+BEGIN
+    VK_ESCAPE, IDM_EXIT, VIRTKEY, NOINVERT
+    VK_SPACE, IDM_PAUSE, VIRTKEY, NOINVERT
+    "X", IDM_EXIT, VIRTKEY, ALT, NOINVERT
+    VK_F1, IDM_HELP, VIRTKEY
+    VK_F2, IDM_NEW, VIRTKEY
+    "B", IDM_BROWSE, VIRTKEY, CONTROL
+    "R", IDM_RESTART, VIRTKEY, CONTROL
+    "M", IDM_MECHANICS, VIRTKEY, CONTROL
+END
+
+1 VERSIONINFO
+ FILEVERSION 1,2,0,0
+ PRODUCTVERSION 1,2,0,0
+ FILEFLAGSMASK 0x3fL
+ FILEFLAGS 0
+ FILEOS VOS_NT_WINDOWS32
+ FILETYPE VFT_APP
+ FILESUBTYPE 0
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "FileDescription", "InkBall reconstruction\0"
+            VALUE "FileVersion", "1.2.0\0"
+            VALUE "InternalName", "InkBall\0"
+            VALUE "OriginalFilename", "inkball.exe\0"
+            VALUE "ProductName", "InkBall reconstruction\0"
+            VALUE "ProductVersion", "1.2.0\0"
+            VALUE "Comments", "Modern C++ reconstruction using assets extracted from the supplied installer.\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x0409, 1200
+    END
+END

@@ -1,0 +1,35 @@
+Timer warning and native message box — 8 November 2026
+
+Waited five minutes before starting the investigation, as requested.
+
+The original EXE's CTimeManager::UpdateObject compares remaining time against
+11000 ms (the displayed countdown is then 010 or less) and toggles visibility
+every 333 ms. CTimeManager::DrawToSurface uses sprite 157 for blank digits.
+The reconstructed renderer always drew the numeric sprites and had no warning
+phase. The warning state and original blank-digit sprite are now restored.
+
+The flash follows the existing simulation clock: it freezes while paused,
+waits for the countdown to start, and resets on a new board/restart or a
+changed time limit. Unlimited-time symbols do not blink. As in the original,
+the final displayed 000 remains visible. Completion and loss restore visible
+digits. No extra timer or redraw loop was introduced.
+
+The game-over dialog once again calls MessageBoxW with the original owner,
+localized title/reason, and MB_OK | MB_ICONINFORMATION flags. It no longer
+uses TextPage, its custom font/layout, or its DPI handling. The separate
+statistics page remains available with its existing behavior.
+
+Validation:
+- Release and Debug engine suites: 720 checks passed, including 12 new
+  warning tests for timing, pause, restart, edited/unlimited time, timeout,
+  and waiting for the initial launcher.
+- Four timer-specific pixel-rendering checks passed in both configurations:
+  flashing changes only the digit region, blanks visibly, restores without
+  trails, and leaves unlimited-time symbols steady.
+- Release catalog suite: 38 checks passed.
+- Native integration verified both timeout/wrong-color paths create a
+  Windows #32770 dialog with an information icon and OK button, then restart.
+- Release game smoke test: exit 0.
+
+The previously documented unrelated renderer ink-dot assertion was not
+changed by this update; timer tests have an independent --timer-only mode.
