@@ -351,21 +351,32 @@ public:
                 << L" seconds across " << s.timedBoardsCleared << L" timed boards\r\n";
             text << L"\r\n";
         };
-        text << L"A run is one board attempt. A game spans boards until a new game,\r\n"
-             << L"restart, or Play Selected Board. Paused time is excluded.\r\n"
+        text << L"The table covers completed boards in the current game/run and resets on\r\n"
+             << L"New Game, Restart, or Play Selected Board. Paused time is excluded.\r\n"
              << L"Ink length uses board pixels, independent of screen scaling.\r\n"
              << L"Hits count successful deflections. Lifetime totals are saved across launches.\r\n\r\n";
-        text << L"Play continues while this page is open. Press Refresh for a snapshot.\r\n"
+        text << L"Play continues while this page is open. Updates every second; Refresh updates now.\r\n"
              << L"Completion times are captured before the celebration; unlimited boards have no remaining-time value.\r\n\r\n";
-        section(L"CURRENT RUN",stats.run); section(L"CURRENT GAME",stats.game);
+        section(L"CURRENT BOARD ATTEMPT",stats.run); section(L"CURRENT GAME / RUN",stats.game);
         section(L"LIFETIME",stats.lifetime);
-        if(stats.hasPreviousRun)section(L"PREVIOUS RUN",stats.previousRun);
-        if(stats.hasPreviousGame)section(L"PREVIOUS GAME",stats.previousGame);
+        if(stats.hasPreviousRun)section(L"PREVIOUS BOARD ATTEMPT",stats.previousRun);
+        if(stats.hasPreviousGame)section(L"PREVIOUS GAME / RUN",stats.previousGame);
         return text.str();
     }
     void showStatistics() {
         if (inDialog) return;
-        statisticsPage.showModeless(window,L"Statistics - InkBall",[this]{return statisticsText();});
+        statisticsPage.showModeless(window,L"Statistics - InkBall",[this]{return statisticsText();},[this]{
+            StatisticsTable table;
+            table.columns={L"Board ID",L"Time used",L"Time available",L"Points obtained",L"Maximum points available",L"Ink drawn (px)"};
+            for(const auto& board:game.completedBoards()){
+                std::wostringstream used;used<<std::fixed<<std::setprecision(2)<<board.timeUsed<<L" s";
+                std::wostringstream ink;ink<<std::fixed<<std::setprecision(1)<<board.inkLength;
+                table.rows.push_back({std::to_wstring(board.boardId),used.str(),
+                    board.timeAvailable?std::to_wstring(board.timeAvailable)+L" s":L"Unlimited",
+                    std::to_wstring(board.points),std::to_wstring(board.maximumPoints),ink.str()});
+            }
+            return table;
+        });
     }
 
     void restartBoard() {

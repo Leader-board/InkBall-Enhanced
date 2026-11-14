@@ -637,6 +637,70 @@ int main(int argc, char** argv) {
             require(!queued.state().timerStarted&&queued.state().timerVisible&&queued.state().timeRemaining==11,
                 "The warning must wait for the countdown to start.");++checks;
         }
+        {
+            auto l=emptyLevel();l.queue={1,2,0};ball(l,2,2,3,0);
+            hole(l,4,4,1);hole(l,7,4,2);hole(l,10,4,3);
+            tile(l,4,9,0x4000);tile(l,5,9,0x4002);tile(l,6,9,0x4004);
+            require(MaximumBoardPoints(l)==1420,"Scoring potential must include queued/preplaced balls and hittable squares.");++checks;
+            tile(l,8,9,0x3004);
+            require(MaximumBoardPoints(l)==1430,"Recoloring must unlock matching breakable-square points.");++checks;
+            hole(l,10,10,4);
+            require(MaximumBoardPoints(l)==6430,"All balls, including gray ones, may gain gold value through recoloring.");++checks;
+            auto hidden=emptyLevel();ball(hidden,2,2,1,0);hole(hidden,4,4,1);hole(hidden,8,8,4);
+            tile(hidden,5,9,0x4001,0x3004);
+            require(MaximumBoardPoints(hidden)==1610,"Maximum must include an unlocked hidden recoloring wall.");++checks;
+            tile(hidden,5,9,0x4004,0x3004);
+            require(MaximumBoardPoints(hidden)==200,"A color locked behind its own unbreakable wall must not be assumed available.");++checks;
+            tile(hidden,5,9,0x4000,0x4001);
+            require(MaximumBoardPoints(hidden)==220,"Revealed breakable squares must each contribute ten points.");++checks;
+            auto noBalls=emptyLevel();tile(noBalls,2,2,0x4000);
+            require(MaximumBoardPoints(noBalls)==0,"A board without balls cannot obtain square-hit points.");++checks;
+        }
+        {
+            auto l=emptyLevel();l.id=73;l.timeSeconds=120;
+            ball(l,5,4,1,14);hole(l,5,5,1);tile(l,10,10,0x4000);
+            auto g=gameFor(l);
+            require(g.completedBoards().empty(),"An unfinished board must not appear in the table.");++checks;
+            g.beginStroke({300,400});g.extendStroke({303,404});g.endStroke();g.clearInk();
+            advanceUntil(g,[&]{return g.state().phase==Phase::LevelComplete;});
+            require(g.completedBoards().size()==1,"Completing a board must add exactly one record.");++checks;
+            const auto first=g.completedBoards().front();
+            near(first.inkLength,5,1e-12,"Completed ink must include all drawn ink, even after clearing.");++checks;
+            require(first.boardId==73&&first.timeAvailable==120&&first.points==200&&first.maximumPoints==210,
+                "The completion row must preserve ID, limit and non-bonus scoring potential.");++checks;
+            near(first.timeUsed,g.statistics().run.activeSeconds,1e-12,"Time used must match active completion time.");++checks;
+            g.tick(0.4);
+            near(g.completedBoards()[0].inkLength,5,1e-12,"The completed board's ink must stay fixed through the bonus animation.");++checks;
+            require(g.state().score>200&&g.completedBoards().size()==1&&g.completedBoards()[0].points==200,
+                "Time bonus must neither modify nor duplicate the completed row.");++checks;
+            g.loadLevel(0,false);g.beginStroke({300,400});g.extendStroke({312,400});g.endStroke();g.clearInk();
+            advanceUntil(g,[&]{return g.state().phase==Phase::LevelComplete;});
+            near(g.completedBoards()[1].inkLength,12,1e-12,"Board ink must exclude ink drawn on earlier boards.");++checks;
+            near(g.completedBoards()[0].inkLength,5,1e-12,"Later boards must not modify earlier ink records.");++checks;
+            require(g.completedBoards().size()==2&&g.completedBoards()[1].points==200,
+                "Later board rows must exclude all prior board points and bonuses.");++checks;
+            g.restartLevel();require(g.completedBoards().empty(),"Restart must clear the current-run table.");++checks;
+            advanceUntil(g,[&]{return g.state().phase==Phase::LevelComplete;});g.newGame(0,42);
+            require(g.completedBoards().empty(),"New Game must clear the current-run table.");++checks;
+            auto timed=emptyLevel();timed.timeSeconds=1;ball(timed,2,2,0,0);auto lost=gameFor(timed);lost.tick(1.1);
+            require(lost.completedBoards().empty(),"Failed boards must not appear as completed.");++checks;
+            auto unlimited=l;unlimited.timeSeconds=0;auto u=gameFor(unlimited);
+            advanceUntil(u,[&]{return u.state().phase==Phase::LevelComplete;});
+            require(u.completedBoards()[0].timeAvailable==0,"Unlimited boards must preserve their unlimited limit.");++checks;
+        }
+        {
+            auto l=emptyLevel();l.minBallSpeed=l.maxBallSpeed=300;
+            ball(l,1,3,1,8);tile(l,3,3,0x4000);hole(l,8,8,1);
+            auto g=gameFor(l);
+            advanceUntil(g,[&]{return g.state().score==10;});
+            // Place the deflected ball at the drain center to isolate score
+            // bookkeeping from the unrelated route back across the board.
+            auto& drained=const_cast<Ball&>(g.state().balls.front());
+            drained.position={288,288};drained.velocity={};
+            advanceUntil(g,[&]{return g.state().phase==Phase::LevelComplete;});
+            require(g.completedBoards()[0].points==210&&g.completedBoards()[0].maximumPoints==210,
+                "A completed row must include both the ten-point square hit and the drain score.");++checks;
+        }
         std::cout << "PASS: " << checks << " checks, including all 551 original boards and gameplay regressions.\n";
         return 0;
     } catch (const std::exception& e) {

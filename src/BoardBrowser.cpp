@@ -126,6 +126,44 @@ private:
 
     int px(int value) const { return MulDiv(value, static_cast<int>(dpi_), 96); }
 
+    void autoSizeColumn(int column) {
+        if(column<0||column>=6)return;
+        HWND header=ListView_GetHeader(list_);
+        wchar_t title[256]{};HDITEMW item{};
+        item.mask=HDI_TEXT|HDI_FORMAT;item.pszText=title;item.cchTextMax=256;
+        if(!Header_GetItem(header,column,&item))return;
+        HDC dc=GetDC(header);if(!dc)return;
+        auto font=reinterpret_cast<HFONT>(SendMessageW(header,WM_GETFONT,0,0));
+        const auto old=font?SelectObject(dc,font):nullptr;
+        SIZE size{};const BOOL measured=GetTextExtentPoint32W(dc,title,lstrlenW(title),&size);
+        const int padding=px(20)+((item.fmt&(HDF_SORTUP|HDF_SORTDOWN))?px(12):0);
+        int width=static_cast<int>(size.cx)+padding;
+        const auto cellFont=reinterpret_cast<HFONT>(SendMessageW(list_,WM_GETFONT,0,0));
+        if(cellFont)SelectObject(dc,cellFont);
+        // This is an owner-data list: use the cached filtered rows rather
+        // than native auto-size, which may only measure visible/cached cells.
+        for(const auto index:visible_){
+            const auto& text=rows_[index][column];SIZE cell{};
+            if(GetTextExtentPoint32W(dc,text.c_str(),static_cast<int>(text.size()),&cell))
+                width=std::max(width,static_cast<int>(cell.cx)+px(16));
+        }
+        if(old)SelectObject(dc,old);ReleaseDC(header,dc);if(!measured)return;
+        ListView_SetColumnWidth(list_,column,width);
+    }
+
+    static LRESULT CALLBACK ListProc(HWND hwnd,UINT message,WPARAM wParam,LPARAM lParam,UINT_PTR id,DWORD_PTR reference) {
+        auto* self=reinterpret_cast<Browser*>(reference);
+        if(message==WM_NOTIFY){
+            const auto* header=reinterpret_cast<NMHDR*>(lParam);
+            if(header&&header->hwndFrom==ListView_GetHeader(hwnd)&&
+                (header->code==HDN_DIVIDERDBLCLICKW||header->code==HDN_DIVIDERDBLCLICKA)){
+                self->autoSizeColumn(reinterpret_cast<NMHEADERW*>(lParam)->iItem);return 0;
+            }
+        }
+        if(message==WM_NCDESTROY)RemoveWindowSubclass(hwnd,ListProc,id);
+        return DefSubclassProc(hwnd,message,wParam,lParam);
+    }
+
     static LRESULT CALLBACK WindowProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam) {
         auto* self = reinterpret_cast<Browser*>(GetWindowLongPtrW(hwnd, GWLP_USERDATA));
         if (message == WM_NCCREATE) {
@@ -243,6 +281,8 @@ private:
         count_ = control(0, L"STATIC", L"", SS_LEFT);
         list_ = control(WS_EX_CLIENTEDGE, WC_LISTVIEWW, L"Boards",
             LVS_REPORT | LVS_OWNERDATA | LVS_SINGLESEL | LVS_SHOWSELALWAYS | WS_TABSTOP, ListId);
+        if(!SetWindowSubclass(list_,ListProc,1,reinterpret_cast<DWORD_PTR>(this)))
+            throw std::runtime_error("Windows could not initialize board-column sizing.");
         ListView_SetExtendedListViewStyle(list_, LVS_EX_FULLROWSELECT | LVS_EX_GRIDLINES | LVS_EX_DOUBLEBUFFER);
         const wchar_t* names[] = {L"ID", L"Difficulty", L"Type", L"Time allowed", L"Queued", L"On board"};
         for (int i = 0; i < 6; ++i) {
@@ -276,6 +316,7 @@ private:
             list_, previewLabel_, details_, hint_, play_, close_};
         for (HWND hwnd : controls)
             if (hwnd) SendMessageW(hwnd, WM_SETFONT, reinterpret_cast<WPARAM>(replacement), TRUE);
+        if(list_)SendMessageW(ListView_GetHeader(list_),WM_SETFONT,reinterpret_cast<WPARAM>(replacement),TRUE);
         if (font_) DeleteObject(font_);
         font_ = replacement;
     }

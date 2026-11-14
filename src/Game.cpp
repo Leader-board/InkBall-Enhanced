@@ -163,6 +163,47 @@ int TileSprite(const Tile& t) {
 }
 int BallSprite(const Ball& b) { return (b.nearHole ? 7 : 2) + b.color; }
 
+std::uint64_t MaximumBoardPoints(const Level& level) {
+    std::array<std::uint64_t,5> balls{};
+    for(int color:level.queue) ++balls[static_cast<std::size_t>(color)];
+    for(const auto& tile:level.tiles)
+        if((tile.code>>12)==9) ++balls[tile.code&15];
+    unsigned initial=0;
+    for(unsigned c=0;c<5;++c) if(balls[c]) initial|=1u<<c;
+    if(!initial)return 0;
+    unsigned paint=0,drains=0;
+    const auto canBreak=[&](unsigned color){return color==0 || ((initial|paint)&(1u<<color));};
+    const auto inspect=[&](std::uint16_t code){
+        const unsigned kind=code>>12,color=code&15;
+        if(kind==3&&color)paint|=1u<<color;
+        if(kind==2)drains|=1u<<color;
+    };
+    // A breakable square can reveal another recoloring wall or drain.
+    // Resolve that dependency without simulating any trajectories.
+    unsigned previous;
+    do {
+        previous=paint;
+        for(const auto& tile:level.tiles){
+            inspect(tile.code);
+            if((tile.code>>12)==4 && canBreak(tile.code&15))inspect(tile.underlay);
+        }
+    } while(paint!=previous);
+    std::uint64_t points=0;
+    for(unsigned c=0;c<5;++c){
+        const unsigned choices=((1u<<c)|paint)&drains;
+        unsigned best=0;
+        for(unsigned target=0;target<5;++target)
+            if(choices&(1u<<target))best=std::max(best,DrainPoints[target]);
+        points+=balls[c]*best;
+    }
+    for(const auto& tile:level.tiles){
+        if((tile.code>>12)!=4 || !canBreak(tile.code&15))continue;
+        points+=10;
+        if((tile.underlay>>12)==4 && canBreak(tile.underlay&15))points+=10;
+    }
+    return points;
+}
+
 Game::Game(std::vector<Level> levels) : levels_(std::move(levels)) {
     if (levels_.empty()) throw std::invalid_argument("InkBall requires at least one level.");
     state_.balls.reserve(64);
@@ -233,6 +274,7 @@ void Game::initializeLevel(std::size_t index, bool preserveMechanics) {
     statistics_.run = {};
     newStatisticsGame_ = false;
     currentLevelIndex_ = index;
+    boardStartingScore_ = state_.score;
     const Level& level = levels_[index];
     if (!preserveMechanics) mechanics_ = defaultMechanics();
     state_.difficulty = level.difficulty;
@@ -479,6 +521,8 @@ void Game::lose(const char* message) {
 void Game::checkCompletion() {
     if (state_.phase != Phase::Playing || !state_.queue.empty()) return;
     if (std::any_of(state_.balls.begin(), state_.balls.end(), [](const Ball& b) { return b.active; })) return;
+    completedBoards_.push_back({state_.levelId, state_.elapsed, mechanics_.timeLimitSeconds,
+        state_.score - boardStartingScore_, MaximumBoardPoints(levels_[currentLevelIndex_]), statistics_.run.inkLength});
     state_.phase = Phase::LevelComplete;
     state_.timerVisible = true;
     count(&RunStatistics::boardsCleared);
@@ -730,6 +774,7 @@ void Game::seedLifetimeStatistics(const RunStatistics& totals) {
     statistics_.lifetime = totals;
 }
 void Game::startStatisticsGame() {
+    completedBoards_.clear();
     if (state_.levelSerial) {
         const auto current = statistics();
         statistics_.previousGame = current.game;

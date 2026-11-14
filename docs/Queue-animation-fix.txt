@@ -1,0 +1,28 @@
+Queue animation fix — 14 November 2026
+
+Corrected the cosmetic queue animation in the upper-left black strip.
+The head uses acceleration increment 6; following slots use 5,4,3,2,1,
+matching the installed official EXE's UpdateBallPositions routine. The
+reconstruction had incorrectly used 1,2,3,4,5 for following slots.
+
+The visual integration step is now the original nominal 15 ms rather than
+1/60 second. Elapsed simulation time is accumulated so coalesced paints
+still catch up, and paused/repeated redraws do not advance the animation.
+Actual scheduling of the legacy Windows executable can vary; this restores
+its nominal cadence and verified queue-motion arithmetic, without claiming
+frame-for-frame identity under every operating-system scheduling condition.
+
+No on-board ball velocity, random speed selection, launch countdown, physics,
+statistics, or settings were changed.
+
+Validation:
+- Release and Debug: four queue animation checks passed, including pixel
+  comparison with the original 15-ms motion at 0.45 seconds, repaint/pause
+  stability, coalesced-paint equivalence, and leading-pair settling.
+- Release engine: 738 checks passed.
+- Release catalog: 38 checks passed.
+- Release timer rendering: four checks passed.
+- Release game smoke test: exit 0.
+
+The previously documented unrelated renderer ink-dot assertion is unchanged;
+queue tests run independently using --queue-only.

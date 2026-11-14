@@ -1,0 +1,20 @@
+Statistics automatic refresh and headings — 14 November 2026
+
+Statistics updates once per second by default while its modeless page is
+open. Refresh still performs an immediate update. The page's own timer is
+removed on close; reopening starts it again. Gameplay continues as before.
+
+All five column headings are explicitly created and rendered as native
+header text: Board ID, Time used, Time available, Points obtained, Maximum
+points available. The header uses the page's DPI-scaled font.
+
+Automatic updates preserve the summary's reading position and text
+selection. Unchanged table data is not rebuilt; when rows change, table
+selection and scroll position are retained where possible. No statistics
+refresh timer runs while the page is closed, and refresh does not save files.
+
+Native integration passed: first one-second update, visible heading labels,
+preserved scroll/selection, new rows, manual refresh, stop on close, restart
+on reopening. The native test-window image was visually inspected as well.
+Release and Debug builds succeeded. Release gameplay 738 checks, catalog 38
+checks, timer rendering 4 checks, and smoke test exit 0.

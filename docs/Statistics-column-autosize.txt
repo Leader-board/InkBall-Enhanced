@@ -1,0 +1,16 @@
+Statistics column auto-size — 14 November 2026
+
+Double-clicking a completed-board column divider now fits both its header
+and its cell contents, including an empty table. The heading is measured
+using the header's actual font, with DPI-scaled padding. The wider of that
+measurement and Windows' native data auto-size is used.
+
+The last column fits its own heading/data rather than using Windows' special
+fill-remaining-space header-sizing rule. Normal manual dragging is unchanged.
+The calculation runs only on a divider double-click, not on frame updates.
+
+Native regression tests passed for all six empty-table headings, long cell
+data, last-column sizing, ANSI/Unicode header notifications, and preserving
+the chosen width through automatic refresh. Automatic refresh, scrolling,
+selection, close/reopen tests also pass. Both builds succeeded; gameplay
+742 checks passed; game smoke test exit 0.

@@ -1,0 +1,42 @@
+Completed-board statistics table — 14 November 2026
+
+Game > Statistics now includes a native five-column completed-board table:
+Board ID, Time used, Time available, Points obtained, Maximum points available.
+Open the page or press Refresh to update it while play continues.
+
+Scope: boards completed in the current game/run, in completion order. The
+unfinished board and failed boards are excluded. New Game, Restart, and
+Play Selected Board clear the table. The game's existing automatic restart
+after a loss also starts a new run. This table is not lifetime history.
+
+Time used is active playing time up to completion, excluding pauses and the
+bonus animation but including the initial queued-launch wait. Time available
+is the configured board limit at completion; zero is displayed as Unlimited.
+Rows are captured before the remaining-time bonus is awarded and stay fixed.
+
+Points obtained is the board's score increase before its time bonus. This
+includes the actual 10-point awards for destroyed breakable squares, and
+excludes prior boards' points and bonuses.
+
+Maximum points is a theoretical scoring upper bound, including recoloring:
+- Count all initially placed and queued balls.
+- For each ball, take the highest drain value among its starting color and
+  possible recoloring-wall colors for which a matching colored drain exists.
+- Include breakable squares that the available ball colors can destroy,
+  resolving hidden recoloring walls/drains revealed by those squares.
+- Include a revealed second breakable square where applicable.
+- Gray balls may gain value through recoloring; gray holes award no points.
+- Do not include any time bonus.
+The calculation does not solve geometric reachability, routing order, or
+whether the score can actually be achieved within the time limit. The page
+labels it as an upper bound rather than promising an attainable route.
+
+Performance: completion records are outside the per-frame render state.
+Maximum-score scanning occurs once on completion. Table population and text
+formatting occur only on Open/Refresh. No additional timer or disk writes.
+
+Validation: Release and Debug engine suites pass 738 checks; Release catalog
+38 checks; timer rendering 4 checks; Release smoke test exits 0. Native table
+integration verifies all five column labels and values, layout separation,
+completed-only rows, multiple boards, explicit Refresh, and run resets.
+The existing live-statistics/persistence integration also passes.

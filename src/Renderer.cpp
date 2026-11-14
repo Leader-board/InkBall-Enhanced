@@ -160,21 +160,22 @@ void Renderer::updateAnimations(const GameState& game) {
     const double elapsed = std::max(0.0, game.elapsed - lastElapsed_);
     lastElapsed_ = game.elapsed;
     queueAccumulator_ += elapsed;
-    // The original queue accelerates its first ball by six pixels/second per
-    // display update and each follower by its slot index. Use a fixed 60 Hz
-    // visual update so this cosmetic motion is independent of monitor refresh.
-    while (queueAccumulator_ >= 1.0 / 60.0) {
-        queueAccumulator_ -= 1.0 / 60.0;
+    // Original nominal update interval: 15 ms. The head accelerates by six
+    // and the followers by five down to one, not their increasing slot index.
+    // Accumulate simulation time so coalesced paints do not slow the queue.
+    constexpr double queueStep = 0.015;
+    while (queueAccumulator_ + 1e-12 >= queueStep) {
+        queueAccumulator_ -= queueStep;
         if (game.queue.empty()) continue;
         if (queuePositions_[0] > 6) {
             queueSpeeds_[0] -= 6;
-            queuePositions_[0] += queueSpeeds_[0] / 60.0;
+            queuePositions_[0] += queueSpeeds_[0] * queueStep;
         } else { queuePositions_[0] = 6; queueSpeeds_[0] = 0; }
         for (int i = 1; i < 6; ++i) {
             const double target = queuePositions_[i - 1] + 18;
             if (queuePositions_[i] > target) {
-                queueSpeeds_[i] -= i;
-                queuePositions_[i] += queueSpeeds_[i] / 60.0;
+                queueSpeeds_[i] -= 6 - i;
+                queuePositions_[i] += queueSpeeds_[i] * queueStep;
             } else { queuePositions_[i] = target; queueSpeeds_[i] = 0; }
         }
     }

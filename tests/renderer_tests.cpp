@@ -1,4 +1,6 @@
 #include "Renderer.h"
+#include "SpriteRects.h"
+#include "resource.h"
 #include <algorithm>
 #include <array>
 #include <cmath>
@@ -112,6 +114,38 @@ void checkTimerWarning(Renderer& renderer) {
     state.unlimitedTime=true;render(renderer,state,surface);const auto unlimited=surface.snapshot();
     state.timerVisible=false;render(renderer,state,surface);
     require(surface.snapshot()==unlimited,"Unlimited-time symbols must remain visible regardless of warning phase.");
+}
+
+void checkQueueAnimation(Renderer& renderer) {
+    Surface actual(Renderer::Width,Renderer::Height),expected(Renderer::Width,Renderer::Height);
+    auto state=floorState();state.levelSerial=200;state.queue={1,2,3,4,0,1};
+    render(renderer,state,actual);
+    for(int tick=1;tick<=30;++tick){state.elapsed=tick*0.015;render(renderer,state,actual);}
+    // After 30 original 15-ms updates, queue coordinates are 62.15 and
+    // 87.125. The third ball is still outside the visible queue strip.
+    Renderer background;background.initialize(GetModuleHandleW(nullptr));
+    auto empty=state;empty.queue.clear();render(background,empty,expected);
+    HBITMAP atlas=static_cast<HBITMAP>(LoadImageW(GetModuleHandleW(nullptr),MAKEINTRESOURCEW(IDB_SPRITES),IMAGE_BITMAP,0,0,LR_CREATEDIBSECTION));
+    HDC atlasDc=CreateCompatibleDC(nullptr);auto old=SelectObject(atlasDc,atlas);
+    const int saved=SaveDC(expected.dc());IntersectClipRect(expected.dc(),5,7,104,35);
+    for(const auto& item:std::array<std::pair<int,int>,2>{{{13,62},{14,87}}}){
+        const auto& r=kSpriteRects[item.first];
+        BitBlt(expected.dc(),item.second,14,r.right-r.left,r.bottom-r.top,atlasDc,r.left,r.top,SRCCOPY);
+    }
+    RestoreDC(expected.dc(),saved);SelectObject(atlasDc,old);DeleteDC(atlasDc);DeleteObject(atlas);
+    require(actual.snapshot()==expected.snapshot(),"Queue entry pixels must match the original 15-ms motion and descending follower acceleration.");
+    const auto held=actual.snapshot();render(renderer,state,actual);
+    require(actual.snapshot()==held,"Repainting without elapsed game time must not move the queue.");
+    Renderer coalesced;coalesced.initialize(GetModuleHandleW(nullptr));
+    auto start=state;start.elapsed=0;render(coalesced,start,actual);render(coalesced,state,actual);
+    require(actual.snapshot()==held,"Coalescing paints must not change queue animation speed.");
+    for(int tick=31;tick<=60;++tick){state.elapsed=tick*0.015;render(renderer,state,actual);}
+    // Both leading balls must have settled by 0.9 s, independently of paint rate.
+    auto settled=actual.snapshot();state.elapsed=1.2;render(renderer,state,actual);
+    // Other queued balls can still move; compare just the leading pair.
+    const auto later=actual.snapshot();bool same=true;
+    for(int y=14;y<32;++y)for(int x=6;x<42;++x)if(settled[y*Renderer::Width+x]!=later[y*Renderer::Width+x])same=false;
+    require(same,"The first two balls must settle at the original speed.");
 }
 
 int blackInColumn(const Surface& surface, int x, int y1, int y2) {
@@ -372,10 +406,14 @@ int main(int argc,char** argv) {
     try {
         Renderer renderer;
         renderer.initialize(GetModuleHandleW(nullptr));
+        if(argc==2&&std::string(argv[1])=="--queue-only") {
+            checkQueueAnimation(renderer);std::cout<<"PASS: "<<checks<<" queue animation checks.\n";return 0;
+        }
         checkTimerWarning(renderer);
         if(argc==2&&std::string(argv[1])=="--timer-only") {
             std::cout<<"PASS: "<<checks<<" timer rendering checks.\n";return 0;
         }
+        checkQueueAnimation(renderer);
         checkInk(renderer);
         checkBallTransparency(renderer);
         checkPresentation(renderer);

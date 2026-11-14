@@ -1,0 +1,18 @@
+Completed-board ink column — 14 November 2026
+
+Added Ink drawn (px) as the sixth column in Game > Statistics's completed
+boards table. Values use the same logical board-pixel path length as the
+existing ink statistics, displayed to one decimal place, independent of DPI.
+
+Each board's ink total is captured once at completion. It includes ink that
+was later consumed by a ball or cleared. It excludes earlier boards' ink and
+does not change during the time bonus or later boards. Existing completed-
+board records are session-only; there is no historical-data migration.
+
+The page is wider to fit the sixth column. Explicit headings, one-second
+refresh, scroll/selection preservation, and manual Refresh remain enabled.
+No new per-frame ink measurement, board scans, timers, or disk writes.
+
+Verified: Release/Debug gameplay 742 checks; native six-column integration
+with a nonzero saved ink value; automatic-refresh/heading/scroll tests;
+catalog 38 checks; queue and timer rendering 4 checks each; smoke test exit 0.

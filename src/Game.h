@@ -26,6 +26,15 @@ struct Statistics {
     RunStatistics run, game, previousRun, previousGame, lifetime;
     bool hasPreviousRun = false, hasPreviousGame = false;
 };
+struct CompletedBoard {
+    int boardId = 0;
+    double timeUsed = 0;
+    int timeAvailable = 0; // Zero means unlimited.
+    std::uint64_t points = 0, maximumPoints = 0;
+    double inkLength = 0; // Total drawn on this board, including consumed/cleared ink.
+};
+// Scoring potential with recoloring; ignores geometric reachability/time.
+std::uint64_t MaximumBoardPoints(const Level& level);
 struct Tile {
     std::uint16_t code = 0;
     std::uint16_t underlay = 0;
@@ -117,6 +126,7 @@ public:
     void setHighScore(std::uint64_t score);
     bool ballOverlapsTile(int column, int row) const;
     Statistics statistics() const;
+    const std::vector<CompletedBoard>& completedBoards() const { return completedBoards_; }
     void seedLifetimeStatistics(const RunStatistics& totals);
 
 private:
@@ -142,6 +152,8 @@ private:
     double priorBoardSeconds_ = 0;
     bool newStatisticsGame_ = true;
     bool lifetimeSeeded_ = false;
+    std::vector<CompletedBoard> completedBoards_;
+    std::uint64_t boardStartingScore_ = 0;
     void startStatisticsGame();
     void count(std::uint64_t RunStatistics::* field) {
         ++(statistics_.run.*field); ++(statistics_.game.*field); ++(statistics_.lifetime.*field);

@@ -1,0 +1,16 @@
+Browse Boards column auto-size — 14 November 2026
+
+Double-clicking a Browse Boards column divider now fits both its heading and
+all rows in the current filter. Heading measurement uses the header font,
+DPI-scaled padding, and room for the ID/time sort indicator when present.
+Data measurement uses the list font and existing cached row text, avoiding
+native owner-data sizing that can ignore off-screen cells.
+
+The final column sizes to its own content/title, not the remaining viewport.
+Ordinary dragging, sorting, selection, filtering and static preview remain
+unchanged. Measurements run only when the user double-clicks a divider.
+
+Native integration passed for six empty-table headings, long owner-data
+text, final-column sizing, sort arrows, ANSI/Unicode notifications, and
+unchanged selection/filter/sort state. Release and Debug builds succeeded;
+gameplay 742 checks, catalog 38 checks and game smoke test exit 0.
