@@ -1,0 +1,15 @@
+Fixed-size main game window — 15 November 2026
+
+The main game window no longer has a resizable frame or maximize control.
+System Size/Maximize commands are blocked, tracking dimensions are fixed,
+and a maximized startup request is normalized to the normal window size.
+Window-frame calculations use the same fixed-size style as creation, keeping
+the playable client at its intended size.
+
+Movement, minimizing/restoring, and automatic DPI scaling on monitor changes
+remain supported. Browse Boards and Statistics retain their existing sizing.
+
+Native integration passed: fixed style/client/track dimensions, blocked
+Size/Maximize, non-resize border hit test, move capture, cross-monitor move
+and DPI scaling, minimize and restore. Both builds succeeded; Release
+gameplay 742 checks and game smoke test exit 0.

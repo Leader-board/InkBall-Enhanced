@@ -10,7 +10,7 @@ Play Selected Board clear the table. The game's existing automatic restart
 after a loss also starts a new run. This table is not lifetime history.
 
 Time used is active playing time up to completion, excluding pauses and the
-bonus animation but including the initial queued-launch wait. Time available
+bonus animation and the initial queued-launch wait. Time available
 is the configured board limit at completion; zero is displayed as Unlimited.
 Rows are captured before the remaining-time bonus is awarded and stay fixed.
 

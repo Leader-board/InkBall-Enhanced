@@ -1,0 +1,15 @@
+Statistics time starts at launch — 16 November 2026
+
+Board, game and future lifetime time statistics now start alongside the
+countdown, after the first queued ball launches. The initial four-second
+launch wait and pauses are excluded. Boards with no queued balls start
+immediately; unlimited-time boards also measure time after launch.
+Completed-board Time used and completion-time totals use this same clock.
+Animation elapsed time and the game countdown behavior are unchanged.
+
+Previously saved lifetime totals are preserved because their initial launch
+waits cannot be reconstructed reliably from the stored aggregates.
+
+Validation: Release gameplay 757 checks, catalog 38 checks, and board 294
+application smoke test exit 0. Added regression coverage for initial wait,
+countdown agreement, pause, completion, bonus, transitions and unlimited time.

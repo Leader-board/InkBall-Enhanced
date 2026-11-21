@@ -18,8 +18,8 @@ namespace {
 constexpr wchar_t DialogClass[] = L"InkBall.MechanicsDialog.Window";
 constexpr wchar_t PanelClass[] = L"InkBall.MechanicsDialog.Panel";
 constexpr int FirstFieldId = 3101;
-constexpr int ApplyId = 3108, DefaultsId = 3109, StatusId = 3110, PanelId = 3111;
-constexpr int DocumentHeight = 552, FooterHeight = 54;
+constexpr int ApplyId = 3118, DefaultsId = 3119, StatusId = 3120, PanelId = 3121;
+constexpr int DocumentHeight = 672, FooterHeight = 54;
 struct Field {
     const wchar_t* label;
     const wchar_t* name;
@@ -27,14 +27,15 @@ struct Field {
     bool integer;
     int y;
 };
-constexpr std::array<Field, 7> Fields{{
+constexpr std::array<Field, 8> Fields{{
     {L"&Time limit (s; 0 = unlimited)", L"time limit", 0, 999, true, 122},
     {L"&Launch interval (s)", L"launch interval", 0, 60, true, 153},
     {L"Mi&nimum initial speed (px/s)", L"minimum initial speed", 1, 1000, true, 184},
     {L"Ma&ximum initial speed (px/s)", L"maximum initial speed", 1, 1000, true, 215},
     {L"Ball &speed multiplier (x)", L"ball speed multiplier", 0.1, 4, false, 290},
     {L"Chevron &boost (x original)", L"chevron boost", 0, 20, false, 321},
-    {L"Chevron speed &cap (px/s/axis)", L"chevron speed cap", 1, 2000, false, 352}
+    {L"Chevron speed &cap (px/s/axis)", L"chevron speed cap", 1, 2000, false, 352},
+    {L"Stored &ink strokes", L"stored ink strokes", 1, MaximumInkStrokeLimit, true, 426}
 }};
 
 std::wstring Wide(const std::string& text) {
@@ -66,10 +67,11 @@ void AdjustFrame(RECT& rect, DWORD style, DWORD extended, UINT dpi) {
     if (adjust) adjust(&rect, style, FALSE, extended, dpi);
     else AdjustWindowRectEx(&rect, style, FALSE, extended);
 }
-std::array<double, 7> Values(const BoardMechanics& value) {
+std::array<double, 8> Values(const BoardMechanics& value, int inkLimit) {
     return {{static_cast<double>(value.timeLimitSeconds), static_cast<double>(value.launchIntervalSeconds),
         static_cast<double>(value.minBallSpeed), static_cast<double>(value.maxBallSpeed),
-        value.ballSpeedMultiplier, value.chevronAccelerationMultiplier, value.chevronSpeedLimit}};
+        value.ballSpeedMultiplier, value.chevronAccelerationMultiplier, value.chevronSpeedLimit,
+        static_cast<double>(inkLimit)}};
 }
 
 class MechanicsDialog {
@@ -83,7 +85,7 @@ public:
 
     bool show() {
         registerClasses();
-        RECT desired{0, 0, px(720), px(612)};
+        RECT desired{0, 0, px(720), px(732)};
         AdjustFrame(desired, Style, ExtendedStyle, dpi_);
         MONITORINFO monitor{};
         monitor.cbSize = sizeof(monitor);
@@ -134,9 +136,9 @@ private:
     UINT dpi_ = 96;
     HFONT font_ = nullptr, headingFont_ = nullptr;
     HWND heading_ = nullptr, scope_ = nullptr, currentHeader_ = nullptr, originalHeader_ = nullptr;
-    HWND timingGroup_ = nullptr, motionGroup_ = nullptr, notes_ = nullptr, status_ = nullptr;
+    HWND timingGroup_ = nullptr, motionGroup_ = nullptr, inkGroup_ = nullptr, inkNote_ = nullptr, notes_ = nullptr, status_ = nullptr;
     HWND okay_ = nullptr, cancel_ = nullptr, apply_ = nullptr, defaults_ = nullptr;
-    std::array<HWND, 7> labels_{}, edits_{}, originals_{};
+    std::array<HWND, 8> labels_{}, edits_{}, originals_{};
     bool closed_ = false, dirty_ = false, applied_ = false, filling_ = false, layingOut_ = false;
     int scroll_ = 0, wheelRemainder_ = 0;
     std::string error_;
@@ -155,7 +157,7 @@ private:
         // Keep form mnemonics reliable across the nested, scrollable container
         // and older standard EDIT implementations as well as current Windows.
         if (message.message == WM_SYSKEYDOWN && (GetKeyState(VK_MENU) & 0x8000)) {
-            constexpr std::array<WPARAM, 7> keys{{'T', 'L', 'N', 'X', 'S', 'B', 'C'}};
+            constexpr std::array<WPARAM, 8> keys{{'T', 'L', 'N', 'X', 'S', 'B', 'C', 'I'}};
             const auto found = std::find(keys.begin(), keys.end(), message.wParam);
             if (found != keys.end()) {
                 const auto index = static_cast<std::size_t>(found - keys.begin());
@@ -242,12 +244,15 @@ private:
             Wide(DifficultyName(state.difficulty)) + (state.isBonus ? L"  |  Bonus" : L"  |  Normal");
         heading_ = control(panel_, 0, L"STATIC", title.c_str(), SS_LEFT);
         scope_ = control(panel_, 0, L"STATIC",
-            L"Settings apply to this board. Restart keeps them; starting another board restores its original settings.", SS_LEFT);
+            L"Board settings reset on another board. Ink storage is saved across boards and launches. Restart keeps all settings.", SS_LEFT);
         currentHeader_ = control(panel_, 0, L"STATIC", L"Value", SS_LEFT);
         originalHeader_ = control(panel_, 0, L"STATIC", L"Original value", SS_LEFT);
         timingGroup_ = control(panel_, 0, L"BUTTON", L"Board timing and initial speeds", BS_GROUPBOX);
         motionGroup_ = control(panel_, 0, L"BUTTON", L"Ball motion and chevrons", BS_GROUPBOX);
-        const auto defaults = Values(game_.defaultMechanics());
+        inkGroup_ = control(panel_, 0, L"BUTTON", L"Ink storage (saved preference)", BS_GROUPBOX);
+        inkNote_ = control(panel_, 0, L"STATIC",
+            L"1 to 4096 strokes; original default: 20. New strokes replace the oldest when full. Lowering this limit removes the oldest excess strokes when applied.", SS_LEFT);
+        const auto defaults = Values(game_.defaultMechanics(), DefaultInkStrokeLimit);
         for (std::size_t i = 0; i < Fields.size(); ++i) {
             labels_[i] = control(panel_, 0, L"STATIC", Fields[i].label, SS_LEFT | SS_CENTERIMAGE);
             edits_[i] = control(panel_, WS_EX_CLIENTEDGE, L"EDIT", L"", ES_AUTOHSCROLL | ES_RIGHT | WS_TABSTOP,
@@ -265,7 +270,7 @@ private:
         cancel_ = control(window_, 0, L"BUTTON", L"Cancel", BS_PUSHBUTTON | WS_TABSTOP, IDCANCEL);
         apply_ = control(window_, 0, L"BUTTON", L"&Apply", BS_PUSHBUTTON | WS_TABSTOP, ApplyId);
         updateFonts();
-        fill(game_.mechanics());
+        fill(game_.mechanics(), game_.inkStrokeLimit());
         EnableWindow(apply_, FALSE);
         layout();
     }
@@ -325,7 +330,7 @@ private:
         const int originalX = width - inset - originalWidth;
         const int valueX = originalX - gap - valueWidth;
         const int labelWidth = valueX - gap - inset;
-        HDWP positions = BeginDeferWindowPos(31);
+        HDWP positions = BeginDeferWindowPos(36);
         const auto place = [&](HWND hwnd, int x, int y, int w, int h) {
             if (positions) positions = DeferWindowPos(positions, hwnd, nullptr, x, y - scroll_,
                 std::max(1, w), std::max(1, h), SWP_NOACTIVATE | SWP_NOZORDER | SWP_NOCOPYBITS);
@@ -336,13 +341,15 @@ private:
         place(originalHeader_, originalX, px(77), originalWidth, px(19));
         place(timingGroup_, pad, px(96), width - pad * 2, px(155));
         place(motionGroup_, pad, px(264), width - pad * 2, px(124));
+        place(inkGroup_, pad, px(402), width - pad * 2, px(112));
+        place(inkNote_, inset, px(455), width - inset * 2, px(52));
         for (std::size_t i = 0; i < Fields.size(); ++i) {
             place(labels_[i], inset, px(Fields[i].y), labelWidth, px(25));
             place(edits_[i], valueX, px(Fields[i].y), valueWidth, px(25));
             place(originals_[i], originalX, px(Fields[i].y), originalWidth, px(25));
         }
-        place(notes_, pad, px(402), width - pad * 2, px(106));
-        place(status_, pad, px(514), width - pad * 2, px(32));
+        place(notes_, pad, px(522), width - pad * 2, px(106));
+        place(status_, pad, px(634), width - pad * 2, px(32));
         if (positions) EndDeferWindowPos(positions);
         // Group boxes have transparent interiors. Repaint the full child tree
         // after a scroll/resize instead of retaining overlapping child pixels.
@@ -380,9 +387,9 @@ private:
         else if (bottom > scroll_ + client.bottom) setScroll(bottom - client.bottom + px(8));
     }
 
-    void fill(const BoardMechanics& mechanics) {
+    void fill(const BoardMechanics& mechanics, int inkLimit) {
         filling_ = true;
-        const auto values = Values(mechanics);
+        const auto values = Values(mechanics, inkLimit);
         for (std::size_t i = 0; i < values.size(); ++i)
             SetWindowTextW(edits_[i], Number(values[i]).c_str());
         filling_ = false;
@@ -392,7 +399,7 @@ private:
         dirty_ = true;
         EnableWindow(apply_, TRUE);
         SetWindowTextW(status_, applied_ ? L"Pending edits. Cancel keeps the last applied settings."
-            : L"Pending edits. Apply updates this board; Cancel discards these edits.");
+            : L"Pending edits. Apply uses these settings; Cancel discards these edits.");
     }
     bool invalid(std::size_t field, const std::wstring& message) {
         MessageBoxW(window_, message.c_str(), L"Check Mechanics Settings", MB_OK | MB_ICONWARNING);
@@ -404,7 +411,7 @@ private:
 
     bool apply() {
         if (!dirty_) return true;
-        std::array<double, 7> numbers{};
+        std::array<double, 8> numbers{};
         for (std::size_t i = 0; i < Fields.size(); ++i) {
             wchar_t text[64]{};
             GetWindowTextW(edits_[i], text, static_cast<int>(std::size(text)));
@@ -435,11 +442,12 @@ private:
         values.chevronSpeedLimit = numbers[6];
         std::string error;
         if (!game_.applyMechanics(values, error)) return invalid(4, Wide(error));
+        game_.setInkStrokeLimit(static_cast<int>(numbers[7]));
         applied_ = true;
         dirty_ = false;
-        fill(game_.mechanics());
+        fill(game_.mechanics(), game_.inkStrokeLimit());
         EnableWindow(apply_, FALSE);
-        SetWindowTextW(status_, L"Applied to this board. Restart retains these settings; Cancel keeps the applied values.");
+        SetWindowTextW(status_, L"Applied. Ink storage is saved across boards; Cancel keeps the applied values.");
         return true;
     }
 
@@ -480,7 +488,7 @@ private:
             if (id == IDOK) { if (apply()) DestroyWindow(window_); return 0; }
             if (id == IDCANCEL) { DestroyWindow(window_); return 0; }
             if (id == DefaultsId) {
-                fill(game_.defaultMechanics());
+                fill(game_.defaultMechanics(), DefaultInkStrokeLimit);
                 markDirty();
                 SetWindowTextW(status_, L"Original defaults loaded into the form. Choose Apply or OK to use them.");
                 return 0;

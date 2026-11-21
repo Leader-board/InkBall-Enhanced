@@ -12,6 +12,8 @@ namespace inkball {
 // and its rounded end cap have the same collision thickness at every DPI.
 inline constexpr double InkWidth = 10.0;
 inline constexpr double InkRadius = InkWidth / 2.0;
+inline constexpr int DefaultInkStrokeLimit = 20;
+inline constexpr int MaximumInkStrokeLimit = 4096;
 struct Vec2 { double x = 0; double y = 0; };
 enum class Phase { Playing, LevelComplete, GameOver };
 struct RunStatistics {
@@ -114,6 +116,8 @@ public:
     void extendStroke(Vec2 point);
     void endStroke();
     void clearInk();
+    int inkStrokeLimit() const { return inkStrokeLimit_; }
+    bool setInkStrokeLimit(int limit);
     bool placeBlock(Vec2 point);
     void restartLevel(); // Original loss-dialog behavior: same board, score reset.
     void loadLevel(std::size_t index, bool resetScore = true);
@@ -150,9 +154,11 @@ private:
     bool strokeConsumed_ = false;
     Statistics statistics_;
     double priorBoardSeconds_ = 0;
+    double boardActiveSeconds_ = 0; // Starts with the countdown, after the first launch wait.
     bool newStatisticsGame_ = true;
     bool lifetimeSeeded_ = false;
     std::vector<CompletedBoard> completedBoards_;
+    int inkStrokeLimit_ = DefaultInkStrokeLimit; // User preference, retained across boards/games.
     std::uint64_t boardStartingScore_ = 0;
     void startStatisticsGame();
     void count(std::uint64_t RunStatistics::* field) {

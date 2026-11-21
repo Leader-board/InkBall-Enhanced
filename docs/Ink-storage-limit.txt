@@ -1,0 +1,20 @@
+Configurable ink storage — 21 November 2026
+
+The default capacity now matches the original InkBall: 20 strokes.
+Game > Board Mechanics > Ink storage lets you choose 1 to 4096.
+Restore Original Defaults fills in 20; Apply or OK applies it, Cancel
+leaves the current setting intact. The preference is saved across launches
+and retained across boards, restarts and new games.
+
+When full, drawing a new stroke removes the oldest stored stroke. Lowering
+the limit immediately removes the oldest excess strokes. Removed strokes
+no longer appear or collide with balls. Total ink-drawn statistics are
+preserved, since they measure all ink drawn, including removed ink.
+The existing 32,768-point per-stroke limit remains unchanged.
+
+Validation: 769 gameplay checks passed in Release and Debug; 38 catalog
+checks passed. 29 native Board Mechanics/persistence checks passed, including the
+minimum, maximum, invalid entries, default, Cancel and settings reload.
+The final Release application smoke test for board 294 exited 0.
+
+The separate Ink Storage menu and dialog have been removed.

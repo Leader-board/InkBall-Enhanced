@@ -211,7 +211,7 @@ public:
                 WS_CHILD|WS_VISIBLE|WS_TABSTOP|LVS_REPORT|LVS_SINGLESEL|LVS_SHOWSELALWAYS,
                 0,0,1,1,window_,reinterpret_cast<HMENU>(1002),module,nullptr);
             tableNote_=CreateWindowExW(0,L"STATIC",
-                L"Time used is active play, including launch wait; available time is the configured limit. No time bonus.\r\nMaximum includes possible recoloring and breakable squares; it is a scoring upper bound, not a route guarantee.",
+                L"Time used starts with the countdown, excluding the initial launch wait and pauses; available time is the configured limit. No time bonus.\r\nMaximum includes possible recoloring and breakable squares; it is a scoring upper bound, not a route guarantee.",
                 WS_CHILD|WS_VISIBLE,0,0,1,1,window_,nullptr,module,nullptr);
             if(!table_||!tableTitle_||!tableNote_){DestroyWindow(window_);throw std::runtime_error("Cannot create completed-board table.");}
             if(!SetWindowSubclass(table_,tableProc,1,reinterpret_cast<DWORD_PTR>(this))){

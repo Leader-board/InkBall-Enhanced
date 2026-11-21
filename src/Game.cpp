@@ -296,6 +296,7 @@ void Game::initializeLevel(std::size_t index, bool preserveMechanics) {
     state_.launcherBlink = false;
     state_.celebrationElapsed = 0;
     state_.elapsed = 0;
+    boardActiveSeconds_ = 0;
     ++state_.levelSerial;
     completionAccumulator_ = completionDelay_ = launchBlinkAccumulator_ = 0;
     activeStroke_ = 0;
@@ -513,7 +514,7 @@ void Game::awardBlocks() {
 }
 void Game::lose(const char* message) {
     state_.timerVisible = true;
-    statistics_.run.activeSeconds = state_.elapsed;
+    statistics_.run.activeSeconds = boardActiveSeconds_;
     state_.phase = Phase::GameOver;
     state_.message = message;
     endStroke();
@@ -521,14 +522,14 @@ void Game::lose(const char* message) {
 void Game::checkCompletion() {
     if (state_.phase != Phase::Playing || !state_.queue.empty()) return;
     if (std::any_of(state_.balls.begin(), state_.balls.end(), [](const Ball& b) { return b.active; })) return;
-    completedBoards_.push_back({state_.levelId, state_.elapsed, mechanics_.timeLimitSeconds,
+    completedBoards_.push_back({state_.levelId, boardActiveSeconds_, mechanics_.timeLimitSeconds,
         state_.score - boardStartingScore_, MaximumBoardPoints(levels_[currentLevelIndex_]), statistics_.run.inkLength});
     state_.phase = Phase::LevelComplete;
     state_.timerVisible = true;
     count(&RunStatistics::boardsCleared);
-    statistics_.run.activeSeconds = state_.elapsed;
+    statistics_.run.activeSeconds = boardActiveSeconds_;
     for (auto* totals : {&statistics_.run, &statistics_.game, &statistics_.lifetime}) {
-        totals->completionActiveSeconds += state_.elapsed;
+        totals->completionActiveSeconds += boardActiveSeconds_;
         if (!state_.unlimitedTime) {
             totals->completionRemainingSeconds += state_.timeRemaining;
             ++totals->timedBoardsCleared;
@@ -704,7 +705,10 @@ void Game::tick(double seconds) {
             }
             continue;
         }
-        statistics_.lifetime.activeSeconds += frame;
+        if (state_.timerStarted) {
+            boardActiveSeconds_ += frame;
+            statistics_.lifetime.activeSeconds += frame;
+        }
         // The original update-list inserts the timer before the launcher.
         if (state_.timerStarted && !state_.unlimitedTime) {
             state_.timeRemaining = std::max(0.0, state_.timeRemaining - frame);
@@ -742,7 +746,7 @@ void Game::beginStroke(Vec2 point) {
     endStroke();
     if (state_.paused || state_.phase != Phase::Playing || !validPoint(point) || tileAt(point) < 0) return;
     strokeConsumed_ = false;
-    if (state_.strokes.size() >= 512) state_.strokes.erase(state_.strokes.begin());
+    if (state_.strokes.size() >= static_cast<std::size_t>(inkStrokeLimit_)) state_.strokes.erase(state_.strokes.begin());
     activeStroke_ = nextStrokeId_++;
     state_.strokes.push_back({activeStroke_, {clipped(point)}});
     count(&RunStatistics::strokes);
@@ -764,7 +768,7 @@ void Game::extendStroke(Vec2 point) {
 void Game::endStroke() { activeStroke_ = 0; strokeConsumed_ = false; }
 Statistics Game::statistics() const {
     auto result = statistics_;
-    if (state_.phase == Phase::Playing) result.run.activeSeconds = state_.elapsed;
+    if (state_.phase == Phase::Playing) result.run.activeSeconds = boardActiveSeconds_;
     result.game.activeSeconds = priorBoardSeconds_ + result.run.activeSeconds;
     return result;
 }
@@ -787,6 +791,14 @@ void Game::startStatisticsGame() {
     newStatisticsGame_ = true;
 }
 void Game::clearInk() { state_.strokes.clear(); endStroke(); }
+bool Game::setInkStrokeLimit(int limit) {
+    if (limit < 1 || limit > MaximumInkStrokeLimit) return false;
+    inkStrokeLimit_ = limit;
+    const auto retained = static_cast<std::size_t>(limit);
+    if (state_.strokes.size() > retained)
+        state_.strokes.erase(state_.strokes.begin(), state_.strokes.end() - retained);
+    return true;
+}
 bool Game::placeBlock(Vec2 point) {
     if (state_.paused || state_.phase != Phase::Playing || state_.spareBlocks <= 0 || !validPoint(point)) return false;
     const int index = tileAt(point);

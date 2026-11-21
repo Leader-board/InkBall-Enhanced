@@ -114,6 +114,61 @@ int main(int argc, char** argv) {
             checks += 4;
         }
         {
+            auto l=emptyLevel();ball(l,2,2,0,0);auto g=gameFor(l);
+            require(g.inkStrokeLimit()==20,"Ink storage must default to the original's 20 strokes.");++checks;
+            const auto draw=[&]{g.beginStroke({200,200});g.extendStroke({203,204});g.endStroke();};
+            for(int i=0;i<21;++i)draw();
+            require(g.state().strokes.size()==20&&g.state().strokes.front().id==2&&g.state().strokes.back().id==21,
+                "The 21st stroke must remove only the oldest stored stroke.");++checks;
+            require(g.setInkStrokeLimit(3)&&g.state().strokes.size()==3&&g.state().strokes.front().id==19,
+                "Lowering the limit must immediately retain only the newest strokes.");++checks;
+            near(g.statistics().run.inkLength,105,1e-12,"Removing stored strokes must not reduce total ink drawn.");++checks;
+            require(!g.setInkStrokeLimit(0)&&!g.setInkStrokeLimit(-1)&&!g.setInkStrokeLimit(MaximumInkStrokeLimit+1)&&g.inkStrokeLimit()==3,
+                "Invalid limits must leave the setting and stored ink intact.");++checks;
+            require(g.setInkStrokeLimit(1)&&g.state().strokes.size()==1&&g.state().strokes.front().id==21,
+                "The minimum limit must retain the newest stroke.");++checks;
+            draw();require(g.state().strokes.size()==1&&g.state().strokes.front().id==22,
+                "A one-stroke limit must replace ink on each new stroke.");++checks;
+            require(g.setInkStrokeLimit(512),"The previous 512-stroke capacity must remain selectable.");++checks;
+            for(int i=0;i<520;++i)draw();
+            require(g.state().strokes.size()==512,"Configured limits above 20 must be enforced.");++checks;
+            require(g.setInkStrokeLimit(MaximumInkStrokeLimit),"The maximum offered limit must be accepted.");++checks;
+            g.clearInk();require(g.state().strokes.empty()&&g.inkStrokeLimit()==MaximumInkStrokeLimit,
+                "Clear Ink must preserve the storage preference.");++checks;
+            g.restartLevel();g.loadLevel(0);g.newGame(0,12);
+            require(g.inkStrokeLimit()==MaximumInkStrokeLimit,"Board transitions and new games must preserve the preference.");++checks;
+        }
+        {
+            auto g=gameFor(levels[294]);g.tick(3.9);
+            near(g.statistics().run.activeSeconds,0,1e-12,"Board 294 statistics must exclude the initial launch wait.");++checks;
+            near(g.statistics().game.activeSeconds,0,1e-12,"Game time must exclude the initial launch wait.");++checks;
+            near(g.statistics().lifetime.activeSeconds,0,1e-12,"Lifetime time must exclude the initial launch wait.");++checks;
+            advanceUntil(g,[&]{return g.state().timerStarted;});g.tick(0.5);
+            const double used=60-g.state().timeRemaining;
+            near(g.statistics().run.activeSeconds,used,1e-9,"Run time must advance with the countdown after launch.");++checks;
+            near(g.statistics().game.activeSeconds,used,1e-9,"Game time must advance with the countdown after launch.");++checks;
+            near(g.statistics().lifetime.activeSeconds,used,1e-9,"Lifetime time must advance with the countdown after launch.");++checks;
+            require(g.state().elapsed-used>=4,"Animation elapsed time must retain the launch wait.");++checks;
+            g.pause(true);g.tick(2);g.pause(false);
+            near(g.statistics().run.activeSeconds,used,1e-9,"Paused time must remain excluded after launch.");++checks;
+            // Finish without depending on a particular player route.
+            auto& state=const_cast<GameState&>(g.state());state.queue.clear();
+            for(auto& b:state.balls)b.active=false;
+            g.tick(0.004);
+            require(g.completedBoards().size()==1,"Launched board must capture a completion row.");++checks;
+            const double completed=60-g.state().timeRemaining;
+            near(g.completedBoards()[0].timeUsed,completed,1e-9,"Completed time used must equal countdown consumption.");++checks;
+            near(g.statistics().run.completionActiveSeconds,completed,1e-9,"Completion totals must exclude the launch wait.");++checks;
+            g.tick(0.2);
+            near(g.completedBoards()[0].timeUsed,completed,1e-9,"Time used must stay frozen during the bonus.");++checks;
+            g.loadLevel(0,false);
+            near(g.statistics().run.activeSeconds,0,1e-12,"Loading the next board must reset its elapsed statistics.");++checks;
+            near(g.statistics().game.activeSeconds,completed,1e-9,"Game totals must preserve only post-launch time.");++checks;
+            auto l=emptyLevel();l.timeSeconds=0;l.queue={1};tile(l,8,8,0x1000);auto unlimited=gameFor(l);
+            advanceUntil(unlimited,[&]{return unlimited.state().timerStarted;});unlimited.tick(0.25);
+            near(unlimited.statistics().run.activeSeconds,0.25,1e-9,"Unlimited boards must also measure time after launch.");++checks;
+        }
+        {
             auto l = emptyLevel(); l.queue = {1, 2}; l.spawnIntervalSeconds = 2;
             tile(l, 8, 8, 0x1000);
             auto g = gameFor(l); g.tick(3.9);

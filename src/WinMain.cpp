@@ -11,11 +11,13 @@
 #include <windowsx.h>
 #include <shellapi.h>
 #include <algorithm>
+#include <array>
 #include <cmath>
 #include <cstdint>
 #include <cstdlib>
 #include <limits>
 #include <memory>
+#include <optional>
 #include <stdexcept>
 #include <string>
 #include <vector>
@@ -36,6 +38,7 @@ using namespace inkball;
 constexpr UINT_PTR UpdateTimer = 1;
 constexpr UINT ShowLossMessage = WM_APP + 1;
 constexpr wchar_t WindowClassName[] = L"InkBall.Reconstructed.Window";
+constexpr DWORD MainWindowStyle = WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX;
 
 std::wstring Widen(const std::string& text) {
     if (text.empty()) return {};
@@ -74,8 +77,8 @@ RECT WindowRect(int clientWidth, int clientHeight, UINT dpi) {
     RECT rect{0, 0, clientWidth, clientHeight};
     using AdjustForDpi = BOOL(WINAPI*)(LPRECT, DWORD, BOOL, DWORD, UINT);
     auto adjust = reinterpret_cast<AdjustForDpi>(GetProcAddress(GetModuleHandleW(L"user32.dll"), "AdjustWindowRectExForDpi"));
-    if (adjust) adjust(&rect, WS_OVERLAPPEDWINDOW, TRUE, 0, dpi);
-    else AdjustWindowRectEx(&rect, WS_OVERLAPPEDWINDOW, TRUE, 0);
+    if (adjust) adjust(&rect, MainWindowStyle, TRUE, 0, dpi);
+    else AdjustWindowRectEx(&rect, MainWindowStyle, TRUE, 0);
     return rect;
 }
 
@@ -134,6 +137,7 @@ struct Settings {
     int difficulty = 0;
     std::uint64_t highScore = 5000;
     bool showFps = false;
+    int inkStrokeLimit = DefaultInkStrokeLimit;
     std::wstring file, statisticsFile;
     RunStatistics lifetime;
 
@@ -148,6 +152,9 @@ struct Settings {
         LoadLifetimeStatistics(statisticsFile,lifetime);
         difficulty = std::clamp(static_cast<int>(GetPrivateProfileIntW(L"Game", L"Difficulty", 0, file.c_str())), 0, 4);
         showFps = GetPrivateProfileIntW(L"Display", L"ShowFPS", 0, file.c_str()) != 0;
+        const UINT storedLimit = GetPrivateProfileIntW(L"Ink", L"StrokeLimit", DefaultInkStrokeLimit, file.c_str());
+        inkStrokeLimit = storedLimit >= 1 && storedLimit <= MaximumInkStrokeLimit
+            ? static_cast<int>(storedLimit) : DefaultInkStrokeLimit;
         wchar_t value[64]{};
         GetPrivateProfileStringW(L"Game", L"HighScore", L"5000", value, static_cast<DWORD>(std::size(value)), file.c_str());
         wchar_t* end = nullptr;
@@ -163,7 +170,9 @@ struct Settings {
         const BOOL second = WritePrivateProfileStringW(L"Game", L"HighScore", highScoreText.c_str(), file.c_str());
         const BOOL third = WritePrivateProfileStringW(L"Display", L"ShowFPS", showFps ? L"1" : L"0", file.c_str());
         const bool totals = SaveLifetimeStatistics(statisticsFile, statistics.lifetime);
-        return first && second && third && totals;
+        const auto limitText = std::to_wstring(inkStrokeLimit);
+        const BOOL inkSaved = WritePrivateProfileStringW(L"Ink", L"StrokeLimit", limitText.c_str(), file.c_str());
+        return first && second && third && totals && inkSaved;
     }
 };
 
@@ -177,6 +186,7 @@ public:
     Options options;
     std::wstring name;
     bool drawing = false;
+    std::optional<UINT32> drawingPen;
     bool manualPause = false;
     bool active = true;
     bool inMenu = false;
@@ -204,6 +214,7 @@ public:
         const int difficulty = options.difficulty >= 0 ? options.difficulty : settings.difficulty;
         game.seedLifetimeStatistics(settings.lifetime);
         game.setHighScore(settings.highScore);
+        game.setInkStrokeLimit(settings.inkStrokeLimit);
         game.newGame(difficulty, options.seed);
         if (options.level >= 0) {
             if (static_cast<std::size_t>(options.level) >= game.levels().size())
@@ -270,13 +281,15 @@ public:
     }
 
     void stopDrawing() {
-        if (!drawing) return;
+        if (!drawing && !drawingPen) return;
         game.endStroke();
+        const bool releaseMouse = drawing;
         drawing = false;
+        drawingPen.reset();
         // Moving/resizing the native window also captures the mouse. Only
         // release capture owned by an ink stroke, or pausing on entry to the
         // system move loop would immediately cancel the title-bar drag.
-        if (window && GetCapture() == window) ReleaseCapture();
+        if (releaseMouse && window && GetCapture() == window) ReleaseCapture();
     }
 
     void syncPause() {
@@ -304,6 +317,71 @@ public:
         GetClientRect(window, &client);
         POINT mouse{GET_X_LPARAM(coordinates), GET_Y_LPARAM(coordinates)};
         return renderer.toBoard(mouse, client, point);
+    }
+
+    bool penInput(UINT message, WPARAM buttons, LPARAM coordinates) {
+        const UINT32 id = GET_POINTERID_WPARAM(buttons);
+        const bool tracked = drawingPen == id;
+        if (!tracked) {
+            POINTER_INPUT_TYPE type{};
+            if (!GetPointerType(id, &type) || type != PT_PEN) return false;
+        }
+
+        RECT client{};
+        GetClientRect(window, &client);
+        const auto toBoard = [&](POINT screen, Vec2& point) {
+            return ScreenToClient(window, &screen) && renderer.toBoard(screen, client, point);
+        };
+        const POINT current{GET_X_LPARAM(coordinates), GET_Y_LPARAM(coordinates)};
+
+        if (message == WM_POINTERDOWN) {
+            Vec2 point;
+            if (drawing || drawingPen || game.state().paused || !toBoard(current, point)) return true;
+            SetFocus(window);
+            if (IS_POINTER_SECONDBUTTON_WPARAM(buttons)) {
+                game.placeBlock(point);
+            } else {
+                drawingPen = id;
+                game.beginStroke(point);
+            }
+            refresh();
+            return true;
+        }
+        if (!tracked) return true;
+
+        POINTER_PEN_INFO latest{};
+        const bool haveLatest = GetPointerPenInfo(id, &latest) != FALSE;
+        if (haveLatest && (latest.pointerInfo.pointerFlags & POINTER_FLAG_CANCELED)) {
+            stopDrawing();
+            return true;
+        }
+
+        const auto extend = [&](POINT screen) {
+            Vec2 point;
+            if (toBoard(screen, point)) game.extendStroke(point);
+        };
+        // Windows returns the newest samples first. Bound the work per message
+        // after a stall, and replay the available samples in drawing order.
+        if (message == WM_POINTERUPDATE && haveLatest && latest.pointerInfo.historyCount > 1) {
+            std::array<POINTER_PEN_INFO, 64> history;
+            UINT32 count = static_cast<UINT32>(history.size());
+            if (GetPointerPenInfoHistory(id, &count, history.data())) {
+                count = std::min(count, static_cast<UINT32>(history.size()));
+                while (count > 0) {
+                    const auto& sample = history[--count].pointerInfo;
+                    if ((sample.pointerFlags & POINTER_FLAG_INCONTACT) &&
+                        !(sample.pointerFlags & POINTER_FLAG_CANCELED))
+                        extend(sample.ptPixelLocation);
+                }
+            } else {
+                extend(latest.pointerInfo.ptPixelLocation);
+            }
+        } else if (message == WM_POINTERUP || IS_POINTER_INCONTACT_WPARAM(buttons)) {
+            extend(haveLatest ? latest.pointerInfo.ptPixelLocation : current);
+        }
+        if (message == WM_POINTERUP) stopDrawing();
+        refresh();
+        return true;
     }
 
     void newGame(int difficulty) {
@@ -392,9 +470,15 @@ public:
 
     void mechanicsSettings() {
         if (inDialog) return;
+        stopDrawing();
         inDialog = true;
         syncPause();
         const bool changed = ShowMechanicsDialog(window, instance, game);
+        if (changed) {
+            settings.inkStrokeLimit = game.inkStrokeLimit();
+            if (!settings.save(game.state(), game.statistics()))
+                MessageBoxW(window, L"The ink storage setting could not be saved. It will still apply to this session.", L"InkBall", MB_OK | MB_ICONWARNING);
+        }
         inDialog = false;
         syncPause();
         if (changed) refresh();
@@ -561,12 +645,16 @@ LRESULT HandleMessage(Application& app, HWND window, UINT message, WPARAM wParam
         return 0;
     case WM_GETMINMAXINFO: {
         const UINT dpi = DpiForWindow(window);
-        const RECT rect = WindowRect(MulDiv(Renderer::Width / 2, dpi, 96),
-            MulDiv(Renderer::Height / 2, dpi, 96), dpi);
+        const RECT rect = WindowRect(MulDiv(Renderer::Width, dpi, 96),
+            MulDiv(Renderer::Height, dpi, 96), dpi);
         auto* info = reinterpret_cast<MINMAXINFO*>(lParam);
         info->ptMinTrackSize = {rect.right - rect.left, rect.bottom - rect.top};
+        info->ptMaxTrackSize = info->ptMinTrackSize;
         return 0;
     }
+    case WM_SYSCOMMAND:
+        if ((wParam & 0xfff0) == SC_SIZE || (wParam & 0xfff0) == SC_MAXIMIZE) return 0;
+        return DefWindowProcW(window, message, wParam, lParam);
     case WM_DPICHANGED: {
         app.penCursor.setDpi(HIWORD(wParam));
         const auto* rect = reinterpret_cast<RECT*>(lParam);
@@ -599,9 +687,18 @@ LRESULT HandleMessage(Application& app, HWND window, UINT message, WPARAM wParam
             return TRUE;
         }
         return DefWindowProcW(window, message, wParam, lParam);
+    case WM_POINTERDOWN:
+    case WM_POINTERUPDATE:
+    case WM_POINTERUP:
+        // Handling the pen messages here keeps them from becoming mouse input.
+        if (app.penInput(message, wParam, lParam)) return 0;
+        return DefWindowProcW(window, message, wParam, lParam);
+    case WM_POINTERCAPTURECHANGED:
+        if (app.drawingPen == GET_POINTERID_WPARAM(wParam)) app.stopDrawing();
+        return DefWindowProcW(window, message, wParam, lParam);
     case WM_LBUTTONDOWN: {
         Vec2 point;
-        if (!app.game.state().paused && app.boardPoint(lParam, point)) {
+        if (!app.drawingPen && !app.game.state().paused && app.boardPoint(lParam, point)) {
             SetFocus(window);
             SetCapture(window);
             app.drawing = true;
@@ -725,13 +822,13 @@ int WINAPI wWinMain(HINSTANCE instance, HINSTANCE, PWSTR, int showCommand) {
 
         const UINT dpi = DpiForWindow(nullptr);
         const RECT rect = WindowRect(MulDiv(Renderer::Width, dpi, 96), MulDiv(Renderer::Height, dpi, 96), dpi);
-        HWND window = CreateWindowExW(0, WindowClassName, app.name.c_str(), WS_OVERLAPPEDWINDOW,
+        HWND window = CreateWindowExW(0, WindowClassName, app.name.c_str(), MainWindowStyle,
             CW_USEDEFAULT, CW_USEDEFAULT, rect.right - rect.left, rect.bottom - rect.top,
             nullptr, nullptr, instance, &app);
         if (!window) throw std::runtime_error("The InkBall window could not be created.");
         HACCEL accelerators = LoadAcceleratorsW(instance, MAKEINTRESOURCEW(IDR_ACCELERATOR));
         if (!accelerators) throw std::runtime_error("The InkBall keyboard shortcuts could not be loaded.");
-        ShowWindow(window, showCommand);
+        ShowWindow(window, showCommand == SW_SHOWMAXIMIZED ? SW_SHOWNORMAL : showCommand);
         UpdateWindow(window);
         app.resetClock();
 

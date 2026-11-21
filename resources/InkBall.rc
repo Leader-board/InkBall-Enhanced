@@ -8,6 +8,7 @@ IDR_LEVELS RCDATA "../assets/levels.ikl"
 
 #include "LocalizedMenus.rc"
 
+
 IDR_ACCELERATOR ACCELERATORS
 BEGIN
     VK_ESCAPE, IDM_EXIT, VIRTKEY, NOINVERT
