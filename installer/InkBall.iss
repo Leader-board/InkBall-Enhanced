@@ -1,15 +1,15 @@
 #define GameExe AddBackslash(SourcePath) + "..\bin\x64\Release\inkball.exe"
-#define GameVersion GetFileProductVersionString(GameExe)
 #ifndef ReleaseVersion
-  #define ReleaseVersion GameVersion
+  #error Pass ReleaseVersion via the GitHub Actions packaging step.
 #endif
+#define BinaryVersion GetVersionNumbersString(GameExe)
 
 [Setup]
 AppId=Leader-board.InkBall-Enhanced
 AppName=InkBall Enhanced
 AppVersion={#ReleaseVersion}
-VersionInfoVersion={#GetVersionNumbersString(GameExe)}
-VersionInfoProductVersion={#GetVersionNumbersString(GameExe)}
+VersionInfoVersion={#BinaryVersion}
+VersionInfoProductVersion={#BinaryVersion}
 VersionInfoProductTextVersion={#ReleaseVersion}
 DefaultDirName={localappdata}\Programs\InkBall-Reconstructed
 DisableDirPage=auto

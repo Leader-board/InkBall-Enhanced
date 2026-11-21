@@ -43,8 +43,23 @@ jobs:
             $version = "$baseVersion-dev.$env:GITHUB_RUN_NUMBER.$env:GITHUB_RUN_ATTEMPT"
           }
 
+          # Pin the compiler independently of the GitHub runner image.
+          $innoVersion = '7.1.1'
+          $innoSha256 = '8a5a6711c3766a6e5fb74f280ba0e3551e719ce94538d901fdbd1f8f9920b3f0'
+          $innoTag = 'is-' + $innoVersion.Replace('.', '_')
+          $innoFile = "innosetup-$innoVersion-x64.exe"
+          $innoDownload = Join-Path $env:RUNNER_TEMP $innoFile
+          $innoDirectory = Join-Path $env:RUNNER_TEMP "InnoSetup-$innoVersion"
+          Invoke-WebRequest "https://github.com/jrsoftware/issrc/releases/download/$innoTag/$innoFile" -OutFile $innoDownload
+          if ((Get-FileHash -LiteralPath $innoDownload -Algorithm SHA256).Hash -ne $innoSha256) {
+            throw "SHA-256 mismatch for $innoFile."
+          }
+          $install = Start-Process -FilePath $innoDownload -ArgumentList "/VERYSILENT /SUPPRESSMSGBOXES /SP- /NORESTART /DIR=`"$innoDirectory`"" -Wait -PassThru
+          if ($install.ExitCode -ne 0) { throw "Inno Setup installation failed ($($install.ExitCode))." }
+          $compiler = Join-Path $innoDirectory 'ISCC.exe'
+          if (!(Test-Path -LiteralPath $compiler -PathType Leaf)) { throw "Inno Setup compiler not found at $compiler." }
+
           $output = (New-Item -ItemType Directory -Path ./release-output -Force).FullName
-          $compiler = Join-Path ${env:ProgramFiles(x86)} 'Inno Setup 6\ISCC.exe'
           & $compiler "/DReleaseVersion=$version" "/O$output" ./installer/InkBall.iss
           if ($LASTEXITCODE -ne 0) { throw "Inno Setup failed ($LASTEXITCODE)." }
           Copy-Item -LiteralPath $game.FullName -Destination (Join-Path $output "InkBall-Portable-$version-x64.exe")
