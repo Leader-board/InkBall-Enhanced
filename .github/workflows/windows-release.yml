@@ -1,0 +1,117 @@
+name: Windows releases
+
+on:
+  push:
+    branches: [master]
+    tags: ['v*']
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: windows-2025-vs2026
+    outputs:
+      version: ${{ steps.package.outputs.version }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - name: Build and test Release x64
+        shell: pwsh
+        run: |
+          ./Build.ps1 -Configuration Release -Platform x64 -SkipTests
+          foreach ($suite in 'Engine', 'Catalog') {
+            & "./bin/x64/Release/InkBall.${suite}Tests.exe" ./assets/levels.ikl
+            if ($LASTEXITCODE -ne 0) { throw "$suite tests failed ($LASTEXITCODE)." }
+          }
+      - name: Package installer and portable executable
+        id: package
+        shell: pwsh
+        run: |
+          $game = Get-Item -LiteralPath ./bin/x64/Release/inkball.exe
+          $baseVersion = $game.VersionInfo.ProductVersion
+          if ($baseVersion -cnotmatch '^[0-9]+\.[0-9]+\.[0-9]+$') {
+            throw "Unexpected executable product version: $baseVersion"
+          }
+          if ($env:GITHUB_REF_TYPE -eq 'tag') {
+            if ($env:GITHUB_REF_NAME -cne "v$baseVersion") {
+              throw "Tag $env:GITHUB_REF_NAME must match executable version v$baseVersion."
+            }
+            $version = $baseVersion
+          } else {
+            $version = "$baseVersion-dev.$env:GITHUB_RUN_NUMBER.$env:GITHUB_RUN_ATTEMPT"
+          }
+
+          $output = (New-Item -ItemType Directory -Path ./release-output -Force).FullName
+          $compiler = Join-Path ${env:ProgramFiles(x86)} 'Inno Setup 6\ISCC.exe'
+          & $compiler "/DReleaseVersion=$version" "/O$output" ./installer/InkBall.iss
+          if ($LASTEXITCODE -ne 0) { throw "Inno Setup failed ($LASTEXITCODE)." }
+          Copy-Item -LiteralPath $game.FullName -Destination (Join-Path $output "InkBall-Portable-$version-x64.exe")
+          "version=$version" >> $env:GITHUB_OUTPUT
+      - uses: actions/upload-artifact@v7
+        with:
+          name: windows-x64
+          path: release-output/*.exe
+          if-no-files-found: error
+
+  publish:
+    needs: build
+    runs-on: windows-2025-vs2026
+    permissions:
+      contents: write
+    concurrency:
+      group: windows-release-${{ github.ref }}
+      cancel-in-progress: false
+    steps:
+      - uses: actions/download-artifact@v8
+        with:
+          name: windows-x64
+          path: release-output
+      - name: Publish both executables
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          RELEASE_VERSION: ${{ needs.build.outputs.version }}
+        run: |
+          $PSNativeCommandUseErrorActionPreference = $true
+          $version = $env:RELEASE_VERSION
+          $files = @(
+            "./release-output/InkBall-Setup-$version-x64.exe"
+            "./release-output/InkBall-Portable-$version-x64.exe"
+          )
+          foreach ($file in $files) {
+            if (!(Test-Path -LiteralPath $file -PathType Leaf)) { throw "Missing release file: $file" }
+          }
+          if ($env:GITHUB_REF_TYPE -eq 'tag') {
+            gh release create $env:GITHUB_REF_NAME @files --verify-tag --generate-notes
+            exit 0
+          }
+
+          $head = gh api "repos/$env:GH_REPO/git/ref/heads/master" --jq '.object.sha'
+          if ($head -ne $env:GITHUB_SHA) {
+            Write-Host 'Skipping this build because master has advanced.'
+            exit 0
+          }
+          $notes = "Build $version from commit $env:GITHUB_SHA. Download Setup to install or Portable to run directly."
+          $release = gh api --paginate "repos/$env:GH_REPO/releases?per_page=100" --jq '.[] | select(.tag_name == "rolling") | {id, prerelease, immutable}' | ConvertFrom-Json
+          if (!$release) {
+            gh release create rolling @files --target $env:GITHUB_SHA --title 'Rolling Windows build' --notes $notes --prerelease --latest=false
+            exit 0
+          }
+          if (!$release.prerelease) { throw 'The rolling tag already belongs to a stable release.' }
+          if ($release.immutable) { throw 'The rolling prerelease must allow changes to its tag and assets.' }
+
+          # Upload the new pair before retiring any previous downloads.
+          $current = $files | ForEach-Object { Split-Path -Leaf $_ }
+          $assets = gh api --paginate "repos/$env:GH_REPO/releases/$($release.id)/assets?per_page=100" --jq '.[].name'
+          $missing = @($files | Where-Object { (Split-Path -Leaf $_) -notin $assets })
+          if ($missing.Count) { gh release upload rolling @missing }
+          gh api --method PATCH "repos/$env:GH_REPO/git/refs/tags/rolling" -f "sha=$env:GITHUB_SHA" -F force=true --silent
+          gh release edit rolling --notes $notes --prerelease --latest=false
+          foreach ($asset in $assets) {
+            if ($asset -match '^InkBall-(Setup|Portable)-[0-9]+\.[0-9]+\.[0-9]+-dev\.[0-9]+\.[0-9]+-x64\.exe$' -and $asset -notin $current) {
+              gh release delete-asset rolling $asset --yes
+            }
+          }

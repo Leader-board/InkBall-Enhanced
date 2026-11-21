@@ -23,7 +23,7 @@ With the exception of https://github.com/TC999/inkballd, I have not seen any att
 * The EXE is self-contained and does not require any additional DLLs.
 * x64 but should be easy to compile to x86 and Windows on ARM if needed. 
 
-To run, go to `bin\x64\Release\inkball.exe`.
+To run, go to `bin\x64\Release\inkball.exe`, or alternatively go to GitHub Releases, where you can find an automatically generated installer and the portable EXE that is in `bin`
 
 ## Limitations
 
